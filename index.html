@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Practice French verb conjugation offline">
+    <title>French Conjugation Practice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>French Conjugation Practice</h1>
+            <div id="status" class="status"></div>
+        </header>
+
+        <main>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading verbs...</p>
+            </div>
+
+            <div id="card-container" class="card-container hidden">
+                <div id="card" class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="verb-info">
+                                <div class="infinitive" id="infinitive"></div>
+                                <div class="pronoun" id="pronoun"></div>
+                            </div>
+                            <div class="instruction">Tap to reveal answer</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="verb-info">
+                                <div class="infinitive" id="infinitive-back"></div>
+                                <div class="pronoun" id="pronoun-back"></div>
+                            </div>
+                            <div class="conjugation" id="conjugation"></div>
+                            <div class="swipe-instruction">
+                                <span class="swipe-left">← Wrong</span>
+                                <span class="swipe-right">Right →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </main>
+
+        <footer>
+            <div class="stats">
+                <span id="card-count">0 verbs loaded</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+{
+  "version": "1.0.0",
+  "verbs": [
+    {
+      "infinitive": "être",
+      "conjugations": {
+        "je": "suis",
+        "tu": "es",
+        "il": "est",
+        "nous": "sommes",
+        "vous": "êtes",
+        "ils": "sont"
+      }
+    },
+    {
+      "infinitive": "avoir",
+      "conjugations": {
+        "je": "ai",
+        "tu": "as",
+        "il": "a",
+        "nous": "avons",
+        "vous": "avez",
+        "ils": "ont"
+      }
+    },
+    {
+      "infinitive": "aller",
+      "conjugations": {
+        "je": "vais",
+        "tu": "vas",
+        "il": "va",
+        "nous": "allons",
+        "vous": "allez",
+        "ils": "vont"
+      }
+    },
+    {
+      "infinitive": "faire",
+      "conjugations": {
+        "je": "fais",
+        "tu": "fais",
+        "il": "fait",
+        "nous": "faisons",
+        "vous": "faites",
+        "ils": "font"
+      }
+    },
+    {
+      "infinitive": "dire",
+      "conjugations": {
+        "je": "dis",
+        "tu": "dis",
+        "il": "dit",
+        "nous": "disons",
+        "vous": "dites",
+        "ils": "disent"
+      }
+    },
+    {
+      "infinitive": "pouvoir",
+      "conjugations": {
+        "je": "peux",
+        "tu": "peux",
+        "il": "peut",
+        "nous": "pouvons",
+        "vous": "pouvez",
+        "ils": "peuvent"
+      }
+    },
+    {
+      "infinitive": "vouloir",
+      "conjugations": {
+        "je": "veux",
+        "tu": "veux",
+        "il": "veut",
+        "nous": "voulons",
+        "vous": "voulez",
+        "ils": "veulent"
+      }
+    },
+    {
+      "infinitive": "venir",
+      "conjugations": {
+        "je": "viens",
+        "tu": "viens",
+        "il": "vient",
+        "nous": "venons",
+        "vous": "venez",
+        "ils": "viennent"
+      }
+    },
+    {
+      "infinitive": "devoir",
+      "conjugations": {
+        "je": "dois",
+        "tu": "dois",
+        "il": "doit",
+        "nous": "devons",
+        "vous": "devez",
+        "ils": "doivent"
+      }
+    },
+    {
+      "infinitive": "savoir",
+      "conjugations": {
+        "je": "sais",
+        "tu": "sais",
+        "il": "sait",
+        "nous": "savons",
+        "vous": "savez",
+        "ils": "savent"
+      }
+    },
+    {
+      "infinitive": "prendre",
+      "conjugations": {
+        "je": "prends",
+        "tu": "prends",
+        "il": "prend",
+        "nous": "prenons",
+        "vous": "prenez",
+        "ils": "prennent"
+      }
+    },
+    {
+      "infinitive": "voir",
+      "conjugations": {
+        "je": "vois",
+        "tu": "vois",
+        "il": "voit",
+        "nous": "voyons",
+        "vous": "voyez",
+        "ils": "voient"
+      }
+    },
+    {
+      "infinitive": "donner",
+      "conjugations": {
+        "je": "donne",
+        "tu": "donnes",
+        "il": "donne",
+        "nous": "donnons",
+        "vous": "donnez",
+        "ils": "donnent"
+      }
+    },
+    {
+      "infinitive": "parler",
+      "conjugations": {
+        "je": "parle",
+        "tu": "parles",
+        "il": "parle",
+        "nous": "parlons",
+        "vous": "parlez",
+        "ils": "parlent"
+      }
+    },
+    {
+      "infinitive": "manger",
+      "conjugations": {
+        "je": "mange",
+        "tu": "manges",
+        "il": "mange",
+        "nous": "mangeons",
+        "vous": "mangez",
+        "ils": "mangent"
+      }
+    },
+    {
+      "infinitive": "finir",
+      "conjugations": {
+        "je": "finis",
+        "tu": "finis",
+        "il": "finit",
+        "nous": "finissons",
+        "vous": "finissez",
+        "ils": "finissent"
+      }
+    },
+    {
+      "infinitive": "attendre",
+      "conjugations": {
+        "je": "attends",
+        "tu": "attends",
+        "il": "attend",
+        "nous": "attendons",
+        "vous": "attendez",
+        "ils": "attendent"
+      }
+    },
+    {
+      "infinitive": "mettre",
+      "conjugations": {
+        "je": "mets",
+        "tu": "mets",
+        "il": "met",
+        "nous": "mettons",
+        "vous": "mettez",
+        "ils": "mettent"
+      }
+    },
+    {
+      "infinitive": "vivre",
+      "conjugations": {
+        "je": "vis",
+        "tu": "vis",
+        "il": "vit",
+        "nous": "vivons",
+        "vous": "vivez",
+        "ils": "vivent"
+      }
+    },
+    {
+      "infinitive": "connaître",
+      "conjugations": {
+        "je": "connais",
+        "tu": "connais",
+        "il": "connaît",
+        "nous": "connaissons",
+        "vous": "connaissez",
+        "ils": "connaissent"
+      }
+    }
+  ]
+}
