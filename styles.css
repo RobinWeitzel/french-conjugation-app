@@ -39,6 +39,30 @@ header h1 {
     min-height: 20px;
 }
 
+.reset-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    margin-bottom: 10px;
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
 main {
     flex: 1;
     display: flex;
@@ -67,16 +91,76 @@ main {
     100% { transform: rotate(360deg); }
 }
 
+/* Session Stats */
+.session-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    font-weight: 600;
+}
+
+.stat-correct {
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.stat-correct .stat-value {
+    color: #27ae60;
+}
+
+.stat-incorrect {
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.stat-incorrect .stat-value {
+    color: #e74c3c;
+}
+
+.stat-accuracy {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.stat-accuracy .stat-value {
+    color: #667eea;
+}
+
 /* Card Container */
 .card-container {
     width: 100%;
-    height: 400px;
     perspective: 1000px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
     width: 100%;
-    height: 100%;
+    height: 400px;
     position: relative;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -169,6 +253,10 @@ main {
 footer {
     text-align: center;
     color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
 }
 
 .stats {
@@ -214,6 +302,15 @@ footer {
 
 /* Responsive */
 @media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .reset-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
     .infinitive {
         font-size: 2.5rem;
     }
@@ -226,7 +323,25 @@ footer {
         font-size: 3rem;
     }
 
-    .card-container {
+    .card {
         height: 350px;
+    }
+
+    .session-stats {
+        padding: 12px;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .stat-item {
+        padding: 8px 3px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
     }
 }

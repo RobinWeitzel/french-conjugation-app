@@ -1,8 +1,9 @@
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const VERBS_STORE = 'verbs';
 const METADATA_STORE = 'metadata';
+const STATS_STORE = 'stats';
 const WORDS_URL = './words.json';
 
 // Pronouns for conjugation practice
@@ -10,12 +11,23 @@ const PRONOUNS = ['je', 'tu', 'il', 'nous', 'vous', 'ils'];
 
 // App State
 let db = null;
+let allVerbs = [];
 let verbs = [];
 let currentVerb = null;
 let currentPronoun = null;
 let isFlipped = false;
 let touchStartX = 0;
 let touchEndX = 0;
+
+// Session Stats
+let sessionStats = {
+    correct: 0,
+    incorrect: 0,
+    total: 0
+};
+
+// Mastery threshold
+const MASTERY_THRESHOLD = 3;
 
 // DOM Elements
 const elements = {
@@ -29,7 +41,11 @@ const elements = {
     conjugation: document.getElementById('conjugation'),
     error: document.getElementById('error'),
     status: document.getElementById('status'),
-    cardCount: document.getElementById('card-count')
+    cardCount: document.getElementById('card-count'),
+    sessionCorrect: document.getElementById('session-correct'),
+    sessionIncorrect: document.getElementById('session-incorrect'),
+    sessionAccuracy: document.getElementById('session-accuracy'),
+    resetBtn: document.getElementById('reset-btn')
 };
 
 // Initialize the app
@@ -69,6 +85,11 @@ function initDB() {
             if (!db.objectStoreNames.contains(METADATA_STORE)) {
                 db.createObjectStore(METADATA_STORE, { keyPath: 'key' });
             }
+
+            // Create stats store
+            if (!db.objectStoreNames.contains(STATS_STORE)) {
+                db.createObjectStore(STATS_STORE, { keyPath: 'infinitive' });
+            }
         };
     });
 }
@@ -96,13 +117,18 @@ async function loadVerbs() {
     }
 
     // Load from IndexedDB
-    verbs = await getVerbsFromDB();
+    allVerbs = await getVerbsFromDB();
 
-    if (verbs.length === 0) {
+    if (allVerbs.length === 0) {
         throw new Error('No verbs available. Please check your internet connection.');
     }
 
-    updateCardCount();
+    // Filter out mastered verbs
+    await filterUnmasteredVerbs();
+
+    if (verbs.length === 0) {
+        updateStatus('All verbs mastered! Click reset to practice again.');
+    }
 }
 
 // Fetch words from server
@@ -165,6 +191,108 @@ function getVerbsFromDB() {
     });
 }
 
+// Get stats for a specific verb
+function getVerbStats(infinitive) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([STATS_STORE], 'readonly');
+        const store = transaction.objectStore(STATS_STORE);
+        const request = store.get(infinitive);
+
+        request.onsuccess = () => {
+            const stats = request.result || {
+                infinitive,
+                correct: 0,
+                incorrect: 0,
+                lastPracticed: null,
+                totalAttempts: 0
+            };
+            resolve(stats);
+        };
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// Get all stats from the database
+function getAllStats() {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([STATS_STORE], 'readonly');
+        const store = transaction.objectStore(STATS_STORE);
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// Filter verbs based on mastery
+async function filterUnmasteredVerbs() {
+    const allStats = await getAllStats();
+    const statsMap = new Map(allStats.map(stat => [stat.infinitive, stat]));
+
+    verbs = allVerbs.filter(verb => {
+        const stats = statsMap.get(verb.infinitive);
+        return !stats || stats.correct < MASTERY_THRESHOLD;
+    });
+
+    updateCardCount();
+}
+
+// Update stats for a verb
+async function updateVerbStats(infinitive, isCorrect) {
+    const stats = await getVerbStats(infinitive);
+
+    stats.totalAttempts++;
+    if (isCorrect) {
+        stats.correct++;
+    } else {
+        stats.incorrect++;
+    }
+    stats.lastPracticed = new Date().toISOString();
+
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([STATS_STORE], 'readwrite');
+        const store = transaction.objectStore(STATS_STORE);
+        const request = store.put(stats);
+
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// Reset all stats
+async function resetAllStats() {
+    if (!confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+        return;
+    }
+
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([STATS_STORE], 'readwrite');
+        const store = transaction.objectStore(STATS_STORE);
+        const request = store.clear();
+
+        request.onsuccess = async () => {
+            // Reset session stats
+            sessionStats.correct = 0;
+            sessionStats.incorrect = 0;
+            sessionStats.total = 0;
+            updateSessionStats();
+
+            // Refilter verbs (all should be available now)
+            await filterUnmasteredVerbs();
+
+            // Show cards again if they were hidden
+            elements.cardContainer.classList.remove('hidden');
+            updateStatus('Progress reset - all verbs available');
+
+            // Show a new card
+            showNextCard();
+
+            resolve();
+        };
+        request.onerror = () => reject(request.error);
+    });
+}
+
 // Show next card
 function showNextCard() {
     if (verbs.length === 0) return;
@@ -192,19 +320,55 @@ function flipCard() {
 }
 
 // Handle swipe
-function handleSwipe(direction) {
+async function handleSwipe(direction) {
     if (!isFlipped) return; // Only allow swipe when card is flipped
+
+    // Record statistics (right = correct, left = incorrect)
+    const isCorrect = direction === 'right';
+
+    // Update session stats
+    sessionStats.total++;
+    if (isCorrect) {
+        sessionStats.correct++;
+    } else {
+        sessionStats.incorrect++;
+    }
+    updateSessionStats();
+
+    // Update persistent stats
+    try {
+        await updateVerbStats(currentVerb.infinitive, isCorrect);
+        // Refilter verbs in case this verb reached mastery threshold
+        await filterUnmasteredVerbs();
+    } catch (error) {
+        console.error('Failed to update stats:', error);
+    }
 
     elements.card.classList.add(`swipe-${direction}`);
 
     setTimeout(() => {
         elements.card.classList.remove(`swipe-${direction}`);
-        showNextCard();
+        if (verbs.length === 0) {
+            updateStatus('All verbs mastered! Click reset to practice again.');
+            elements.cardContainer.classList.add('hidden');
+        } else {
+            showNextCard();
+        }
     }, 300);
 }
 
 // Setup event listeners
 function setupEventListeners() {
+    // Reset button
+    elements.resetBtn.addEventListener('click', async () => {
+        try {
+            await resetAllStats();
+        } catch (error) {
+            console.error('Failed to reset stats:', error);
+            alert('Failed to reset progress. Please try again.');
+        }
+    });
+
     // Click to flip (only when not flipped)
     elements.card.addEventListener('click', (e) => {
         if (!isFlipped) {
@@ -283,6 +447,18 @@ function updateStatus(message) {
 
 function updateCardCount() {
     elements.cardCount.textContent = `${verbs.length} verb${verbs.length !== 1 ? 's' : ''} loaded`;
+}
+
+function updateSessionStats() {
+    elements.sessionCorrect.textContent = sessionStats.correct;
+    elements.sessionIncorrect.textContent = sessionStats.incorrect;
+
+    if (sessionStats.total > 0) {
+        const accuracy = Math.round((sessionStats.correct / sessionStats.total) * 100);
+        elements.sessionAccuracy.textContent = `${accuracy}%`;
+    } else {
+        elements.sessionAccuracy.textContent = '—';
+    }
 }
 
 function hideLoading() {

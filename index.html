@@ -21,6 +21,21 @@
             </div>
 
             <div id="card-container" class="card-container hidden">
+                <div class="session-stats">
+                    <div class="stat-item stat-incorrect">
+                        <div class="stat-value" id="session-incorrect">0</div>
+                        <div class="stat-label">Incorrect</div>
+                    </div>
+                    <div class="stat-item stat-accuracy">
+                        <div class="stat-value" id="session-accuracy">—</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-item stat-correct">
+                        <div class="stat-value" id="session-correct">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                </div>
+
                 <div id="card" class="card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -52,6 +67,7 @@
             <div class="stats">
                 <span id="card-count">0 verbs loaded</span>
             </div>
+            <button id="reset-btn" class="reset-btn" title="Reset all progress">Reset Progress</button>
         </footer>
     </div>
 

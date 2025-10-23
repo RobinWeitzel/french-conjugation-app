@@ -1,0 +1,12 @@
+{
+  "name": "french-conjugation-practice",
+  "version": "1.0.0",
+  "description": "French verb conjugation practice app",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "dev:node": "npx http-server -p 8000 -c-1"
+  },
+  "keywords": ["french", "conjugation", "practice"],
+  "author": "",
+  "license": "MIT"
+}
