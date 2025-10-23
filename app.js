@@ -39,6 +39,7 @@ const elements = {
     pronoun: document.getElementById('pronoun'),
     pronounBack: document.getElementById('pronoun-back'),
     conjugation: document.getElementById('conjugation'),
+    englishTranslation: document.getElementById('english-translation'),
     error: document.getElementById('error'),
     status: document.getElementById('status'),
     cardCount: document.getElementById('card-count'),
@@ -97,27 +98,35 @@ function initDB() {
 // Load verbs from IndexedDB or fetch from server
 async function loadVerbs() {
     try {
+        console.log('[App] Attempting to fetch words.json from server...');
         // Try to fetch new version from server
         const onlineData = await fetchWordsFromServer();
 
         if (onlineData) {
+            console.log('[App] Successfully fetched from server. Version:', onlineData.version);
             const currentVersion = await getStoredVersion();
+            console.log('[App] Current cached version:', currentVersion || 'none');
 
             if (!currentVersion || onlineData.version !== currentVersion) {
+                console.log('[App] New version detected, updating IndexedDB...');
                 updateStatus('Updating verbs...');
                 await saveVerbsToDB(onlineData.verbs, onlineData.version);
                 updateStatus('✓ Verbs updated');
+                console.log('[App] Data loaded from SERVER and cached');
             } else {
+                console.log('[App] Version unchanged, using existing data');
                 updateStatus('✓ Verbs up to date');
+                console.log('[App] Data loaded from INDEXEDDB (server confirmed up-to-date)');
             }
         }
     } catch (error) {
-        console.log('Could not fetch from server, using cached data:', error);
+        console.warn('[App] Could not fetch from server, using cached data:', error);
         updateStatus('Offline mode');
     }
 
     // Load from IndexedDB
     allVerbs = await getVerbsFromDB();
+    console.log('[App] Loaded', allVerbs.length, 'verbs from IndexedDB');
 
     if (allVerbs.length === 0) {
         throw new Error('No verbs available. Please check your internet connection.');
@@ -134,7 +143,8 @@ async function loadVerbs() {
 // Fetch words from server
 async function fetchWordsFromServer() {
     try {
-        const response = await fetch(WORDS_URL);
+        // Use cache: 'no-cache' to ensure we bypass HTTP cache and get fresh data
+        const response = await fetch(WORDS_URL, { cache: 'no-cache' });
         if (!response.ok) throw new Error('Failed to fetch');
         return await response.json();
     } catch (error) {
@@ -311,6 +321,7 @@ function showNextCard() {
     elements.pronoun.textContent = currentPronoun;
     elements.pronounBack.textContent = currentPronoun;
     elements.conjugation.textContent = currentVerb.conjugations[currentPronoun] || '—';
+    elements.englishTranslation.textContent = currentVerb.english || '';
 }
 
 // Flip card

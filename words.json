@@ -1,8 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "verbs": [
     {
       "infinitive": "être",
+      "english": "to be",
       "conjugations": {
         "je": "suis",
         "tu": "es",
@@ -14,6 +15,7 @@
     },
     {
       "infinitive": "avoir",
+      "english": "to have",
       "conjugations": {
         "je": "ai",
         "tu": "as",
@@ -25,6 +27,7 @@
     },
     {
       "infinitive": "aller",
+      "english": "to go",
       "conjugations": {
         "je": "vais",
         "tu": "vas",
@@ -36,6 +39,7 @@
     },
     {
       "infinitive": "faire",
+      "english": "to do/make",
       "conjugations": {
         "je": "fais",
         "tu": "fais",
@@ -47,6 +51,7 @@
     },
     {
       "infinitive": "dire",
+      "english": "to say/tell",
       "conjugations": {
         "je": "dis",
         "tu": "dis",
@@ -58,6 +63,7 @@
     },
     {
       "infinitive": "pouvoir",
+      "english": "to be able to/can",
       "conjugations": {
         "je": "peux",
         "tu": "peux",
@@ -69,6 +75,7 @@
     },
     {
       "infinitive": "vouloir",
+      "english": "to want",
       "conjugations": {
         "je": "veux",
         "tu": "veux",
@@ -80,6 +87,7 @@
     },
     {
       "infinitive": "venir",
+      "english": "to come",
       "conjugations": {
         "je": "viens",
         "tu": "viens",
@@ -91,6 +99,7 @@
     },
     {
       "infinitive": "devoir",
+      "english": "to have to/must",
       "conjugations": {
         "je": "dois",
         "tu": "dois",
@@ -102,6 +111,7 @@
     },
     {
       "infinitive": "savoir",
+      "english": "to know",
       "conjugations": {
         "je": "sais",
         "tu": "sais",
@@ -113,6 +123,7 @@
     },
     {
       "infinitive": "prendre",
+      "english": "to take",
       "conjugations": {
         "je": "prends",
         "tu": "prends",
@@ -124,6 +135,7 @@
     },
     {
       "infinitive": "voir",
+      "english": "to see",
       "conjugations": {
         "je": "vois",
         "tu": "vois",
@@ -135,6 +147,7 @@
     },
     {
       "infinitive": "donner",
+      "english": "to give",
       "conjugations": {
         "je": "donne",
         "tu": "donnes",
@@ -146,6 +159,7 @@
     },
     {
       "infinitive": "parler",
+      "english": "to speak",
       "conjugations": {
         "je": "parle",
         "tu": "parles",
@@ -157,6 +171,7 @@
     },
     {
       "infinitive": "manger",
+      "english": "to eat",
       "conjugations": {
         "je": "mange",
         "tu": "manges",
@@ -168,6 +183,7 @@
     },
     {
       "infinitive": "finir",
+      "english": "to finish",
       "conjugations": {
         "je": "finis",
         "tu": "finis",
@@ -179,6 +195,7 @@
     },
     {
       "infinitive": "attendre",
+      "english": "to wait",
       "conjugations": {
         "je": "attends",
         "tu": "attends",
@@ -190,6 +207,7 @@
     },
     {
       "infinitive": "mettre",
+      "english": "to put",
       "conjugations": {
         "je": "mets",
         "tu": "mets",
@@ -201,6 +219,7 @@
     },
     {
       "infinitive": "vivre",
+      "english": "to live",
       "conjugations": {
         "je": "vis",
         "tu": "vis",
@@ -212,6 +231,7 @@
     },
     {
       "infinitive": "connaître",
+      "english": "to know",
       "conjugations": {
         "je": "connais",
         "tu": "connais",
