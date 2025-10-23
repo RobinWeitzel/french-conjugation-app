@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "verbs": [
     {
       "infinitive": "être",
@@ -26,32 +26,8 @@
       }
     },
     {
-      "infinitive": "aller",
-      "english": "to go",
-      "conjugations": {
-        "je": "vais",
-        "tu": "vas",
-        "il": "va",
-        "nous": "allons",
-        "vous": "allez",
-        "ils": "vont"
-      }
-    },
-    {
-      "infinitive": "faire",
-      "english": "to do/make",
-      "conjugations": {
-        "je": "fais",
-        "tu": "fais",
-        "il": "fait",
-        "nous": "faisons",
-        "vous": "faites",
-        "ils": "font"
-      }
-    },
-    {
       "infinitive": "dire",
-      "english": "to say/tell",
+      "english": "to say",
       "conjugations": {
         "je": "dis",
         "tu": "dis",
@@ -62,8 +38,32 @@
       }
     },
     {
+      "infinitive": "devoir",
+      "english": "to have to",
+      "conjugations": {
+        "je": "dois",
+        "tu": "dois",
+        "il": "doit",
+        "nous": "devons",
+        "vous": "devez",
+        "ils": "doivent"
+      }
+    },
+    {
+      "infinitive": "prendre",
+      "english": "to take",
+      "conjugations": {
+        "je": "prends",
+        "tu": "prends",
+        "il": "prend",
+        "nous": "prenons",
+        "vous": "prenez",
+        "ils": "prennent"
+      }
+    },
+    {
       "infinitive": "pouvoir",
-      "english": "to be able to/can",
+      "english": "to be able",
       "conjugations": {
         "je": "peux",
         "tu": "peux",
@@ -74,39 +74,27 @@
       }
     },
     {
-      "infinitive": "vouloir",
-      "english": "to want",
+      "infinitive": "faire",
+      "english": "to do",
       "conjugations": {
-        "je": "veux",
-        "tu": "veux",
-        "il": "veut",
-        "nous": "voulons",
-        "vous": "voulez",
-        "ils": "veulent"
+        "je": "fais",
+        "tu": "fais",
+        "il": "fait",
+        "nous": "faisons",
+        "vous": "faites",
+        "ils": "font"
       }
     },
     {
-      "infinitive": "venir",
-      "english": "to come",
+      "infinitive": "mettre",
+      "english": "to put",
       "conjugations": {
-        "je": "viens",
-        "tu": "viens",
-        "il": "vient",
-        "nous": "venons",
-        "vous": "venez",
-        "ils": "viennent"
-      }
-    },
-    {
-      "infinitive": "devoir",
-      "english": "to have to/must",
-      "conjugations": {
-        "je": "dois",
-        "tu": "dois",
-        "il": "doit",
-        "nous": "devons",
-        "vous": "devez",
-        "ils": "doivent"
+        "je": "mets",
+        "tu": "mets",
+        "il": "met",
+        "nous": "mettons",
+        "vous": "mettez",
+        "ils": "mettent"
       }
     },
     {
@@ -122,15 +110,15 @@
       }
     },
     {
-      "infinitive": "prendre",
-      "english": "to take",
+      "infinitive": "falloir",
+      "english": "to have to (impersonal)",
       "conjugations": {
-        "je": "prends",
-        "tu": "prends",
-        "il": "prend",
-        "nous": "prenons",
-        "vous": "prenez",
-        "ils": "prennent"
+        "je": "No data",
+        "tu": "No data",
+        "il": "faut",
+        "nous": "No data",
+        "vous": "No data",
+        "ils": "No data"
       }
     },
     {
@@ -158,6 +146,102 @@
       }
     },
     {
+      "infinitive": "aller",
+      "english": "to go",
+      "conjugations": {
+        "je": "vais",
+        "tu": "vas",
+        "il": "va",
+        "nous": "allons",
+        "vous": "allez",
+        "ils": "vont"
+      }
+    },
+    {
+      "infinitive": "vouloir",
+      "english": "to want",
+      "conjugations": {
+        "je": "veux",
+        "tu": "veux",
+        "il": "veut",
+        "nous": "voulons",
+        "vous": "voulez",
+        "ils": "veulent"
+      }
+    },
+    {
+      "infinitive": "demander",
+      "english": "to ask",
+      "conjugations": {
+        "je": "demande",
+        "tu": "demandes",
+        "il": "demande",
+        "nous": "demandons",
+        "vous": "demandez",
+        "ils": "demandent"
+      }
+    },
+    {
+      "infinitive": "trouver",
+      "english": "to find",
+      "conjugations": {
+        "je": "trouve",
+        "tu": "trouves",
+        "il": "trouve",
+        "nous": "trouvons",
+        "vous": "trouvez",
+        "ils": "trouvent"
+      }
+    },
+    {
+      "infinitive": "venir",
+      "english": "to come",
+      "conjugations": {
+        "je": "viens",
+        "tu": "viens",
+        "il": "vient",
+        "nous": "venons",
+        "vous": "venez",
+        "ils": "viennent"
+      }
+    },
+    {
+      "infinitive": "passer",
+      "english": "to spend",
+      "conjugations": {
+        "je": "passe",
+        "tu": "passes",
+        "il": "passe",
+        "nous": "passons",
+        "vous": "passez",
+        "ils": "passent"
+      }
+    },
+    {
+      "infinitive": "comprendre",
+      "english": "to understand",
+      "conjugations": {
+        "je": "comprends",
+        "tu": "comprends",
+        "il": "comprend",
+        "nous": "comprenons",
+        "vous": "comprenez",
+        "ils": "comprennent"
+      }
+    },
+    {
+      "infinitive": "rendre",
+      "english": "to return",
+      "conjugations": {
+        "je": "rends",
+        "tu": "rends",
+        "il": "rend",
+        "nous": "rendons",
+        "vous": "rendez",
+        "ils": "rendent"
+      }
+    },
+    {
       "infinitive": "parler",
       "english": "to speak",
       "conjugations": {
@@ -170,27 +254,147 @@
       }
     },
     {
-      "infinitive": "manger",
-      "english": "to eat",
+      "infinitive": "montrer",
+      "english": "to show",
       "conjugations": {
-        "je": "mange",
-        "tu": "manges",
-        "il": "mange",
-        "nous": "mangeons",
-        "vous": "mangez",
-        "ils": "mangent"
+        "je": "montre",
+        "tu": "montres",
+        "il": "montre",
+        "nous": "montrons",
+        "vous": "montrez",
+        "ils": "montrent"
       }
     },
     {
-      "infinitive": "finir",
-      "english": "to finish",
+      "infinitive": "continuer",
+      "english": "to continue",
       "conjugations": {
-        "je": "finis",
-        "tu": "finis",
-        "il": "finit",
-        "nous": "finissons",
-        "vous": "finissez",
-        "ils": "finissent"
+        "je": "continue",
+        "tu": "continues",
+        "il": "continue",
+        "nous": "continuons",
+        "vous": "continuez",
+        "ils": "continuent"
+      }
+    },
+    {
+      "infinitive": "rester",
+      "english": "to stay",
+      "conjugations": {
+        "je": "reste",
+        "tu": "restes",
+        "il": "reste",
+        "nous": "restons",
+        "vous": "restez",
+        "ils": "restent"
+      }
+    },
+    {
+      "infinitive": "tenir",
+      "english": "to hold",
+      "conjugations": {
+        "je": "tiens",
+        "tu": "tiens",
+        "il": "tient",
+        "nous": "tenons",
+        "vous": "tenez",
+        "ils": "tiennent"
+      }
+    },
+    {
+      "infinitive": "porter",
+      "english": "to carry",
+      "conjugations": {
+        "je": "porte",
+        "tu": "portes",
+        "il": "porte",
+        "nous": "portons",
+        "vous": "portez",
+        "ils": "portent"
+      }
+    },
+    {
+      "infinitive": "croire",
+      "english": "to believe",
+      "conjugations": {
+        "je": "crois",
+        "tu": "crois",
+        "il": "croit",
+        "nous": "croyons",
+        "vous": "croyez",
+        "ils": "croient"
+      }
+    },
+    {
+      "infinitive": "commencer",
+      "english": "to begin",
+      "conjugations": {
+        "je": "commence",
+        "tu": "commences",
+        "il": "commence",
+        "nous": "commençons",
+        "vous": "commencez",
+        "ils": "commencent"
+      }
+    },
+    {
+      "infinitive": "compter",
+      "english": "to count",
+      "conjugations": {
+        "je": "compte",
+        "tu": "comptes",
+        "il": "compte",
+        "nous": "comptons",
+        "vous": "comptez",
+        "ils": "comptent"
+      }
+    },
+    {
+      "infinitive": "penser",
+      "english": "to think",
+      "conjugations": {
+        "je": "pense",
+        "tu": "penses",
+        "il": "pense",
+        "nous": "pensons",
+        "vous": "pensez",
+        "ils": "pensent"
+      }
+    },
+    {
+      "infinitive": "suivre",
+      "english": "to follow",
+      "conjugations": {
+        "je": "suis",
+        "tu": "suis",
+        "il": "suit",
+        "nous": "suivons",
+        "vous": "suivez",
+        "ils": "suivent"
+      }
+    },
+    {
+      "infinitive": "connaître",
+      "english": "to know",
+      "conjugations": {
+        "je": "connais",
+        "tu": "connais",
+        "il": "connaît",
+        "nous": "connaissons",
+        "vous": "connaissez",
+        "ils": "connaissent"
+      }
+    },
+    {
+      "infinitive": "entendre",
+      "english": "to hear",
+      "conjugations": {
+        "je": "entends",
+        "tu": "entends",
+        "il": "entend",
+        "nous": "entendons",
+        "vous": "entendez",
+        "ils": "entendent"
       }
     },
     {
@@ -206,15 +410,171 @@
       }
     },
     {
-      "infinitive": "mettre",
-      "english": "to put",
+      "infinitive": "remettre",
+      "english": "to put back",
       "conjugations": {
-        "je": "mets",
-        "tu": "mets",
-        "il": "met",
-        "nous": "mettons",
-        "vous": "mettez",
-        "ils": "mettent"
+        "je": "remets",
+        "tu": "remets",
+        "il": "remet",
+        "nous": "remettons",
+        "vous": "remettez",
+        "ils": "remettent"
+      }
+    },
+    {
+      "infinitive": "appeler",
+      "english": "to call",
+      "conjugations": {
+        "je": "appelle",
+        "tu": "appelles",
+        "il": "appelle",
+        "nous": "appelons",
+        "vous": "appelez",
+        "ils": "appellent"
+      }
+    },
+    {
+      "infinitive": "permettre",
+      "english": "to allow",
+      "conjugations": {
+        "je": "permets",
+        "tu": "permets",
+        "il": "permet",
+        "nous": "permettons",
+        "vous": "permettez",
+        "ils": "permettent"
+      }
+    },
+    {
+      "infinitive": "occuper",
+      "english": "to occupy",
+      "conjugations": {
+        "je": "occupe",
+        "tu": "occupes",
+        "il": "occupe",
+        "nous": "occupons",
+        "vous": "occupez",
+        "ils": "occupent"
+      }
+    },
+    {
+      "infinitive": "devenir",
+      "english": "to become",
+      "conjugations": {
+        "je": "deviens",
+        "tu": "deviens",
+        "il": "devient",
+        "nous": "devenons",
+        "vous": "devenez",
+        "ils": "deviennent"
+      }
+    },
+    {
+      "infinitive": "partir",
+      "english": "to leave",
+      "conjugations": {
+        "je": "pars",
+        "tu": "pars",
+        "il": "part",
+        "nous": "partons",
+        "vous": "partez",
+        "ils": "partent"
+      }
+    },
+    {
+      "infinitive": "décider",
+      "english": "to decide",
+      "conjugations": {
+        "je": "décide",
+        "tu": "décides",
+        "il": "décide",
+        "nous": "décidons",
+        "vous": "décidez",
+        "ils": "décident"
+      }
+    },
+    {
+      "infinitive": "arriver",
+      "english": "to arrive",
+      "conjugations": {
+        "je": "arrive",
+        "tu": "arrives",
+        "il": "arrive",
+        "nous": "arrivons",
+        "vous": "arrivez",
+        "ils": "arrivent"
+      }
+    },
+    {
+      "infinitive": "servir",
+      "english": "to serve",
+      "conjugations": {
+        "je": "sers",
+        "tu": "sers",
+        "il": "sert",
+        "nous": "servons",
+        "vous": "servez",
+        "ils": "servent"
+      }
+    },
+    {
+      "infinitive": "sembler",
+      "english": "to seem",
+      "conjugations": {
+        "je": "semble",
+        "tu": "sembles",
+        "il": "semble",
+        "nous": "semblons",
+        "vous": "semblez",
+        "ils": "semblent"
+      }
+    },
+    {
+      "infinitive": "revenir",
+      "english": "to return",
+      "conjugations": {
+        "je": "reviens",
+        "tu": "reviens",
+        "il": "revient",
+        "nous": "revenons",
+        "vous": "revenez",
+        "ils": "reviennent"
+      }
+    },
+    {
+      "infinitive": "laisser",
+      "english": "to leave",
+      "conjugations": {
+        "je": "laisse",
+        "tu": "laisses",
+        "il": "laisse",
+        "nous": "laissons",
+        "vous": "laissez",
+        "ils": "laissent"
+      }
+    },
+    {
+      "infinitive": "recevoir",
+      "english": "to receive",
+      "conjugations": {
+        "je": "reçois",
+        "tu": "reçois",
+        "il": "reçoit",
+        "nous": "recevons",
+        "vous": "recevez",
+        "ils": "reçoivent"
+      }
+    },
+    {
+      "infinitive": "répondre",
+      "english": "to answer",
+      "conjugations": {
+        "je": "réponds",
+        "tu": "réponds",
+        "il": "répond",
+        "nous": "répondons",
+        "vous": "répondez",
+        "ils": "répondent"
       }
     },
     {
@@ -230,15 +590,615 @@
       }
     },
     {
-      "infinitive": "connaître",
-      "english": "to know",
+      "infinitive": "rappeler",
+      "english": "to call back",
       "conjugations": {
-        "je": "connais",
-        "tu": "connais",
-        "il": "connaît",
-        "nous": "connaissons",
-        "vous": "connaissez",
-        "ils": "connaissent"
+        "je": "rappelle",
+        "tu": "rappelles",
+        "il": "rappelle",
+        "nous": "rappelons",
+        "vous": "rappelez",
+        "ils": "rappellent"
+      }
+    },
+    {
+      "infinitive": "présenter",
+      "english": "to present",
+      "conjugations": {
+        "je": "présente",
+        "tu": "présentes",
+        "il": "présente",
+        "nous": "présentons",
+        "vous": "présentez",
+        "ils": "présentent"
+      }
+    },
+    {
+      "infinitive": "accepter",
+      "english": "to accept",
+      "conjugations": {
+        "je": "accepte",
+        "tu": "acceptes",
+        "il": "accepte",
+        "nous": "acceptons",
+        "vous": "acceptez",
+        "ils": "acceptent"
+      }
+    },
+    {
+      "infinitive": "agir",
+      "english": "to act",
+      "conjugations": {
+        "je": "agis",
+        "tu": "agis",
+        "il": "agit",
+        "nous": "agissons",
+        "vous": "agissez",
+        "ils": "agissent"
+      }
+    },
+    {
+      "infinitive": "poser",
+      "english": "to put down",
+      "conjugations": {
+        "je": "pose",
+        "tu": "poses",
+        "il": "pose",
+        "nous": "posons",
+        "vous": "posez",
+        "ils": "posent"
+      }
+    },
+    {
+      "infinitive": "jouer",
+      "english": "to play",
+      "conjugations": {
+        "je": "joue",
+        "tu": "joues",
+        "il": "joue",
+        "nous": "jouons",
+        "vous": "jouez",
+        "ils": "jouent"
+      }
+    },
+    {
+      "infinitive": "reconnaître",
+      "english": "to recognize",
+      "conjugations": {
+        "je": "reconnais",
+        "tu": "reconnais",
+        "il": "reconnaît",
+        "nous": "reconnaissons",
+        "vous": "reconnaissez",
+        "ils": "reconnaissent"
+      }
+    },
+    {
+      "infinitive": "choisir",
+      "english": "to choose",
+      "conjugations": {
+        "je": "choisis",
+        "tu": "choisis",
+        "il": "choisit",
+        "nous": "choisissons",
+        "vous": "choisissez",
+        "ils": "choisissent"
+      }
+    },
+    {
+      "infinitive": "toucher",
+      "english": "to touch",
+      "conjugations": {
+        "je": "touche",
+        "tu": "touches",
+        "il": "touche",
+        "nous": "touchons",
+        "vous": "touchez",
+        "ils": "touchent"
+      }
+    },
+    {
+      "infinitive": "aimer",
+      "english": "to like",
+      "conjugations": {
+        "je": "aime",
+        "tu": "aimes",
+        "il": "aime",
+        "nous": "aimons",
+        "vous": "aimez",
+        "ils": "aiment"
+      }
+    },
+    {
+      "infinitive": "retrouver",
+      "english": "to find",
+      "conjugations": {
+        "je": "retrouve",
+        "tu": "retrouves",
+        "il": "retrouve",
+        "nous": "retrouvons",
+        "vous": "retrouvez",
+        "ils": "retrouvent"
+      }
+    },
+    {
+      "infinitive": "perdre",
+      "english": "to lose",
+      "conjugations": {
+        "je": "perds",
+        "tu": "perds",
+        "il": "perd",
+        "nous": "perdons",
+        "vous": "perdez",
+        "ils": "perdent"
+      }
+    },
+    {
+      "infinitive": "expliquer",
+      "english": "to explain",
+      "conjugations": {
+        "je": "explique",
+        "tu": "expliques",
+        "il": "explique",
+        "nous": "expliquons",
+        "vous": "expliquez",
+        "ils": "expliquent"
+      }
+    },
+    {
+      "infinitive": "considérer",
+      "english": "to consider",
+      "conjugations": {
+        "je": "considère",
+        "tu": "considères",
+        "il": "considère",
+        "nous": "considérons",
+        "vous": "considérez",
+        "ils": "considèrent"
+      }
+    },
+    {
+      "infinitive": "ouvrir",
+      "english": "to open",
+      "conjugations": {
+        "je": "ouvre",
+        "tu": "ouvres",
+        "il": "ouvre",
+        "nous": "ouvrons",
+        "vous": "ouvrez",
+        "ils": "ouvrent"
+      }
+    },
+    {
+      "infinitive": "gagner",
+      "english": "to win",
+      "conjugations": {
+        "je": "gagne",
+        "tu": "gagnes",
+        "il": "gagne",
+        "nous": "gagnons",
+        "vous": "gagnez",
+        "ils": "gagnent"
+      }
+    },
+    {
+      "infinitive": "exister",
+      "english": "to exist",
+      "conjugations": {
+        "je": "existe",
+        "tu": "existes",
+        "il": "existe",
+        "nous": "existons",
+        "vous": "existez",
+        "ils": "existent"
+      }
+    },
+    {
+      "infinitive": "refuser",
+      "english": "to refuse",
+      "conjugations": {
+        "je": "refuse",
+        "tu": "refuses",
+        "il": "refuse",
+        "nous": "refusons",
+        "vous": "refusez",
+        "ils": "refusent"
+      }
+    },
+    {
+      "infinitive": "lire",
+      "english": "to read",
+      "conjugations": {
+        "je": "lis",
+        "tu": "lis",
+        "il": "lit",
+        "nous": "lisons",
+        "vous": "lisez",
+        "ils": "lisent"
+      }
+    },
+    {
+      "infinitive": "réussir",
+      "english": "to succeed",
+      "conjugations": {
+        "je": "réussis",
+        "tu": "réussis",
+        "il": "réussit",
+        "nous": "réussissons",
+        "vous": "réussissez",
+        "ils": "réussissent"
+      }
+    },
+    {
+      "infinitive": "changer",
+      "english": "to change",
+      "conjugations": {
+        "je": "change",
+        "tu": "changes",
+        "il": "change",
+        "nous": "changeons",
+        "vous": "changez",
+        "ils": "changent"
+      }
+    },
+    {
+      "infinitive": "travailler",
+      "english": "to work",
+      "conjugations": {
+        "je": "travaille",
+        "tu": "travailles",
+        "il": "travaille",
+        "nous": "travaillons",
+        "vous": "travaillez",
+        "ils": "travaillent"
+      }
+    },
+    {
+      "infinitive": "représenter",
+      "english": "to represent",
+      "conjugations": {
+        "je": "représente",
+        "tu": "représentes",
+        "il": "représente",
+        "nous": "représentons",
+        "vous": "représentez",
+        "ils": "représentent"
+      }
+    },
+    {
+      "infinitive": "assurer",
+      "english": "to assure",
+      "conjugations": {
+        "je": "assure",
+        "tu": "assures",
+        "il": "assure",
+        "nous": "assurons",
+        "vous": "assurez",
+        "ils": "assurent"
+      }
+    },
+    {
+      "infinitive": "essayer",
+      "english": "to try",
+      "conjugations": {
+        "je": "essaie",
+        "tu": "essaies",
+        "il": "essaie",
+        "nous": "essayons",
+        "vous": "essayez",
+        "ils": "essaient"
+      }
+    },
+    {
+      "infinitive": "empêcher",
+      "english": "to prevent",
+      "conjugations": {
+        "je": "empêche",
+        "tu": "empêches",
+        "il": "empêche",
+        "nous": "empêchons",
+        "vous": "empêchez",
+        "ils": "empêchent"
+      }
+    },
+    {
+      "infinitive": "sortir",
+      "english": "to go out",
+      "conjugations": {
+        "je": "sors",
+        "tu": "sors",
+        "il": "sort",
+        "nous": "sortons",
+        "vous": "sortez",
+        "ils": "sortent"
+      }
+    },
+    {
+      "infinitive": "reprendre",
+      "english": "to take back",
+      "conjugations": {
+        "je": "reprends",
+        "tu": "reprends",
+        "il": "reprend",
+        "nous": "reprenons",
+        "vous": "reprenez",
+        "ils": "reprennent"
+      }
+    },
+    {
+      "infinitive": "mener",
+      "english": "to lead",
+      "conjugations": {
+        "je": "mène",
+        "tu": "mènes",
+        "il": "mène",
+        "nous": "menons",
+        "vous": "menez",
+        "ils": "mènent"
+      }
+    },
+    {
+      "infinitive": "appartenir",
+      "english": "to belong",
+      "conjugations": {
+        "je": "appartiens",
+        "tu": "appartiens",
+        "il": "appartient",
+        "nous": "appartenons",
+        "vous": "appartenez",
+        "ils": "appartiennent"
+      }
+    },
+    {
+      "infinitive": "risquer",
+      "english": "to risk",
+      "conjugations": {
+        "je": "risque",
+        "tu": "risques",
+        "il": "risque",
+        "nous": "risquons",
+        "vous": "risquez",
+        "ils": "risquent"
+      }
+    },
+    {
+      "infinitive": "concerner",
+      "english": "to concern",
+      "conjugations": {
+        "je": "concerne",
+        "tu": "concernes",
+        "il": "concerne",
+        "nous": "concernons",
+        "vous": "concernez",
+        "ils": "concernent"
+      }
+    },
+    {
+      "infinitive": "apprendre",
+      "english": "to learn",
+      "conjugations": {
+        "je": "apprends",
+        "tu": "apprends",
+        "il": "apprend",
+        "nous": "apprenons",
+        "vous": "apprenez",
+        "ils": "apprennent"
+      }
+    },
+    {
+      "infinitive": "rencontrer",
+      "english": "to meet",
+      "conjugations": {
+        "je": "rencontre",
+        "tu": "rencontres",
+        "il": "rencontre",
+        "nous": "rencontrons",
+        "vous": "rencontrez",
+        "ils": "rencontrent"
+      }
+    },
+    {
+      "infinitive": "créer",
+      "english": "to create",
+      "conjugations": {
+        "je": "crée",
+        "tu": "crées",
+        "il": "crée",
+        "nous": "créons",
+        "vous": "créez",
+        "ils": "créent"
+      }
+    },
+    {
+      "infinitive": "obtenir",
+      "english": "to obtain",
+      "conjugations": {
+        "je": "obtiens",
+        "tu": "obtiens",
+        "il": "obtient",
+        "nous": "obtenons",
+        "vous": "obtenez",
+        "ils": "obtiennent"
+      }
+    },
+    {
+      "infinitive": "chercher",
+      "english": "to look for",
+      "conjugations": {
+        "je": "cherche",
+        "tu": "cherches",
+        "il": "cherche",
+        "nous": "cherchons",
+        "vous": "cherchez",
+        "ils": "cherchent"
+      }
+    },
+    {
+      "infinitive": "entrer",
+      "english": "to enter",
+      "conjugations": {
+        "je": "entre",
+        "tu": "entres",
+        "il": "entre",
+        "nous": "entrons",
+        "vous": "entrez",
+        "ils": "entrent"
+      }
+    },
+    {
+      "infinitive": "proposer",
+      "english": "to suggest",
+      "conjugations": {
+        "je": "propose",
+        "tu": "proposes",
+        "il": "propose",
+        "nous": "proposons",
+        "vous": "proposez",
+        "ils": "proposent"
+      }
+    },
+    {
+      "infinitive": "apporter",
+      "english": "to bring",
+      "conjugations": {
+        "je": "apporte",
+        "tu": "apportes",
+        "il": "apporte",
+        "nous": "apportons",
+        "vous": "apportez",
+        "ils": "apportent"
+      }
+    },
+    {
+      "infinitive": "utiliser",
+      "english": "to use",
+      "conjugations": {
+        "je": "utilise",
+        "tu": "utilises",
+        "il": "utilise",
+        "nous": "utilisons",
+        "vous": "utilisez",
+        "ils": "utilisent"
+      }
+    },
+    {
+      "infinitive": "atteindre",
+      "english": "to reach",
+      "conjugations": {
+        "je": "atteins",
+        "tu": "atteins",
+        "il": "atteint",
+        "nous": "atteignons",
+        "vous": "atteignez",
+        "ils": "atteignent"
+      }
+    },
+    {
+      "infinitive": "tenter",
+      "english": "to try",
+      "conjugations": {
+        "je": "tente",
+        "tu": "tentes",
+        "il": "tente",
+        "nous": "tentons",
+        "vous": "tentez",
+        "ils": "tentent"
+      }
+    },
+    {
+      "infinitive": "importer",
+      "english": "to import",
+      "conjugations": {
+        "je": "importe",
+        "tu": "importes",
+        "il": "importe",
+        "nous": "importons",
+        "vous": "importez",
+        "ils": "importent"
+      }
+    },
+    {
+      "infinitive": "ajouter",
+      "english": "to add",
+      "conjugations": {
+        "je": "ajoute",
+        "tu": "ajoutes",
+        "il": "ajoute",
+        "nous": "ajoutons",
+        "vous": "ajoutez",
+        "ils": "ajoutent"
+      }
+    },
+    {
+      "infinitive": "produire",
+      "english": "to produce",
+      "conjugations": {
+        "je": "produis",
+        "tu": "produis",
+        "il": "produit",
+        "nous": "produisons",
+        "vous": "produisez",
+        "ils": "produisent"
+      }
+    },
+    {
+      "infinitive": "préparer",
+      "english": "to prepare",
+      "conjugations": {
+        "je": "prépare",
+        "tu": "prépares",
+        "il": "prépare",
+        "nous": "préparons",
+        "vous": "préparez",
+        "ils": "préparent"
+      }
+    },
+    {
+      "infinitive": "relever",
+      "english": "to stand up",
+      "conjugations": {
+        "je": "relève",
+        "tu": "relèves",
+        "il": "relève",
+        "nous": "relevons",
+        "vous": "relevez",
+        "ils": "relèvent"
+      }
+    },
+    {
+      "infinitive": "écrire",
+      "english": "to write",
+      "conjugations": {
+        "je": "écris",
+        "tu": "écris",
+        "il": "écrit",
+        "nous": "écrivons",
+        "vous": "écrivez",
+        "ils": "écrivent"
+      }
+    },
+    {
+      "infinitive": "défendre",
+      "english": "to defend",
+      "conjugations": {
+        "je": "défends",
+        "tu": "défends",
+        "il": "défend",
+        "nous": "défendons",
+        "vous": "défendez",
+        "ils": "défendent"
+      }
+    },
+    {
+      "infinitive": "tirer",
+      "english": "to pull",
+      "conjugations": {
+        "je": "tire",
+        "tu": "tires",
+        "il": "tire",
+        "nous": "tirons",
+        "vous": "tirez",
+        "ils": "tirent"
       }
     }
   ]
