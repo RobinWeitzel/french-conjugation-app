@@ -1,4 +1,4 @@
-const CACHE_NAME = 'french-conjugation-v3';
+const CACHE_NAME = 'french-conjugation-v4';
 const urlsToCache = [
   './',
   './index.html',
@@ -64,13 +64,15 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Network-first strategy for words.json to always get fresh data
-  if (url.pathname.endsWith('words.json')) {
-    console.log('[SW] Network-first strategy for words.json');
+  // Network-first strategy for app files (words.json, app.js, index.html) to always get fresh updates
+  if (url.pathname.endsWith('words.json') || url.pathname.endsWith('app.js') ||
+      url.pathname.endsWith('index.html') || url.pathname.endsWith('styles.css')) {
+    const fileName = url.pathname.split('/').pop();
+    console.log('[SW] Network-first strategy for', fileName);
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          console.log('[SW] Successfully fetched fresh words.json from network');
+          console.log('[SW] Successfully fetched fresh', fileName, 'from network');
           // Cache the fresh response
           const responseToCache = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -79,7 +81,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => {
-          console.log('[SW] Network failed, falling back to cached words.json');
+          console.log('[SW] Network failed, falling back to cached', fileName);
           // Network failed, fallback to cache
           return caches.match(event.request);
         })
@@ -87,7 +89,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first strategy for all other resources
+  // Cache-first strategy for all other resources (icons, manifest, etc.)
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

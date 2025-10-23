@@ -12,7 +12,7 @@ const PRONOUNS = ['je', 'tu', 'il', 'nous', 'vous', 'ils'];
 // App State
 let db = null;
 let allVerbs = [];
-let verbs = [];
+let availableCombinations = []; // Array of {verb, pronoun} objects
 let currentVerb = null;
 let currentPronoun = null;
 let isFlipped = false;
@@ -51,6 +51,7 @@ const elements = {
 
 // Initialize the app
 async function init() {
+    console.log('[App] App version: Combination-based tracking (v2)');
     try {
         updateStatus('Initializing...');
         await initDB();
@@ -132,11 +133,11 @@ async function loadVerbs() {
         throw new Error('No verbs available. Please check your internet connection.');
     }
 
-    // Filter out mastered verbs
-    await filterUnmasteredVerbs();
+    // Filter out mastered combinations
+    await filterUnmasteredCombinations();
 
-    if (verbs.length === 0) {
-        updateStatus('All verbs mastered! Click reset to practice again.');
+    if (availableCombinations.length === 0) {
+        updateStatus('All combinations mastered! Click reset to practice again.');
     }
 }
 
@@ -201,16 +202,19 @@ function getVerbsFromDB() {
     });
 }
 
-// Get stats for a specific verb
-function getVerbStats(infinitive) {
+// Get stats for a specific verb+pronoun combination
+function getCombinationStats(infinitive, pronoun) {
     return new Promise((resolve, reject) => {
+        const key = `${infinitive}_${pronoun}`;
         const transaction = db.transaction([STATS_STORE], 'readonly');
         const store = transaction.objectStore(STATS_STORE);
-        const request = store.get(infinitive);
+        const request = store.get(key);
 
         request.onsuccess = () => {
             const stats = request.result || {
-                infinitive,
+                infinitive: key,
+                verb: infinitive,
+                pronoun: pronoun,
                 correct: 0,
                 incorrect: 0,
                 lastPracticed: null,
@@ -234,28 +238,39 @@ function getAllStats() {
     });
 }
 
-// Filter verbs based on mastery
-async function filterUnmasteredVerbs() {
+// Filter verb+pronoun combinations based on mastery
+async function filterUnmasteredCombinations() {
     const allStats = await getAllStats();
     const statsMap = new Map(allStats.map(stat => [stat.infinitive, stat]));
 
-    verbs = allVerbs.filter(verb => {
-        const stats = statsMap.get(verb.infinitive);
-        return !stats || stats.correct < MASTERY_THRESHOLD;
-    });
+    // Create all possible verb+pronoun combinations
+    availableCombinations = [];
+    for (const verb of allVerbs) {
+        for (const pronoun of PRONOUNS) {
+            const key = `${verb.infinitive}_${pronoun}`;
+            const stats = statsMap.get(key);
+
+            // Only include if not mastered (or no stats yet)
+            if (!stats || stats.correct < MASTERY_THRESHOLD) {
+                availableCombinations.push({ verb, pronoun });
+            }
+        }
+    }
 
     updateCardCount();
 }
 
-// Update stats for a verb
-async function updateVerbStats(infinitive, isCorrect) {
-    const stats = await getVerbStats(infinitive);
+// Update stats for a verb+pronoun combination
+async function updateCombinationStats(infinitive, pronoun, isCorrect) {
+    const stats = await getCombinationStats(infinitive, pronoun);
 
     stats.totalAttempts++;
     if (isCorrect) {
         stats.correct++;
     } else {
         stats.incorrect++;
+        // Reset correct count on incorrect answer
+        stats.correct = 0;
     }
     stats.lastPracticed = new Date().toISOString();
 
@@ -287,12 +302,12 @@ async function resetAllStats() {
             sessionStats.total = 0;
             updateSessionStats();
 
-            // Refilter verbs (all should be available now)
-            await filterUnmasteredVerbs();
+            // Refilter combinations (all should be available now)
+            await filterUnmasteredCombinations();
 
             // Show cards again if they were hidden
             elements.cardContainer.classList.remove('hidden');
-            updateStatus('Progress reset - all verbs available');
+            updateStatus('Progress reset - all combinations available');
 
             // Show a new card
             showNextCard();
@@ -305,15 +320,16 @@ async function resetAllStats() {
 
 // Show next card
 function showNextCard() {
-    if (verbs.length === 0) return;
+    if (availableCombinations.length === 0) return;
 
     // Reset flip state
     isFlipped = false;
     elements.card.classList.remove('flipped');
 
-    // Select random verb and pronoun
-    currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
-    currentPronoun = PRONOUNS[Math.floor(Math.random() * PRONOUNS.length)];
+    // Select random combination
+    const combination = availableCombinations[Math.floor(Math.random() * availableCombinations.length)];
+    currentVerb = combination.verb;
+    currentPronoun = combination.pronoun;
 
     // Update card content
     elements.infinitive.textContent = currentVerb.infinitive;
@@ -348,9 +364,9 @@ async function handleSwipe(direction) {
 
     // Update persistent stats
     try {
-        await updateVerbStats(currentVerb.infinitive, isCorrect);
-        // Refilter verbs in case this verb reached mastery threshold
-        await filterUnmasteredVerbs();
+        await updateCombinationStats(currentVerb.infinitive, currentPronoun, isCorrect);
+        // Refilter combinations in case this one reached mastery threshold
+        await filterUnmasteredCombinations();
     } catch (error) {
         console.error('Failed to update stats:', error);
     }
@@ -359,8 +375,8 @@ async function handleSwipe(direction) {
 
     setTimeout(() => {
         elements.card.classList.remove(`swipe-${direction}`);
-        if (verbs.length === 0) {
-            updateStatus('All verbs mastered! Click reset to practice again.');
+        if (availableCombinations.length === 0) {
+            updateStatus('All combinations mastered! Click reset to practice again.');
             elements.cardContainer.classList.add('hidden');
         } else {
             showNextCard();
@@ -457,7 +473,9 @@ function updateStatus(message) {
 }
 
 function updateCardCount() {
-    elements.cardCount.textContent = `${verbs.length} verb${verbs.length !== 1 ? 's' : ''} loaded`;
+    const total = allVerbs.length * PRONOUNS.length;
+    const remaining = availableCombinations.length;
+    elements.cardCount.textContent = `${remaining}/${total} combinations remaining`;
 }
 
 function updateSessionStats() {
