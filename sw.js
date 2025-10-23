@@ -4,7 +4,12 @@ const urlsToCache = [
   './index.html',
   './app.js',
   './styles.css',
-  './words.json'
+  './words.json',
+  './manifest.json',
+  './icons/manifest-icon-192.maskable.png',
+  './icons/manifest-icon-512.maskable.png',
+  './icons/apple-icon-180.png',
+  './icons/favicon-196.png'
 ];
 
 // Install event - cache static assets

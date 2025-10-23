@@ -6,7 +6,14 @@
     "dev": "python3 -m http.server 8000",
     "dev:node": "npx http-server -p 8000 -c-1"
   },
-  "keywords": ["french", "conjugation", "practice"],
+  "keywords": [
+    "french",
+    "conjugation",
+    "practice"
+  ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pwa-asset-generator": "^8.1.2"
+  }
 }
