@@ -472,6 +472,19 @@ function showError(message) {
     elements.error.classList.remove('hidden');
 }
 
+// Register Service Worker for offline support
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    });
+}
+
 // Start the app when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

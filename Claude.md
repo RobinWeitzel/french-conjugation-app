@@ -81,7 +81,7 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
 2. Push code to main branch
 3. Enable GitHub Pages in repository settings
 4. Set source to main branch / root directory
-5. Access at `https://RobinWeitzel.github.io/french-conjugation-practice/`
+5. Access at `https://RobinWeitzelg.github.io/french-conjugation-practice/`
 
 ### Future Enhancements
 - Track statistics (accuracy, streak, etc.)
