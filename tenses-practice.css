@@ -1,30 +1,5 @@
-/* Conjugation Practice Mode Styles */
+/* Tense Practice Mode Styles */
 /* Shared styles are in shared.css */
-
-/* Reset button */
-.reset-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
-    margin-bottom: 10px;
-}
-
-.reset-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-1px);
-}
-
-.reset-btn:active {
-    transform: translateY(0);
-}
 
 /* Session Stats */
 .session-stats {
@@ -142,17 +117,11 @@
     margin-bottom: 30px;
 }
 
-.infinitive {
+.english-phrase {
     font-size: 3rem;
     font-weight: bold;
     color: #667eea;
     margin-bottom: 20px;
-}
-
-.pronoun {
-    font-size: 2rem;
-    color: #555;
-    font-weight: 500;
 }
 
 .conjugation {
@@ -160,14 +129,6 @@
     font-weight: bold;
     color: #764ba2;
     margin-bottom: 15px;
-}
-
-.english-translation {
-    font-size: 1.3rem;
-    color: #666;
-    font-style: italic;
-    margin-bottom: 30px;
-    opacity: 0.85;
 }
 
 .instruction {
@@ -192,7 +153,6 @@
     color: #27ae60;
 }
 
-/* Footer */
 /* Card swipe animations */
 .card.swipe-right {
     animation: swipeRight 0.3s ease-out forwards;
@@ -218,25 +178,12 @@
 
 /* Responsive */
 @media (max-width: 600px) {
-    .reset-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-
-    .infinitive {
+    .english-phrase {
         font-size: 2.5rem;
-    }
-
-    .pronoun {
-        font-size: 1.5rem;
     }
 
     .conjugation {
         font-size: 3rem;
-    }
-
-    .english-translation {
-        font-size: 1.1rem;
     }
 
     .card {

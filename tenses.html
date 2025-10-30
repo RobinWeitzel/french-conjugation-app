@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select tenses to practice">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="French Verbs">
+    <title>Select Tenses - French Verbs</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="196x196" href="./icons/favicon-196.png">
+    <link rel="apple-touch-icon" href="./icons/apple-icon-180.png">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        main {
+            display: block !important;
+        }
+
+        .tense-selection-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tense-selection {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tense-option {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tense-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tense-option.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tense-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .tense-option.selected .tense-checkbox {
+            background: white;
+            border-color: white;
+        }
+
+        .tense-checkbox::after {
+            content: '✓';
+            color: #667eea;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .tense-option.selected .tense-checkbox::after {
+            opacity: 1;
+        }
+
+        .tense-info {
+            flex: 1;
+        }
+
+        .tense-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .tense-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .start-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .select-all-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .select-all-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .tense-option {
+                padding: 15px;
+            }
+
+            .tense-name {
+                font-size: 1rem;
+            }
+
+            .tense-description {
+                font-size: 0.85rem;
+            }
+
+            .start-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="home-btn">← Home</a>
+            <h1>Select Tenses</h1>
+            <div class="status">Choose one or more tenses to practice</div>
+        </header>
+
+        <main>
+            <div class="tense-selection-wrapper">
+                <div class="tense-selection" id="tense-selection">
+                    <div class="tense-option" data-tense="present">
+                        <div class="tense-checkbox"></div>
+                        <div class="tense-info">
+                            <div class="tense-name">Présent</div>
+                            <div class="tense-description">Present tense - ongoing or habitual actions</div>
+                        </div>
+                    </div>
+
+                    <div class="tense-option" data-tense="passe_compose">
+                        <div class="tense-checkbox"></div>
+                        <div class="tense-info">
+                            <div class="tense-name">Passé Composé</div>
+                            <div class="tense-description">Past tense - completed actions</div>
+                        </div>
+                    </div>
+
+                    <div class="tense-option" data-tense="futur">
+                        <div class="tense-checkbox"></div>
+                        <div class="tense-info">
+                            <div class="tense-name">Futur Simple</div>
+                            <div class="tense-description">Future tense - actions that will happen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="select-all-btn" id="select-all-btn">Select All</button>
+                    <button class="start-btn" id="start-btn" disabled>Start Practice</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="shared.js"></script>
+    <script>
+        const selectedTenses = new Set();
+
+        // Load previously selected tenses from localStorage
+        const savedTenses = localStorage.getItem('selectedTenses');
+        if (savedTenses) {
+            try {
+                const tenses = JSON.parse(savedTenses);
+                tenses.forEach(tense => selectedTenses.add(tense));
+            } catch (e) {
+                console.error('Failed to parse saved tenses:', e);
+            }
+        }
+
+        const tenseOptions = document.querySelectorAll('.tense-option');
+        const startBtn = document.getElementById('start-btn');
+        const selectAllBtn = document.getElementById('select-all-btn');
+
+        // Initialize UI with saved selections
+        tenseOptions.forEach(option => {
+            const tense = option.dataset.tense;
+            if (selectedTenses.has(tense)) {
+                option.classList.add('selected');
+            }
+        });
+
+        // Update button state
+        function updateStartButton() {
+            startBtn.disabled = selectedTenses.size === 0;
+            selectAllBtn.textContent = selectedTenses.size === tenseOptions.length ? 'Deselect All' : 'Select All';
+        }
+
+        // Toggle tense selection
+        tenseOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const tense = option.dataset.tense;
+
+                if (selectedTenses.has(tense)) {
+                    selectedTenses.delete(tense);
+                    option.classList.remove('selected');
+                } else {
+                    selectedTenses.add(tense);
+                    option.classList.add('selected');
+                }
+
+                updateStartButton();
+            });
+        });
+
+        // Select/deselect all
+        selectAllBtn.addEventListener('click', () => {
+            const shouldSelectAll = selectedTenses.size < tenseOptions.length;
+
+            selectedTenses.clear();
+
+            if (shouldSelectAll) {
+                tenseOptions.forEach(option => {
+                    selectedTenses.add(option.dataset.tense);
+                    option.classList.add('selected');
+                });
+            } else {
+                tenseOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+            }
+
+            updateStartButton();
+        });
+
+        // Start practice
+        startBtn.addEventListener('click', () => {
+            if (selectedTenses.size === 0) return;
+
+            // Save to localStorage
+            localStorage.setItem('selectedTenses', JSON.stringify([...selectedTenses]));
+
+            // Navigate to practice page with query params
+            const tensesParam = [...selectedTenses].join(',');
+            window.location.href = `tenses-practice.html?tenses=${tensesParam}`;
+        });
+
+        updateStartButton();
+    </script>
+</body>
+</html>

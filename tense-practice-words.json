@@ -1,0 +1,635 @@
+{
+  "version": "1.2.0",
+  "phrases": [
+  {
+    "english": "I put down",
+    "french": "je pose",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "je"
+  },
+  {
+    "english": "you put down",
+    "french": "tu poses",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he puts down",
+    "french": "il pose",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "il"
+  },
+  {
+    "english": "we put down",
+    "french": "nous posons",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you put down",
+    "french": "vous posez",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they put down",
+    "french": "ils posent",
+    "verb": "poser",
+    "tense": "present",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I will put down",
+    "french": "je poserai",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "je"
+  },
+  {
+    "english": "you will put down",
+    "french": "tu poseras",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he will put down",
+    "french": "il posera",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "il"
+  },
+  {
+    "english": "we will put down",
+    "french": "nous poserons",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you will put down",
+    "french": "vous poserez",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they will put down",
+    "french": "ils poseront",
+    "verb": "poser",
+    "tense": "futur",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I have puted down",
+    "french": "j'posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "je"
+  },
+  {
+    "english": "you have puted down",
+    "french": "tu as posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he has puted down",
+    "french": "il a posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "il"
+  },
+  {
+    "english": "we have puted down",
+    "french": "nous avons posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you have puted down",
+    "french": "vous avez posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they have puted down",
+    "french": "ils ont posé",
+    "verb": "poser",
+    "tense": "passe_compose",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I concern",
+    "french": "je concerne",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "je"
+  },
+  {
+    "english": "you concern",
+    "french": "tu concernes",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he concerns",
+    "french": "il concerne",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "il"
+  },
+  {
+    "english": "we concern",
+    "french": "nous concernons",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you concern",
+    "french": "vous concernez",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they concern",
+    "french": "ils concernent",
+    "verb": "concerner",
+    "tense": "present",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I will concern",
+    "french": "je concernerai",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "je"
+  },
+  {
+    "english": "you will concern",
+    "french": "tu concerneras",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he will concern",
+    "french": "il concernera",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "il"
+  },
+  {
+    "english": "we will concern",
+    "french": "nous concernerons",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you will concern",
+    "french": "vous concernerez",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they will concern",
+    "french": "ils concerneront",
+    "verb": "concerner",
+    "tense": "futur",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I have concerned",
+    "french": "j'concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "je"
+  },
+  {
+    "english": "you have concerned",
+    "french": "tu as concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he has concerned",
+    "french": "il a concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "il"
+  },
+  {
+    "english": "we have concerned",
+    "french": "nous avons concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you have concerned",
+    "french": "vous avez concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they have concerned",
+    "french": "ils ont concerné",
+    "verb": "concerner",
+    "tense": "passe_compose",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I risk",
+    "french": "je risque",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "je"
+  },
+  {
+    "english": "you risk",
+    "french": "tu risques",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he risks",
+    "french": "il risque",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "il"
+  },
+  {
+    "english": "we risk",
+    "french": "nous risquons",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you risk",
+    "french": "vous risquez",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they risk",
+    "french": "ils risquent",
+    "verb": "risquer",
+    "tense": "present",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I will risk",
+    "french": "je risquerai",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "je"
+  },
+  {
+    "english": "you will risk",
+    "french": "tu risqueras",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he will risk",
+    "french": "il risquera",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "il"
+  },
+  {
+    "english": "we will risk",
+    "french": "nous risquerons",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you will risk",
+    "french": "vous risquerez",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they will risk",
+    "french": "ils risqueront",
+    "verb": "risquer",
+    "tense": "futur",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I have risked",
+    "french": "j'risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "je"
+  },
+  {
+    "english": "you have risked",
+    "french": "tu as risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he has risked",
+    "french": "il a risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "il"
+  },
+  {
+    "english": "we have risked",
+    "french": "nous avons risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you have risked",
+    "french": "vous avez risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they have risked",
+    "french": "ils ont risqué",
+    "verb": "risquer",
+    "tense": "passe_compose",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I create",
+    "french": "je crée",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "je"
+  },
+  {
+    "english": "you create",
+    "french": "tu crées",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he creates",
+    "french": "il crée",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "il"
+  },
+  {
+    "english": "we create",
+    "french": "nous créons",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you create",
+    "french": "vous créez",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they create",
+    "french": "ils créent",
+    "verb": "créer",
+    "tense": "present",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I will create",
+    "french": "je créerai",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "je"
+  },
+  {
+    "english": "you will create",
+    "french": "tu créeras",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he will create",
+    "french": "il créera",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "il"
+  },
+  {
+    "english": "we will create",
+    "french": "nous créerons",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you will create",
+    "french": "vous créerez",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they will create",
+    "french": "ils créeront",
+    "verb": "créer",
+    "tense": "futur",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I have created",
+    "french": "j'créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "je"
+  },
+  {
+    "english": "you have created",
+    "french": "tu as créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he has created",
+    "french": "il a créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "il"
+  },
+  {
+    "english": "we have created",
+    "french": "nous avons créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you have created",
+    "french": "vous avez créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they have created",
+    "french": "ils ont créé",
+    "verb": "créer",
+    "tense": "passe_compose",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I obtain",
+    "french": "j'obtiens",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "je"
+  },
+  {
+    "english": "you obtain",
+    "french": "tu obtiens",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he obtains",
+    "french": "il obtient",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "il"
+  },
+  {
+    "english": "we obtain",
+    "french": "nous obtenons",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you obtain",
+    "french": "vous obtenez",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they obtain",
+    "french": "ils obtiennent",
+    "verb": "obtenir",
+    "tense": "present",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I will obtain",
+    "french": "j'obtiendrai",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "je"
+  },
+  {
+    "english": "you will obtain",
+    "french": "tu obtiendras",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he will obtain",
+    "french": "il obtiendra",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "il"
+  },
+  {
+    "english": "we will obtain",
+    "french": "nous obtiendrons",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you will obtain",
+    "french": "vous obtiendrez",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they will obtain",
+    "french": "ils obtiendront",
+    "verb": "obtenir",
+    "tense": "futur",
+    "pronoun": "ils"
+  },
+  {
+    "english": "I have obtained",
+    "french": "j'obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "je"
+  },
+  {
+    "english": "you have obtained",
+    "french": "tu as obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "tu"
+  },
+  {
+    "english": "he has obtained",
+    "french": "il a obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "il"
+  },
+  {
+    "english": "we have obtained",
+    "french": "nous avons obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "nous"
+  },
+  {
+    "english": "you have obtained",
+    "french": "vous avez obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "vous"
+  },
+  {
+    "english": "they have obtained",
+    "french": "ils ont obtenu",
+    "verb": "obtenir",
+    "tense": "passe_compose",
+    "pronoun": "ils"
+  }
+]
+}

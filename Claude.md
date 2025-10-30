@@ -25,11 +25,31 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
 #### Files Structure
 ```
 /
-├── index.html          # Main app interface
-├── app.js              # Core application logic
-├── styles.css          # Styling and animations
-└── words.json          # French verbs data file
+├── index.html              # Home page with mode selection
+├── conjugation.html        # Conjugation practice mode
+├── tenses.html             # Tense selection page
+├── tenses-practice.html    # Tense practice mode
+├── app.js                  # Conjugation mode logic
+├── tenses-practice.js      # Tense practice mode logic
+├── shared.js               # Shared DB and utility functions
+├── styles.css              # Conjugation mode styles
+├── tenses-practice.css     # Tense practice mode styles
+├── shared.css              # Shared styles for all pages
+├── sw.js                   # Service worker for offline support
+└── words.json              # French verbs data file
 ```
+
+#### IMPORTANT: Service Worker Cache Management
+**ALWAYS bump the `CACHE_NAME` version in `sw.js` when making ANY changes to:**
+- HTML files (index.html, conjugation.html, tenses.html, etc.)
+- JavaScript files (app.js, shared.js, tenses-practice.js, etc.)
+- CSS files (styles.css, shared.css, tenses-practice.css, etc.)
+- Any other cached assets
+
+This ensures users get the latest version and prevents old cached files from causing issues.
+Current version: `french-conjugation-v7` (increment the number)
+
+Don't forget to also add new files to the `urlsToCache` array and the network-first strategy condition!
 
 #### IndexedDB Schema
 - **Database**: `FrenchConjugationDB`
@@ -43,6 +63,7 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
   "verbs": [
     {
       "infinitive": "être",
+      "english": "to be",
       "conjugations": {
         "je": "suis",
         "tu": "es",
@@ -50,11 +71,56 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
         "nous": "sommes",
         "vous": "êtes",
         "ils": "sont"
+      },
+      "tenses": {
+        "present": {
+          "je": "suis",
+          "tu": "es",
+          "il": "est",
+          "nous": "sommes",
+          "vous": "êtes",
+          "ils": "sont"
+        },
+        "passe_compose": {
+          "je": "ai été",
+          "tu": "as été",
+          "il": "a été",
+          "nous": "avons été",
+          "vous": "avez été",
+          "ils": "ont été"
+        },
+        "imparfait": {
+          "je": "étais",
+          "tu": "étais",
+          "il": "était",
+          "nous": "étions",
+          "vous": "étiez",
+          "ils": "étaient"
+        },
+        "futur": {
+          "je": "serai",
+          "tu": "seras",
+          "il": "sera",
+          "nous": "serons",
+          "vous": "serez",
+          "ils": "seront"
+        },
+        "conditionnel": {
+          "je": "serais",
+          "tu": "serais",
+          "il": "serait",
+          "nous": "serions",
+          "vous": "seriez",
+          "ils": "seraient"
+        }
       }
     }
   ]
 }
 ```
+
+**Note:** The `conjugations` field is used for the conjugation practice mode (present tense only).
+The `tenses` field is used for the tense practice mode and includes all supported tenses.
 
 ### Features to Implement
 1. ✅ Card flip animation

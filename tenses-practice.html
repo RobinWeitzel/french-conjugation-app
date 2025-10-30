@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Practice French verb tenses">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="French Verbs">
+    <title>Tense Practice - French Verbs</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="196x196" href="./icons/favicon-196.png">
+    <link rel="apple-touch-icon" href="./icons/apple-icon-180.png">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="tenses-practice.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="tenses.html" class="home-btn">← Change Tenses</a>
+            <h1>Tense Practice</h1>
+            <div id="status" class="status"></div>
+        </header>
+
+        <main>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading verbs...</p>
+            </div>
+
+            <div id="card-container" class="card-container hidden">
+                <div class="session-stats">
+                    <div class="stat-item stat-incorrect">
+                        <div class="stat-value" id="session-incorrect">0</div>
+                        <div class="stat-label">Incorrect</div>
+                    </div>
+                    <div class="stat-item stat-accuracy">
+                        <div class="stat-value" id="session-accuracy">—</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-item stat-correct">
+                        <div class="stat-value" id="session-correct">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                </div>
+
+                <div id="card" class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="verb-info">
+                                <div class="english-phrase" id="english-phrase"></div>
+                            </div>
+                            <div class="instruction">Tap to reveal answer</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="verb-info">
+                                <div class="english-phrase" id="english-phrase-back"></div>
+                            </div>
+                            <div class="conjugation" id="french-answer"></div>
+                            <div class="swipe-instruction">
+                                <span class="swipe-left">← Wrong</span>
+                                <span class="swipe-right">Right →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </main>
+
+        <footer>
+            <div class="stats">
+                <span id="card-count">0 phrases loaded</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="tenses-practice.js"></script>
+</body>
+</html>

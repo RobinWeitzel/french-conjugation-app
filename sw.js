@@ -1,9 +1,18 @@
-const CACHE_NAME = 'french-conjugation-v4';
+const CACHE_NAME = 'french-conjugation-v11';
 const urlsToCache = [
   './',
   './index.html',
+  './conjugation.html',
+  './tenses.html',
+  './tenses-practice.html',
   './app.js',
+  './shared.js',
+  './tenses-practice.js',
   './styles.css',
+  './shared.css',
+  './tenses-practice.css',
+  './words.json',
+  './tense-practice-words.json',
   './manifest.json',
   './icons/manifest-icon-192.maskable.png',
   './icons/manifest-icon-512.maskable.png',
@@ -64,9 +73,13 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Network-first strategy for app files (words.json, app.js, index.html) to always get fresh updates
-  if (url.pathname.endsWith('words.json') || url.pathname.endsWith('app.js') ||
-      url.pathname.endsWith('index.html') || url.pathname.endsWith('styles.css')) {
+  // Network-first strategy for app files to always get fresh updates
+  if (url.pathname.endsWith('words.json') || url.pathname.endsWith('tense-practice-words.json') ||
+      url.pathname.endsWith('app.js') || url.pathname.endsWith('index.html') ||
+      url.pathname.endsWith('styles.css') || url.pathname.endsWith('conjugation.html') ||
+      url.pathname.endsWith('shared.js') || url.pathname.endsWith('shared.css') ||
+      url.pathname.endsWith('tenses.html') || url.pathname.endsWith('tenses-practice.html') ||
+      url.pathname.endsWith('tenses-practice.js') || url.pathname.endsWith('tenses-practice.css')) {
     const fileName = url.pathname.split('/').pop();
     console.log('[SW] Network-first strategy for', fileName);
     event.respondWith(
