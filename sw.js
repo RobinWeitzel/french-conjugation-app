@@ -1,16 +1,19 @@
-const CACHE_NAME = 'french-conjugation-v11';
+const CACHE_NAME = 'french-conjugation-v18';
 const urlsToCache = [
   './',
   './index.html',
   './conjugation.html',
   './tenses.html',
   './tenses-practice.html',
+  './settings.html',
   './app.js',
   './shared.js',
   './tenses-practice.js',
+  './settings.js',
   './styles.css',
   './shared.css',
   './tenses-practice.css',
+  './settings.css',
   './words.json',
   './tense-practice-words.json',
   './manifest.json',
@@ -79,7 +82,9 @@ self.addEventListener('fetch', (event) => {
       url.pathname.endsWith('styles.css') || url.pathname.endsWith('conjugation.html') ||
       url.pathname.endsWith('shared.js') || url.pathname.endsWith('shared.css') ||
       url.pathname.endsWith('tenses.html') || url.pathname.endsWith('tenses-practice.html') ||
-      url.pathname.endsWith('tenses-practice.js') || url.pathname.endsWith('tenses-practice.css')) {
+      url.pathname.endsWith('tenses-practice.js') || url.pathname.endsWith('tenses-practice.css') ||
+      url.pathname.endsWith('settings.html') || url.pathname.endsWith('settings.js') ||
+      url.pathname.endsWith('settings.css')) {
     const fileName = url.pathname.split('/').pop();
     console.log('[SW] Network-first strategy for', fileName);
     event.respondWith(

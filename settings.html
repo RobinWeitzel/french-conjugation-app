@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Settings for French verb conjugation app">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="French Verbs">
+    <title>Settings - French Verbs</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="196x196" href="./icons/favicon-196.png">
+    <link rel="apple-touch-icon" href="./icons/apple-icon-180.png">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="home-btn">← Home</a>
+            <h1>Settings</h1>
+        </header>
+
+        <main>
+            <div class="settings-section">
+                <h2>Cache Management</h2>
+                <p class="section-description">
+                    Clear all cached data and force the app to reload everything from the server.
+                    This is useful if you're experiencing issues or want to get the latest version.
+                </p>
+                <button id="clear-cache-btn" class="action-btn">
+                    <span class="btn-icon">🗑️</span>
+                    <span class="btn-text">Clear Cache & Reload</span>
+                </button>
+                <div id="cache-status" class="status-message"></div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Data Management</h2>
+                <p class="section-description">
+                    View information about stored data.
+                </p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Verbs stored:</div>
+                        <div class="info-value" id="verbs-count">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Data version:</div>
+                        <div class="info-value" id="data-version">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Cache version:</div>
+                        <div class="info-value" id="cache-version">—</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>
