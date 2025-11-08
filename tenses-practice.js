@@ -128,9 +128,10 @@ function showNextCard() {
     // Select random phrase
     currentPhrase = availablePhrases[Math.floor(Math.random() * availablePhrases.length)];
 
-    // Update card content
-    elements.englishPhrase.textContent = currentPhrase.english;
-    elements.englishPhraseBack.textContent = currentPhrase.english;
+    // Update card content - show pronoun to disambiguate tu/vous
+    const displayText = `${currentPhrase.english} (${currentPhrase.pronoun})`;
+    elements.englishPhrase.textContent = displayText;
+    elements.englishPhraseBack.textContent = displayText;
     elements.frenchAnswer.textContent = currentPhrase.french;
 }
 
