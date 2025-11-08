@@ -1,18 +1,25 @@
-const CACHE_NAME = 'french-conjugation-v21';
+const CACHE_NAME = 'french-conjugation-v30';
 const urlsToCache = [
   './',
   './index.html',
   './conjugation.html',
+  './conjugation-mode.html',
+  './conjugation-multiple-choice.html',
   './tenses.html',
+  './tenses-mode.html',
   './tenses-practice.html',
+  './tenses-multiple-choice.html',
   './settings.html',
   './app.js',
   './shared.js',
   './tenses-practice.js',
+  './tenses-multiple-choice.js',
+  './conjugation-multiple-choice.js',
   './settings.js',
   './styles.css',
   './shared.css',
   './tenses-practice.css',
+  './multiple-choice.css',
   './settings.css',
   './words.json',
   './tense-practice-words.json',
@@ -80,6 +87,10 @@ self.addEventListener('fetch', (event) => {
   if (url.pathname.endsWith('words.json') || url.pathname.endsWith('tense-practice-words.json') ||
       url.pathname.endsWith('app.js') || url.pathname.endsWith('index.html') ||
       url.pathname.endsWith('styles.css') || url.pathname.endsWith('conjugation.html') ||
+      url.pathname.endsWith('conjugation-mode.html') || url.pathname.endsWith('conjugation-multiple-choice.html') ||
+      url.pathname.endsWith('conjugation-multiple-choice.js') || url.pathname.endsWith('tenses-mode.html') ||
+      url.pathname.endsWith('tenses-multiple-choice.html') || url.pathname.endsWith('tenses-multiple-choice.js') ||
+      url.pathname.endsWith('multiple-choice.css') ||
       url.pathname.endsWith('shared.js') || url.pathname.endsWith('shared.css') ||
       url.pathname.endsWith('tenses.html') || url.pathname.endsWith('tenses-practice.html') ||
       url.pathname.endsWith('tenses-practice.js') || url.pathname.endsWith('tenses-practice.css') ||

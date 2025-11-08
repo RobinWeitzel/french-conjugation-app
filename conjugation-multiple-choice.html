@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Practice French verb conjugation with multiple choice">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="French Verbs">
+    <title>Multiple Choice - French Verbs</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="196x196" href="./icons/favicon-196.png">
+    <link rel="apple-touch-icon" href="./icons/apple-icon-180.png">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="multiple-choice.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="conjugation-mode.html" class="home-btn">← Back</a>
+            <h1>Multiple Choice</h1>
+            <div class="status" id="status">Loading...</div>
+        </header>
+
+        <main>
+            <div class="card-container">
+                <div class="session-stats">
+                    <div class="stat-item stat-incorrect">
+                        <div class="stat-value" id="incorrect-count">0</div>
+                        <div class="stat-label">Incorrect</div>
+                    </div>
+                    <div class="stat-item stat-accuracy">
+                        <div class="stat-value" id="accuracy">—</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-item stat-correct">
+                        <div class="stat-value" id="correct-count">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="verb-display" id="verb-display">
+                        <div class="infinitive" id="infinitive">Loading...</div>
+                        <div class="pronoun" id="pronoun"></div>
+                    </div>
+
+                    <div class="options" id="options">
+                        <!-- Options will be inserted here -->
+                    </div>
+
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="conjugation-multiple-choice.js"></script>
+</body>
+</html>

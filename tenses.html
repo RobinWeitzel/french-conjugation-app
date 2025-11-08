@@ -286,9 +286,9 @@
             // Save to localStorage
             localStorage.setItem('selectedTenses', JSON.stringify([...selectedTenses]));
 
-            // Navigate to practice page with query params
+            // Navigate to mode selection page with query params
             const tensesParam = [...selectedTenses].join(',');
-            window.location.href = `tenses-practice.html?tenses=${tensesParam}`;
+            window.location.href = `tenses-mode.html?tenses=${tensesParam}`;
         });
 
         updateStartButton();

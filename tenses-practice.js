@@ -68,11 +68,16 @@ async function init() {
             selectedTenses = tensesParam.split(',');
             // Save to localStorage
             localStorage.setItem('selectedTenses', JSON.stringify(selectedTenses));
+            // Set back button URL with tenses
+            document.getElementById('back-btn').href = `tenses-mode.html?tenses=${tensesParam}`;
         } else {
             // Try to load from localStorage
             const savedTenses = localStorage.getItem('selectedTenses');
             if (savedTenses) {
                 selectedTenses = JSON.parse(savedTenses);
+                // Set back button URL with saved tenses
+                const tensesString = selectedTenses.join(',');
+                document.getElementById('back-btn').href = `tenses-mode.html?tenses=${tensesString}`;
             } else {
                 // Redirect back to selection if no tenses
                 window.location.href = 'tenses.html';

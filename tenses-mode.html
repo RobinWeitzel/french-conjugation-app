@@ -3,40 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Practice French verb conjugation offline">
+    <meta name="description" content="Choose your practice mode">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="French Verbs">
-    <title>French Conjugation Practice</title>
+    <title>Practice Mode - French Verbs</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="196x196" href="./icons/favicon-196.png">
     <link rel="apple-touch-icon" href="./icons/apple-icon-180.png">
     <link rel="stylesheet" href="shared.css">
     <style>
-        /* Home page specific styles */
-        .settings-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.5rem;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-        }
-
-        .settings-icon:hover {
-            opacity: 1;
-            transform: rotate(90deg) scale(1.15);
-        }
-
-        .settings-icon:active {
-            transform: rotate(90deg) scale(1.1);
+        main {
+            display: block !important;
         }
 
         .mode-grid {
@@ -55,14 +34,15 @@
             color: #333;
             transition: all 0.3s ease;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
-        .mode-card:hover {
+        .mode-card:hover:not(.coming-soon) {
             transform: translateY(-5px);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
         }
 
-        .mode-card:active {
+        .mode-card:active:not(.coming-soon) {
             transform: translateY(-2px);
         }
 
@@ -82,6 +62,26 @@
             font-size: 1rem;
             color: #666;
             line-height: 1.5;
+        }
+
+        .coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: 'Coming Soon';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         @media (max-width: 600px) {
@@ -106,34 +106,50 @@
 <body>
     <div class="container">
         <header>
-            <a href="settings.html" class="settings-icon" title="Settings">⚙️</a>
-            <h1>French Verb Practice</h1>
-            <div class="status">Select a practice mode</div>
+            <a href="tenses.html" class="home-btn">← Back</a>
+            <h1>Choose Practice Mode</h1>
+            <div class="status" id="status">Tense Practice</div>
         </header>
 
         <main>
             <div class="mode-grid">
-                <a href="conjugation-mode.html" class="mode-card">
-                    <div class="mode-icon">📝</div>
-                    <div class="mode-title">Conjugation Practice</div>
+                <a href="#" id="index-cards-mode" class="mode-card">
+                    <div class="mode-icon">🃏</div>
+                    <div class="mode-title">Index Cards</div>
                     <div class="mode-description">
-                        Practice conjugating French verbs with flashcards and spaced repetition
+                        Flashcard-style practice with swipe gestures. Flip to reveal the answer.
                     </div>
                 </a>
 
-                <a href="tenses.html" class="mode-card">
-                    <div class="mode-icon">⏰</div>
-                    <div class="mode-title">Tense Practice</div>
+                <a href="#" id="multiple-choice-mode" class="mode-card">
+                    <div class="mode-icon">✓</div>
+                    <div class="mode-title">Multiple Choice</div>
                     <div class="mode-description">
-                        Learn to identify and use different French verb tenses
+                        Choose the correct conjugation from multiple options. Test your knowledge quickly.
                     </div>
                 </a>
-
-                <!-- Future modes will be added here -->
             </div>
         </main>
     </div>
 
     <script src="shared.js"></script>
+    <script>
+        // Get tenses from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const tensesParam = urlParams.get('tenses');
+
+        if (!tensesParam) {
+            // Redirect back to tense selection if no tenses specified
+            window.location.href = 'tenses.html';
+        }
+
+        // Set up index cards mode link with tenses
+        const indexCardsLink = document.getElementById('index-cards-mode');
+        indexCardsLink.href = `tenses-practice.html?tenses=${tensesParam}`;
+
+        // Set up multiple choice mode link with tenses
+        const multipleChoiceLink = document.getElementById('multiple-choice-mode');
+        multipleChoiceLink.href = `tenses-multiple-choice.html?tenses=${tensesParam}`;
+    </script>
 </body>
 </html>
