@@ -182,6 +182,30 @@
     margin-bottom: 15px;
 }
 
+.replay-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    transition: background 0.2s ease;
+}
+
+.replay-btn:active {
+    background: rgba(102, 126, 234, 0.3);
+}
+
+.replay-btn.speaking {
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
 .divider {
     width: 60px;
     height: 2px;

@@ -42,6 +42,7 @@ const elements = {
     playBtn: document.getElementById('play-btn'),
     playHint: document.getElementById('play-hint'),
     speedToggle: document.getElementById('speed-toggle'),
+    replayBtn: document.getElementById('replay-btn'),
     frenchText: document.getElementById('french-text'),
     englishText: document.getElementById('english-text'),
     ttsWarning: document.getElementById('tts-warning'),
@@ -433,11 +434,18 @@ function setupEventListeners() {
         e.stopPropagation();
         if (currentSentence && !isFlipped) {
             speak(currentSentence.id, currentSentence.french);
-            // Fade play hint after first use
             if (!playHintFaded) {
                 playHintFaded = true;
                 elements.playHint.classList.add('faded');
             }
+        }
+    });
+
+    // Replay button on card back
+    elements.replayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentSentence && isFlipped) {
+            speak(currentSentence.id, currentSentence.french);
         }
     });
 
