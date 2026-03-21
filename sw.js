@@ -1,28 +1,18 @@
-const CACHE_NAME = 'french-conjugation-v30';
+const CACHE_NAME = 'french-conjugation-v31';
 const urlsToCache = [
   './',
   './index.html',
-  './conjugation.html',
-  './conjugation-mode.html',
-  './conjugation-multiple-choice.html',
-  './tenses.html',
-  './tenses-mode.html',
-  './tenses-practice.html',
-  './tenses-multiple-choice.html',
+  './practice-setup.html',
+  './practice.html',
   './settings.html',
-  './app.js',
+  './practice.js',
+  './practice-setup.js',
   './shared.js',
-  './tenses-practice.js',
-  './tenses-multiple-choice.js',
-  './conjugation-multiple-choice.js',
   './settings.js',
-  './styles.css',
+  './practice.css',
   './shared.css',
-  './tenses-practice.css',
-  './multiple-choice.css',
   './settings.css',
   './words.json',
-  './tense-practice-words.json',
   './manifest.json',
   './icons/manifest-icon-192.maskable.png',
   './icons/manifest-icon-512.maskable.png',
@@ -83,19 +73,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Network-first strategy for app files to always get fresh updates
-  if (url.pathname.endsWith('words.json') || url.pathname.endsWith('tense-practice-words.json') ||
-      url.pathname.endsWith('app.js') || url.pathname.endsWith('index.html') ||
-      url.pathname.endsWith('styles.css') || url.pathname.endsWith('conjugation.html') ||
-      url.pathname.endsWith('conjugation-mode.html') || url.pathname.endsWith('conjugation-multiple-choice.html') ||
-      url.pathname.endsWith('conjugation-multiple-choice.js') || url.pathname.endsWith('tenses-mode.html') ||
-      url.pathname.endsWith('tenses-multiple-choice.html') || url.pathname.endsWith('tenses-multiple-choice.js') ||
-      url.pathname.endsWith('multiple-choice.css') ||
-      url.pathname.endsWith('shared.js') || url.pathname.endsWith('shared.css') ||
-      url.pathname.endsWith('tenses.html') || url.pathname.endsWith('tenses-practice.html') ||
-      url.pathname.endsWith('tenses-practice.js') || url.pathname.endsWith('tenses-practice.css') ||
-      url.pathname.endsWith('settings.html') || url.pathname.endsWith('settings.js') ||
-      url.pathname.endsWith('settings.css')) {
+  // Network-first strategy for all app files (HTML, JS, CSS, JSON)
+  const pathname = url.pathname;
+  const isAppFile = pathname.endsWith('.html') || pathname.endsWith('.js') ||
+                    pathname.endsWith('.css') || pathname.endsWith('.json');
+
+  if (isAppFile) {
     const fileName = url.pathname.split('/').pop();
     console.log('[SW] Network-first strategy for', fileName);
     event.respondWith(
