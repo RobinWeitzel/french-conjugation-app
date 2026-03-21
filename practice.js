@@ -56,6 +56,15 @@ const elements = {
 // Initialize the app
 async function init() {
     console.log('[App] Practice Mode — direction:', direction, 'tenses:', selectedTenses);
+
+    // Show troubleshooting help if loading takes too long
+    const loadingTimeout = setTimeout(() => {
+        const loadingEl = elements.loading;
+        if (loadingEl && !loadingEl.classList.contains('hidden')) {
+            loadingEl.innerHTML += '<p style="margin-top:20px;font-size:0.9rem;">Taking too long? <a href="settings.html" style="color:white;text-decoration:underline;">Clear Cache</a></p>';
+        }
+    }, 5000);
+
     try {
         updateStatus('Initializing...');
         await initDB();
@@ -71,6 +80,8 @@ async function init() {
         hideLoading();
     } catch (error) {
         showError('Failed to initialize app: ' + error.message);
+    } finally {
+        clearTimeout(loadingTimeout);
     }
 }
 
