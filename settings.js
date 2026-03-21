@@ -9,6 +9,12 @@ const appVersionEl = document.getElementById('app-version');
 const verbsCount = document.getElementById('verbs-count');
 const dataVersion = document.getElementById('data-version');
 const cacheVersion = document.getElementById('cache-version');
+const downloadAudioBtn = document.getElementById('download-audio-btn');
+const audioStatusEl = document.getElementById('audio-status');
+const progressContainer = document.getElementById('progress-container');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const downloadStatus = document.getElementById('download-status');
 
 // Initialize the settings page
 async function init() {
@@ -20,9 +26,11 @@ async function init() {
     // Set up event listeners (before async to ensure buttons work even if DB hangs)
     clearCacheBtn.addEventListener('click', handleClearCache);
     checkUpdateBtn.addEventListener('click', handleCheckUpdate);
+    downloadAudioBtn.addEventListener('click', handleDownloadAudio);
 
     // Load and display current stats
     await loadStats();
+    await checkAudioStatus();
 }
 
 // Load and display current stats
@@ -120,6 +128,103 @@ function showUpdateStatus(message, type) {
 function showCacheStatus(message, type) {
     cacheStatus.textContent = message;
     cacheStatus.className = `status-message ${type}`;
+}
+
+// Check how many audio files are cached
+async function checkAudioStatus() {
+    try {
+        const response = await fetch('./sentences.json', { cache: 'no-cache' });
+        const data = await response.json();
+        const audioCategories = data.audioCategories || [];
+        const audioSentences = data.sentences.filter(s => audioCategories.includes(s.category));
+
+        if (audioSentences.length === 0) {
+            audioStatusEl.textContent = 'No audio files available yet';
+            return;
+        }
+
+        let cached = 0;
+        const cacheName = (await caches.keys()).find(k => k.startsWith('french-conjugation'));
+        if (cacheName) {
+            const cache = await caches.open(cacheName);
+            for (const s of audioSentences) {
+                const match = await cache.match(`./audio/${s.id}.mp3`);
+                if (match) cached++;
+            }
+        }
+
+        audioStatusEl.textContent = `${cached} of ${audioSentences.length} audio files cached`;
+        downloadAudioBtn.disabled = false;
+
+        if (cached === audioSentences.length) {
+            downloadAudioBtn.querySelector('.btn-text').textContent = 'All Audio Downloaded';
+            downloadAudioBtn.disabled = true;
+        }
+    } catch (e) {
+        audioStatusEl.textContent = 'Could not check audio status';
+        downloadAudioBtn.disabled = false;
+    }
+}
+
+// Download all missing audio files
+async function handleDownloadAudio() {
+    downloadAudioBtn.disabled = true;
+    progressContainer.classList.remove('hidden');
+
+    try {
+        const response = await fetch('./sentences.json', { cache: 'no-cache' });
+        const data = await response.json();
+        const audioCategories = data.audioCategories || [];
+        const audioSentences = data.sentences.filter(s => audioCategories.includes(s.category));
+
+        const cacheName = (await caches.keys()).find(k => k.startsWith('french-conjugation'));
+        const cache = await caches.open(cacheName || 'french-conjugation-audio');
+
+        let downloaded = 0;
+        let skipped = 0;
+        const total = audioSentences.length;
+
+        for (const s of audioSentences) {
+            const url = `./audio/${s.id}.mp3`;
+            const existing = await cache.match(url);
+            if (existing) {
+                skipped++;
+            } else {
+                try {
+                    const audioResponse = await fetch(url);
+                    if (audioResponse.ok) {
+                        await cache.put(url, audioResponse);
+                        downloaded++;
+                    }
+                } catch (e) {
+                    // Skip failed downloads
+                }
+            }
+
+            const progress = Math.round(((downloaded + skipped) / total) * 100);
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${downloaded + skipped}/${total}`;
+        }
+
+        progressContainer.classList.add('hidden');
+        showDownloadStatus(`Downloaded ${downloaded} new files (${skipped} already cached)`, 'success');
+        audioStatusEl.textContent = `${downloaded + skipped} of ${total} audio files cached`;
+
+        if (downloaded + skipped === total) {
+            downloadAudioBtn.querySelector('.btn-text').textContent = 'All Audio Downloaded';
+        } else {
+            downloadAudioBtn.disabled = false;
+        }
+    } catch (e) {
+        progressContainer.classList.add('hidden');
+        showDownloadStatus('Download failed. Check your internet connection.', 'error');
+        downloadAudioBtn.disabled = false;
+    }
+}
+
+function showDownloadStatus(message, type) {
+    downloadStatus.textContent = message;
+    downloadStatus.className = `status-message ${type}`;
 }
 
 init();
