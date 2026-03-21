@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment (must match version.json)
-const APP_VERSION = '2.4.4';
+const APP_VERSION = '2.4.5';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -273,7 +273,7 @@ async function checkForUpdate() {
     }
 }
 
-// Apply the update: unregister SW, clear caches, reload
+// Apply the update: unregister SW, clear all caches (SW + HTTP), reload
 async function applyUpdate() {
     try {
         if ('serviceWorker' in navigator) {
@@ -284,13 +284,25 @@ async function applyUpdate() {
             const names = await caches.keys();
             await Promise.all(names.map(n => caches.delete(n)));
         }
-        // Navigate with cache-bust param to bypass browser HTTP cache
-        const url = new URL(window.location.href);
-        url.searchParams.set('_cb', Date.now());
-        window.location.replace(url.toString());
+        // Force browser to refresh HTTP cache entries for all app files.
+        // Without this, the browser serves stale JS/CSS from its HTTP cache
+        // after SW is unregistered (especially aggressive on mobile browsers).
+        const filesToBust = [
+            'shared.js', 'shared.css', 'practice.js', 'practice-setup.js',
+            'listening.js', 'listening-setup.js', 'settings.js',
+            'practice.css', 'listening.css', 'settings.css',
+            'index.html', 'practice.html', 'practice-setup.html',
+            'listening.html', 'listening-setup.html', 'settings.html'
+        ];
+        await Promise.allSettled(
+            filesToBust.map(f => fetch('./' + f, { cache: 'reload' }))
+        );
     } catch (e) {
-        window.location.replace(window.location.pathname + '?_cb=' + Date.now());
+        // Continue with reload even if cache busting fails
     }
+    const url = new URL(window.location.href);
+    url.searchParams.set('_cb', Date.now());
+    window.location.replace(url.toString());
 }
 
 // Show update banner if a new version is available
