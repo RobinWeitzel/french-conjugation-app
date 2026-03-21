@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment (must match version.json)
-const APP_VERSION = '2.4.3';
+const APP_VERSION = '2.4.4';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
