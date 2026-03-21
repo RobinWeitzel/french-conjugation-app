@@ -71,6 +71,7 @@
 .card {
     width: 100%;
     height: 400px;
+    max-height: 45dvh;
     position: relative;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -210,6 +211,7 @@
 
     .card {
         height: 350px;
+        max-height: 45dvh;
     }
 
     .session-stats {
