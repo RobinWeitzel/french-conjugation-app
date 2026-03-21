@@ -24,10 +24,22 @@
 
         <main>
             <div class="settings-section">
+                <h2>Updates</h2>
+                <p class="section-description">
+                    Check if a newer version of the app is available.
+                </p>
+                <button id="check-update-btn" class="action-btn">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Check for Updates</span>
+                </button>
+                <div id="update-status" class="status-message"></div>
+            </div>
+
+            <div class="settings-section">
                 <h2>Cache Management</h2>
                 <p class="section-description">
                     Clear all cached data and force the app to reload everything from the server.
-                    This is useful if you're experiencing issues or want to get the latest version.
+                    Use this if the app is behaving unexpectedly.
                 </p>
                 <button id="clear-cache-btn" class="action-btn">
                     <span class="btn-icon">🗑️</span>

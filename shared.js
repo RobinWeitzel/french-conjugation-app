@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
-// App Version - increment with every deployment
-const APP_VERSION = '2.0.7';
+// App Version - increment with every deployment (must match version.json)
+const APP_VERSION = '2.1.0';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -151,13 +151,61 @@ async function loadVerbs(updateStatusCallback) {
     return verbs;
 }
 
+// Check for app updates by fetching version.json (never cached)
+async function checkForUpdate() {
+    try {
+        const response = await fetch(`./version.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) return null;
+        const data = await response.json();
+        const serverVersion = data.version;
+        if (serverVersion && serverVersion !== APP_VERSION) {
+            return serverVersion;
+        }
+        return null;
+    } catch (e) {
+        // Offline or fetch failed — silently ignore
+        return null;
+    }
+}
+
+// Apply the update: unregister SW, clear caches, reload
+async function applyUpdate() {
+    try {
+        if ('serviceWorker' in navigator) {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            await Promise.all(registrations.map(r => r.unregister()));
+        }
+        if ('caches' in window) {
+            const names = await caches.keys();
+            await Promise.all(names.map(n => caches.delete(n)));
+        }
+        window.location.reload();
+    } catch (e) {
+        window.location.reload();
+    }
+}
+
+// Show update banner if a new version is available
+function showUpdateBanner(newVersion) {
+    if (document.getElementById('update-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.id = 'update-banner';
+    banner.className = 'update-banner';
+    banner.innerHTML = `
+        <span>Update available (v${newVersion})</span>
+        <button onclick="applyUpdate()" class="update-btn">Update</button>
+        <button onclick="this.parentElement.remove()" class="update-dismiss">&times;</button>
+    `;
+    document.body.prepend(banner);
+}
+
 // Register Service Worker for offline support
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
             .then((registration) => {
                 console.log('Service Worker registered:', registration.scope);
-                // Check for updates immediately
                 registration.update();
             })
             .catch((error) => {
@@ -165,3 +213,11 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
+// Check for updates on every page load
+window.addEventListener('load', async () => {
+    const newVersion = await checkForUpdate();
+    if (newVersion) {
+        showUpdateBanner(newVersion);
+    }
+});

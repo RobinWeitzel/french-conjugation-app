@@ -1,4 +1,4 @@
-const CACHE_NAME = 'french-conjugation-v39';
+const CACHE_NAME = 'french-conjugation-v40';
 const urlsToCache = [
   './',
   './index.html',
@@ -73,19 +73,22 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Network-first strategy for all app files (HTML, JS, CSS, JSON)
   const pathname = url.pathname;
+
+  // version.json is NEVER cached — always goes to network
+  if (pathname.endsWith('version.json')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Network-first strategy for all app files (HTML, JS, CSS, JSON)
   const isAppFile = pathname.endsWith('.html') || pathname.endsWith('.js') ||
                     pathname.endsWith('.css') || pathname.endsWith('.json');
 
   if (isAppFile) {
-    const fileName = url.pathname.split('/').pop();
-    console.log('[SW] Network-first strategy for', fileName);
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          console.log('[SW] Successfully fetched fresh', fileName, 'from network');
-          // Cache the fresh response
           const responseToCache = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
@@ -93,8 +96,6 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => {
-          console.log('[SW] Network failed, falling back to cached', fileName);
-          // Network failed, fallback to cache
           return caches.match(event.request);
         })
     );
