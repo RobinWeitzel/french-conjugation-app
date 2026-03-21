@@ -5,11 +5,13 @@ const APP_VERSION = '2.1.0';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
-const DB_VERSION = 3;
+const DB_VERSION = 4;
 const VERBS_STORE = 'verbs';
 const METADATA_STORE = 'metadata';
 const STATS_STORE = 'stats';
 const WORDS_URL = './words.json';
+const SENTENCES_STORE = 'sentences';
+const SENTENCES_URL = './sentences.json';
 
 // Global database reference
 let db = null;
@@ -48,6 +50,10 @@ function initDB() {
                 db.deleteObjectStore(STATS_STORE);
             }
             db.createObjectStore(STATS_STORE, { keyPath: 'id' });
+
+            if (!db.objectStoreNames.contains(SENTENCES_STORE)) {
+                db.createObjectStore(SENTENCES_STORE, { keyPath: 'id' });
+            }
         };
     });
 }
@@ -149,6 +155,105 @@ async function loadVerbs(updateStatusCallback) {
     }
 
     return verbs;
+}
+
+// Fetch sentences from server
+async function fetchSentencesFromServer() {
+    try {
+        const response = await fetch(SENTENCES_URL, { cache: 'no-cache' });
+        if (!response.ok) throw new Error('Failed to fetch');
+        return await response.json();
+    } catch (error) {
+        return null;
+    }
+}
+
+// Get stored sentences version from IndexedDB
+function getStoredSentencesVersion() {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([METADATA_STORE], 'readonly');
+        const store = transaction.objectStore(METADATA_STORE);
+        const request = store.get('sentences_version');
+
+        request.onsuccess = () => {
+            resolve(request.result ? request.result.value : null);
+        };
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// Save sentences to IndexedDB
+async function saveSentencesToDB(sentencesData, version) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([SENTENCES_STORE, METADATA_STORE], 'readwrite');
+
+        // Clear existing sentences
+        const sentencesStore = transaction.objectStore(SENTENCES_STORE);
+        sentencesStore.clear();
+
+        // Add new sentences
+        sentencesData.forEach(sentence => {
+            sentencesStore.add(sentence);
+        });
+
+        // Update version
+        const metadataStore = transaction.objectStore(METADATA_STORE);
+        metadataStore.put({ key: 'sentences_version', value: version });
+
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+    });
+}
+
+// Get sentences from IndexedDB
+function getSentencesFromDB() {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([SENTENCES_STORE], 'readonly');
+        const store = transaction.objectStore(SENTENCES_STORE);
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// Load sentences from IndexedDB or fetch from server
+async function loadSentences(updateStatusCallback) {
+    try {
+        console.log('[App] Attempting to fetch sentences.json from server...');
+        const onlineData = await fetchSentencesFromServer();
+
+        if (onlineData) {
+            console.log('[App] Successfully fetched sentences from server. Version:', onlineData.version);
+            const currentVersion = await getStoredSentencesVersion();
+            console.log('[App] Current cached sentences version:', currentVersion || 'none');
+
+            if (!currentVersion || onlineData.version !== currentVersion) {
+                console.log('[App] New sentences version detected, updating IndexedDB...');
+                if (updateStatusCallback) updateStatusCallback('Updating sentences...');
+                await saveSentencesToDB(onlineData.sentences, onlineData.version);
+                if (updateStatusCallback) updateStatusCallback('✓ Sentences updated');
+                console.log('[App] Sentences loaded from SERVER and cached');
+            } else {
+                console.log('[App] Sentences version unchanged, using existing data');
+                if (updateStatusCallback) updateStatusCallback('✓ Sentences up to date');
+                console.log('[App] Sentences loaded from INDEXEDDB (server confirmed up-to-date)');
+            }
+        }
+    } catch (error) {
+        console.warn('[App] Could not fetch sentences from server, using cached data:', error);
+        if (updateStatusCallback) updateStatusCallback('Offline mode');
+    }
+
+    // Load from IndexedDB
+    const sentences = await getSentencesFromDB();
+    console.log('[App] Loaded', sentences.length, 'sentences from IndexedDB');
+
+    if (sentences.length === 0) {
+        throw new Error('No sentences available. Please check your internet connection.');
+    }
+
+    return sentences;
 }
 
 // Check for app updates by fetching version.json (never cached)
