@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment (must match version.json)
-const APP_VERSION = '2.3.0';
+const APP_VERSION = '2.3.1';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -284,9 +284,12 @@ async function applyUpdate() {
             const names = await caches.keys();
             await Promise.all(names.map(n => caches.delete(n)));
         }
-        window.location.reload();
+        // Navigate with cache-bust param to bypass browser HTTP cache
+        const url = new URL(window.location.href);
+        url.searchParams.set('_cb', Date.now());
+        window.location.replace(url.toString());
     } catch (e) {
-        window.location.reload();
+        window.location.replace(window.location.pathname + '?_cb=' + Date.now());
     }
 }
 
