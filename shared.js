@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment
-const APP_VERSION = '2.0.5';
+const APP_VERSION = '2.0.6';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -23,6 +23,13 @@ function initDB() {
         request.onsuccess = () => {
             db = request.result;
             resolve();
+        };
+
+        request.onblocked = () => {
+            console.warn('[DB] Upgrade blocked — close other tabs and reload');
+            // Force close and retry by deleting the DB
+            indexedDB.deleteDatabase(DB_NAME);
+            window.location.reload();
         };
 
         request.onupgradeneeded = (event) => {

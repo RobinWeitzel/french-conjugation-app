@@ -12,19 +12,21 @@ const cacheVersion = document.getElementById('cache-version');
 async function init() {
     console.log('[Settings] Initializing...');
 
+    // Display app version immediately (before any async operations)
+    if (appVersion) {
+        appVersion.textContent = typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'Unknown';
+    }
+
+    // Set up event listeners (before async to ensure button works even if DB hangs)
+    clearCacheBtn.addEventListener('click', handleClearCache);
+
     // Load and display current stats
     await loadStats();
-
-    // Set up event listeners
-    clearCacheBtn.addEventListener('click', handleClearCache);
 }
 
 // Load and display current stats
 async function loadStats() {
     try {
-        // Display app version
-        appVersion.textContent = typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'Unknown';
-
         // Initialize DB to get data
         await initDB();
 
