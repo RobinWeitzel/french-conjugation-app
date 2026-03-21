@@ -1,5 +1,6 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "audioCategories": [],
   "categories": {
     "greetings": "Greetings & Small Talk",
     "restaurant": "At the Restaurant",
