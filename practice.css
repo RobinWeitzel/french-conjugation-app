@@ -103,8 +103,10 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 30px;
+    overflow: hidden;
 }
 
 .card-back {
@@ -114,10 +116,6 @@
 /* Content */
 .verb-info {
     text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .question-text {
@@ -164,8 +162,32 @@
     color: #e74c3c;
 }
 
+.swipe-left::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
 .swipe-right {
     color: #27ae60;
+}
+
+.swipe-right::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-top: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
 /* Card swipe animations */

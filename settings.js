@@ -3,6 +3,7 @@
 // DOM Elements
 const clearCacheBtn = document.getElementById('clear-cache-btn');
 const cacheStatus = document.getElementById('cache-status');
+const appVersion = document.getElementById('app-version');
 const verbsCount = document.getElementById('verbs-count');
 const dataVersion = document.getElementById('data-version');
 const cacheVersion = document.getElementById('cache-version');
@@ -21,6 +22,9 @@ async function init() {
 // Load and display current stats
 async function loadStats() {
     try {
+        // Display app version
+        appVersion.textContent = APP_VERSION;
+
         // Initialize DB to get data
         await initDB();
 

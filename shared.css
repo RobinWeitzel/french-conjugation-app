@@ -40,6 +40,18 @@ header {
     transition: color 0.2s ease;
 }
 
+.home-btn::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
 .home-btn:hover {
     color: white;
 }
