@@ -162,32 +162,8 @@
     color: #e74c3c;
 }
 
-.swipe-left::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-left: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg);
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
 .swipe-right {
     color: #27ae60;
-}
-
-.swipe-right::after {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-right: 2px solid currentColor;
-    border-top: 2px solid currentColor;
-    transform: rotate(45deg);
-    margin-left: 5px;
-    vertical-align: middle;
 }
 
 /* Card swipe animations */

@@ -23,7 +23,7 @@ async function init() {
 async function loadStats() {
     try {
         // Display app version
-        appVersion.textContent = APP_VERSION;
+        appVersion.textContent = typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'Unknown';
 
         // Initialize DB to get data
         await initDB();
