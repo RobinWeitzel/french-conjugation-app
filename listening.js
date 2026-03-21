@@ -12,6 +12,10 @@ const MASTERY_THRESHOLD = 3;
 let selectedVoice = null;
 let ttsAvailable = false;
 
+// Audio State
+let currentAudio = null;
+let playbackSpeed = parseFloat(localStorage.getItem('listeningSpeed') || '1');
+
 // App State
 let allSentences = [];
 let availableSentences = [];
@@ -37,6 +41,7 @@ const elements = {
     categoryLabel: document.getElementById('category-label'),
     playBtn: document.getElementById('play-btn'),
     playHint: document.getElementById('play-hint'),
+    speedToggle: document.getElementById('speed-toggle'),
     frenchText: document.getElementById('french-text'),
     englishText: document.getElementById('english-text'),
     ttsWarning: document.getElementById('tts-warning'),
@@ -125,28 +130,61 @@ function initTTS() {
     });
 }
 
-// Speak French text
-function speak(text) {
+// Three-tier audio playback: cached audio → network audio → Web Speech API
+async function speak(sentenceId, text) {
+    stopPlayback();
+
+    const audioUrl = `./audio/${sentenceId}.mp3`;
+
+    try {
+        const response = await fetch(audioUrl);
+        if (!response.ok) throw new Error('No audio file');
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        currentAudio = new Audio(url);
+        currentAudio.playbackRate = playbackSpeed;
+
+        elements.playBtn.classList.add('speaking');
+        elements.playBtn.innerHTML = '&#128264;';
+
+        currentAudio.onended = () => {
+            elements.playBtn.classList.remove('speaking');
+            elements.playBtn.innerHTML = '&#9654;';
+            URL.revokeObjectURL(url);
+            currentAudio = null;
+        };
+
+        currentAudio.onerror = () => {
+            elements.playBtn.classList.remove('speaking');
+            elements.playBtn.innerHTML = '&#9654;';
+            URL.revokeObjectURL(url);
+            currentAudio = null;
+        };
+
+        await currentAudio.play();
+    } catch (e) {
+        speakWithTTS(text);
+    }
+}
+
+// Web Speech API fallback
+function speakWithTTS(text) {
     const synth = window.speechSynthesis;
     if (!synth) return;
 
-    // Cancel any ongoing speech
     synth.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'fr-FR';
-    utterance.rate = 0.9;
-    if (selectedVoice) {
-        utterance.voice = selectedVoice;
-    }
+    utterance.rate = playbackSpeed * 0.9;
+    if (selectedVoice) utterance.voice = selectedVoice;
 
-    // Visual feedback
     elements.playBtn.classList.add('speaking');
-    elements.playBtn.innerHTML = '&#128264;'; // speaker emoji
+    elements.playBtn.innerHTML = '&#128264;';
 
     utterance.onend = () => {
         elements.playBtn.classList.remove('speaking');
-        elements.playBtn.innerHTML = '&#9654;'; // play icon
+        elements.playBtn.innerHTML = '&#9654;';
     };
 
     utterance.onerror = () => {
@@ -155,6 +193,19 @@ function speak(text) {
     };
 
     synth.speak(utterance);
+}
+
+// Stop all playback
+function stopPlayback() {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    elements.playBtn.classList.remove('speaking');
+    elements.playBtn.innerHTML = '&#9654;';
 }
 
 // Sentence key for stats
@@ -291,39 +342,33 @@ async function resetListeningStats() {
 function showNextCard() {
     if (availableSentences.length === 0) return;
 
-    // Reset flip state
     isFlipped = false;
     elements.card.classList.remove('flipped');
 
-    // Cancel any ongoing speech
-    if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-    }
-    elements.playBtn.classList.remove('speaking');
-    elements.playBtn.innerHTML = '&#9654;';
+    stopPlayback();
 
-    // Select random sentence
     currentSentence = availableSentences[Math.floor(Math.random() * availableSentences.length)];
-
-    // Set category label
     elements.categoryLabel.textContent = categoryNames[currentSentence.category] || currentSentence.category;
-
-    // Set back content
     elements.frenchText.textContent = currentSentence.french;
     elements.englishText.textContent = currentSentence.english;
+
+    // Autoplay
+    setTimeout(() => {
+        if (currentSentence) {
+            speak(currentSentence.id, currentSentence.french);
+            if (!playHintFaded) {
+                playHintFaded = true;
+                elements.playHint.classList.add('faded');
+            }
+        }
+    }, 300);
 }
 
 // Flip card
 function flipCard() {
     isFlipped = !isFlipped;
     elements.card.classList.toggle('flipped');
-
-    // Cancel any ongoing speech when flipping
-    if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-    }
-    elements.playBtn.classList.remove('speaking');
-    elements.playBtn.innerHTML = '&#9654;';
+    stopPlayback();
 }
 
 // Handle swipe
@@ -374,11 +419,20 @@ function setupEventListeners() {
         }
     });
 
+    // Speed toggle
+    elements.speedToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playbackSpeed = playbackSpeed === 1 ? 0.75 : 1;
+        localStorage.setItem('listeningSpeed', String(playbackSpeed));
+        elements.speedToggle.textContent = playbackSpeed === 1 ? '1x' : '0.75x';
+        if (currentAudio) currentAudio.playbackRate = playbackSpeed;
+    });
+
     // Play button click (stopPropagation so it doesn't flip card)
     elements.playBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (currentSentence && !isFlipped) {
-            speak(currentSentence.french);
+            speak(currentSentence.id, currentSentence.french);
             // Fade play hint after first use
             if (!playHintFaded) {
                 playHintFaded = true;
@@ -440,7 +494,7 @@ function setupEventListeners() {
         if (e.key === ' ' && !isFlipped) {
             e.preventDefault();
             if (currentSentence) {
-                speak(currentSentence.french);
+                speak(currentSentence.id, currentSentence.french);
                 if (!playHintFaded) {
                     playHintFaded = true;
                     elements.playHint.classList.add('faded');
@@ -549,6 +603,7 @@ async function init() {
         }
 
         setupEventListeners();
+        elements.speedToggle.textContent = playbackSpeed === 1 ? '1x' : '0.75x';
         showNextCard();
         hideLoading();
     } catch (error) {
