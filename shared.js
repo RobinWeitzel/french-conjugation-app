@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment (must match version.json)
-const APP_VERSION = '2.4.8';
+const APP_VERSION = '2.4.9';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -340,4 +340,13 @@ window.addEventListener('load', async () => {
     if (newVersion) {
         showUpdateBanner(newVersion);
     }
+});
+
+// Reset scroll state when page is restored from bfcache (back/forward nav in PWA)
+window.addEventListener('pageshow', () => {
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    const container = document.querySelector('.container');
+    if (container) container.scrollTop = 0;
 });
