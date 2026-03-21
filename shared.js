@@ -2,7 +2,7 @@
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const VERBS_STORE = 'verbs';
 const METADATA_STORE = 'metadata';
 const STATS_STORE = 'stats';
@@ -25,20 +25,19 @@ function initDB() {
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
 
-            // Create verbs store
             if (!db.objectStoreNames.contains(VERBS_STORE)) {
                 db.createObjectStore(VERBS_STORE, { keyPath: 'infinitive' });
             }
 
-            // Create metadata store
             if (!db.objectStoreNames.contains(METADATA_STORE)) {
                 db.createObjectStore(METADATA_STORE, { keyPath: 'key' });
             }
 
-            // Create stats store
-            if (!db.objectStoreNames.contains(STATS_STORE)) {
-                db.createObjectStore(STATS_STORE, { keyPath: 'infinitive' });
+            // Recreate stats store for new key format (verb_pronoun_tense)
+            if (db.objectStoreNames.contains(STATS_STORE)) {
+                db.deleteObjectStore(STATS_STORE);
             }
+            db.createObjectStore(STATS_STORE, { keyPath: 'id' });
         };
     });
 }
