@@ -1,7 +1,7 @@
 // Shared functionality across all modes
 
 // App Version - increment with every deployment
-const APP_VERSION = '2.0.4';
+const APP_VERSION = '2.0.5';
 
 // IndexedDB Configuration
 const DB_NAME = 'FrenchConjugationDB';
@@ -147,9 +147,11 @@ async function loadVerbs(updateStatusCallback) {
 // Register Service Worker for offline support
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
+        navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
             .then((registration) => {
                 console.log('Service Worker registered:', registration.scope);
+                // Check for updates immediately
+                registration.update();
             })
             .catch((error) => {
                 console.log('Service Worker registration failed:', error);
