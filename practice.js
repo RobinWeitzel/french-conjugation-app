@@ -234,16 +234,18 @@ function showNextCard() {
     const entry = verb.tenses[tense][pronoun];
     const tenseName = TENSE_NAMES[tense];
 
+    const frenchFull = `${pronoun} ${entry.french}`;
+
     if (direction === 'en-fr') {
         elements.question.textContent = entry.english;
         elements.questionBack.textContent = entry.english;
-        elements.answer.textContent = entry.french;
+        elements.answer.textContent = frenchFull;
         elements.secondary.textContent = tenseName;
         elements.hint.textContent = showInfinitive ? `(${verb.infinitive})` : '';
         elements.hintBack.textContent = showInfinitive ? `(${verb.infinitive})` : '';
     } else {
-        elements.question.textContent = entry.french;
-        elements.questionBack.textContent = entry.french;
+        elements.question.textContent = frenchFull;
+        elements.questionBack.textContent = frenchFull;
         elements.answer.textContent = entry.english;
         elements.secondary.textContent = tenseName;
         elements.hint.textContent = showInfinitive ? `(${verb.infinitive}) — ${tenseName}` : tenseName;
