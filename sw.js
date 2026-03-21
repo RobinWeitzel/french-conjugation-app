@@ -1,4 +1,4 @@
-const CACHE_NAME = 'french-conjugation-v43';
+const CACHE_NAME = 'french-conjugation-v44';
 const urlsToCache = [
   './',
   './index.html',
@@ -84,6 +84,25 @@ self.addEventListener('fetch', (event) => {
   // version.json is NEVER cached — always goes to network
   if (pathname.endsWith('version.json')) {
     event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Cache-first strategy for audio files (progressive caching)
+  if (pathname.includes('/audio/') && pathname.endsWith('.mp3')) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        }).catch(() => {
+          return new Response('', { status: 404 });
+        });
+      })
+    );
     return;
   }
 
