@@ -6,17 +6,19 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
 ## Requirements
 
 ### Core Functionality
-- Display French verbs in their infinitive form
-- Ask user to conjugate the verb in present tense for a specific form (e.g., je, tu, il/elle, nous, vous, ils/elles)
-- Flashcard interface with flip functionality to reveal the answer
-- Swipe left (incorrect) or swipe right (correct) to navigate to the next card
-- Spaced repetition-style practice
+- Unified practice mode combining conjugation and tense practice
+- Flashcard interface with flip functionality and swipe gestures
+- English → French and French → English direction options
+- Optional verb infinitive hint
+- Tense selection (Présent, Passé Composé, Imparfait, Futur Simple, Conditionnel)
+- Mastery tracking: 3 consecutive correct = mastered, incorrect resets counter
+- Spaced repetition-style practice with progress persistence
 
 ### Technical Requirements
 - **Frontend Only**: Pure HTML, CSS, and JavaScript (no backend)
 - **GitHub Pages Hosting**: Static site deployment
 - **Offline Support**: Must work without internet connection after initial load
-- **Data Storage**: IndexedDB for local verb storage
+- **Data Storage**: IndexedDB for local verb storage and stats
 - **Data Source**: Static JSON file hosted on GitHub Pages
 - **Auto-Update**: Check for new version of words file on load and update IndexedDB if available
 
@@ -26,132 +28,98 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
 ```
 /
 ├── index.html              # Home page with mode selection
-├── conjugation.html        # Conjugation practice mode
-├── tenses.html             # Tense selection page
-├── tenses-practice.html    # Tense practice mode
-├── app.js                  # Conjugation mode logic
-├── tenses-practice.js      # Tense practice mode logic
+├── practice-setup.html     # Practice configuration (direction, tenses, hints)
+├── practice-setup.js       # Practice setup logic
+├── practice.html           # Flashcard practice page
+├── practice.js             # Practice mode logic (swipe, mastery, stats)
+├── practice.css            # Practice mode styles (cards, stats, animations)
 ├── shared.js               # Shared DB and utility functions
-├── styles.css              # Conjugation mode styles
-├── tenses-practice.css     # Tense practice mode styles
 ├── shared.css              # Shared styles for all pages
+├── settings.html           # Settings page
+├── settings.js             # Settings logic
+├── settings.css            # Settings styles
 ├── sw.js                   # Service worker for offline support
-└── words.json              # French verbs data file
+└── words.json              # French verbs data file (v2.0.0)
 ```
 
 #### IMPORTANT: Service Worker Cache Management
 **ALWAYS bump the `CACHE_NAME` version in `sw.js` when making ANY changes to:**
-- HTML files (index.html, conjugation.html, tenses.html, etc.)
-- JavaScript files (app.js, shared.js, tenses-practice.js, etc.)
-- CSS files (styles.css, shared.css, tenses-practice.css, etc.)
+- HTML files (index.html, practice-setup.html, practice.html, etc.)
+- JavaScript files (practice.js, shared.js, practice-setup.js, etc.)
+- CSS files (practice.css, shared.css, settings.css, etc.)
 - Any other cached assets
 
 This ensures users get the latest version and prevents old cached files from causing issues.
-Current version: `french-conjugation-v7` (increment the number)
+Current version: `french-conjugation-v31` (increment the number)
 
-Don't forget to also add new files to the `urlsToCache` array and the network-first strategy condition!
+Don't forget to also add new files to the `urlsToCache` array!
 
 #### IndexedDB Schema
-- **Database**: `FrenchConjugationDB`
-- **Object Store**: `verbs`
-- **Metadata Store**: `metadata` (for version tracking)
+- **Database**: `FrenchConjugationDB` (version 3)
+- **Object Store**: `verbs` (keyPath: `infinitive`)
+- **Metadata Store**: `metadata` (keyPath: `key`, for version tracking)
+- **Stats Store**: `stats` (keyPath: `id`, format: `${infinitive}_${pronoun}_${tense}`)
 
-#### Words Data Format
+#### Words Data Format (v2.0.0)
 ```json
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "verbs": [
     {
       "infinitive": "être",
       "english": "to be",
-      "conjugations": {
-        "je": "suis",
-        "tu": "es",
-        "il": "est",
-        "nous": "sommes",
-        "vous": "êtes",
-        "ils": "sont"
-      },
       "tenses": {
         "present": {
-          "je": "suis",
-          "tu": "es",
-          "il": "est",
-          "nous": "sommes",
-          "vous": "êtes",
-          "ils": "sont"
+          "je": { "french": "suis", "english": "I am" },
+          "tu": { "french": "es", "english": "you are" },
+          "il": { "french": "est", "english": "he is" },
+          "nous": { "french": "sommes", "english": "we are" },
+          "vous": { "french": "êtes", "english": "you are" },
+          "ils": { "french": "sont", "english": "they are" }
         },
-        "passe_compose": {
-          "je": "ai été",
-          "tu": "as été",
-          "il": "a été",
-          "nous": "avons été",
-          "vous": "avez été",
-          "ils": "ont été"
-        },
-        "imparfait": {
-          "je": "étais",
-          "tu": "étais",
-          "il": "était",
-          "nous": "étions",
-          "vous": "étiez",
-          "ils": "étaient"
-        },
-        "futur": {
-          "je": "serai",
-          "tu": "seras",
-          "il": "sera",
-          "nous": "serons",
-          "vous": "serez",
-          "ils": "seront"
-        },
-        "conditionnel": {
-          "je": "serais",
-          "tu": "serais",
-          "il": "serait",
-          "nous": "serions",
-          "vous": "seriez",
-          "ils": "seraient"
-        }
+        "passe_compose": { ... },
+        "imparfait": { ... },
+        "futur": { ... },
+        "conditionnel": { ... }
       }
     }
   ]
 }
 ```
 
-**Note:** The `conjugations` field is used for the conjugation practice mode (present tense only).
-The `tenses` field is used for the tense practice mode and includes all supported tenses.
+Each pronoun entry has `{ "french": "conjugated form", "english": "English translation" }`.
+Impersonal verbs (falloir) use `null` for non-applicable pronouns.
 
-### Features to Implement
-1. ✅ Card flip animation
-2. ✅ Swipe gesture detection (left/right)
+### Features
+1. ✅ Card flip animation (3D with perspective)
+2. ✅ Swipe gesture detection (touch + mouse + keyboard)
 3. ✅ IndexedDB integration
 4. ✅ Version checking and auto-update
-5. ✅ Offline mode (Service Worker or PWA capabilities)
+5. ✅ Offline mode (Service Worker)
 6. ✅ Random verb selection
-7. ✅ Progress tracking (optional enhancement)
+7. ✅ Mastery tracking (3 consecutive correct)
+8. ✅ English ↔ French direction toggle
+9. ✅ Verb infinitive hint toggle
+10. ✅ Multi-tense support (5 tenses)
 
 ### User Flow
-1. App loads and checks for internet connection
-2. If online, fetch latest `words.json` and compare version with IndexedDB
-3. If newer version available, update IndexedDB
-4. Display random verb infinitive with a pronoun (e.g., "parler - je")
-5. User thinks of answer and clicks/taps to flip card
-6. Correct conjugation is revealed
-7. User swipes right (correct) or left (incorrect)
-8. Next card is displayed
-9. App continues working offline after initial data load
+1. Home screen → select "Verb Practice"
+2. Practice Setup → choose direction, infinitive hint, tenses
+3. App loads verbs from IndexedDB (auto-updates from server if newer)
+4. Flashcard shows question based on direction
+5. User taps to flip, sees answer
+6. Swipe right (correct) or left (incorrect)
+7. Stats tracked per verb+pronoun+tense combination
+8. 3 consecutive correct = mastered, card removed from pool
+9. All mastered → congratulations + reset option
 
 ### GitHub Pages Deployment
-1. Create repository (e.g., `french-conjugation-practice`)
-2. Push code to main branch
-3. Enable GitHub Pages in repository settings
-4. Set source to main branch / root directory
-5. Access at `https://RobinWeitzelg.github.io/french-conjugation-practice/`
+1. Push code to main branch
+2. Enable GitHub Pages in repository settings
+3. Set source to main branch / root directory
 
 ### Future Enhancements
-- Track statistics (accuracy, streak, etc.)
-- Filter by verb difficulty or frequency
-- Support for other tenses (imparfait, passé composé, futur, etc.)
+- Additional practice modes (home screen supports multiple mode cards)
 - Audio pronunciation
 - Dark mode
+- Filter by verb difficulty or frequency
