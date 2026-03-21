@@ -1,4 +1,4 @@
-const CACHE_NAME = 'french-conjugation-v45';
+const CACHE_NAME = 'french-conjugation-v46';
 const urlsToCache = [
   './',
   './index.html',
