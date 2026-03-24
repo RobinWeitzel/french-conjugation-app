@@ -11,7 +11,7 @@ export function PracticeSetup() {
 
   const toggleTense = (tense: TenseKey) => {
     if (tenses.includes(tense)) {
-      if (tenses.length > 1) setTenses(tenses.filter((t) => t !== tense));
+      setTenses(tenses.filter((t) => t !== tense));
     } else {
       setTenses([...tenses, tense]);
     }
@@ -99,7 +99,8 @@ export function PracticeSetup() {
       <div className="mt-auto pt-8">
         <button
           onClick={() => navigate('/practice')}
-          className="w-full rounded-xl bg-indigo-500 py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-indigo-600 active:bg-indigo-700"
+          disabled={tenses.length === 0}
+          className="w-full rounded-xl bg-indigo-500 py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-indigo-600 active:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Start Practice
         </button>
