@@ -210,6 +210,12 @@ export function Practice() {
                       ? currentCard.englishConjugation
                       : `${currentCard.pronoun} ${currentCard.french}`}
                   </p>
+                  {direction === 'en-fr' && currentCard.pronoun === 'tu' && (
+                    <p className="mt-2 text-xs italic text-slate-400 dark:text-slate-500">singular / informal</p>
+                  )}
+                  {direction === 'en-fr' && currentCard.pronoun === 'vous' && (
+                    <p className="mt-2 text-xs italic text-slate-400 dark:text-slate-500">plural / formal</p>
+                  )}
                   <p className="mt-6 text-xs text-slate-400 dark:text-slate-500">Tap to reveal</p>
                 </div>
               }
