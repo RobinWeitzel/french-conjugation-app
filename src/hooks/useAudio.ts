@@ -3,6 +3,7 @@ import { useRef, useCallback, useEffect, useState } from 'react';
 export function useAudio(speed: number) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [frenchVoice, setFrenchVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const findVoice = () => {
@@ -31,10 +32,14 @@ export function useAudio(speed: number) {
         try {
           const audio = new Audio(audioFile);
           audio.playbackRate = speed;
+          audio.addEventListener('ended', () => setPlaying(false));
+          audio.addEventListener('pause', () => setPlaying(false));
           audioRef.current = audio;
+          setPlaying(true);
           await audio.play();
           return;
         } catch {
+          setPlaying(false);
           // Fall through to TTS
         }
       }
@@ -45,6 +50,8 @@ export function useAudio(speed: number) {
         utterance.voice = frenchVoice;
         utterance.rate = speed;
         utterance.lang = 'fr-FR';
+        utterance.addEventListener('end', () => setPlaying(false));
+        setPlaying(true);
         speechSynthesis.speak(utterance);
       }
     },
@@ -57,11 +64,12 @@ export function useAudio(speed: number) {
       audioRef.current = null;
     }
     speechSynthesis.cancel();
+    setPlaying(false);
   }, []);
 
   useEffect(() => {
     return () => { stop(); };
   }, [stop]);
 
-  return { playAudio, stop, hasTTS: !!frenchVoice };
+  return { playAudio, stop, playing, hasTTS: !!frenchVoice };
 }
