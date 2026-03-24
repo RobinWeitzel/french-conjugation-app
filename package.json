@@ -1,19 +1,29 @@
 {
-  "name": "french-conjugation-practice",
-  "version": "1.0.0",
-  "description": "French verb conjugation practice app",
+  "name": "french-conjugation-app",
+  "private": true,
+  "version": "3.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 8000",
-    "dev:node": "npx http-server -p 8000 -c-1"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "french",
-    "conjugation",
-    "practice"
-  ],
-  "author": "",
-  "license": "MIT",
+  "dependencies": {
+    "dexie": "^4.3.0",
+    "dexie-react-hooks": "^4.2.0",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.2"
+  },
   "devDependencies": {
-    "pwa-asset-generator": "^8.1.2"
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.2",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }

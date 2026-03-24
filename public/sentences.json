@@ -1,0 +1,2188 @@
+{
+  "version": "1.2.0",
+  "audioCategories": [
+    "directions",
+    "greetings",
+    "hotel",
+    "phone",
+    "restaurant",
+    "shopping",
+    "travel"
+  ],
+  "categories": {
+    "greetings": "Greetings & Small Talk",
+    "restaurant": "At the Restaurant",
+    "shopping": "Shopping",
+    "directions": "Asking for Directions",
+    "travel": "Travel & Transport",
+    "phone": "Phone Conversations",
+    "hotel": "At the Hotel",
+    "doctor": "At the Doctor",
+    "weather": "Weather & Seasons",
+    "work": "At Work",
+    "family": "Family & Relationships",
+    "emergencies": "Emergencies"
+  },
+  "sentences": [
+    {
+      "id": "greetings_001",
+      "category": "greetings",
+      "french": "Bonjour, comment allez-vous ?",
+      "english": "Hello, how are you?"
+    },
+    {
+      "id": "greetings_002",
+      "category": "greetings",
+      "french": "Je m'appelle Marie, et vous ?",
+      "english": "My name is Marie, and you?"
+    },
+    {
+      "id": "greetings_003",
+      "category": "greetings",
+      "french": "Enchanté de faire votre connaissance.",
+      "english": "Nice to meet you."
+    },
+    {
+      "id": "greetings_004",
+      "category": "greetings",
+      "french": "Comment ça va aujourd'hui ?",
+      "english": "How are you doing today?"
+    },
+    {
+      "id": "greetings_005",
+      "category": "greetings",
+      "french": "Ça fait longtemps qu'on ne s'est pas vus !",
+      "english": "It's been a long time since we last saw each other!"
+    },
+    {
+      "id": "greetings_006",
+      "category": "greetings",
+      "french": "Bonsoir, vous allez bien ?",
+      "english": "Good evening, are you doing well?"
+    },
+    {
+      "id": "greetings_007",
+      "category": "greetings",
+      "french": "À bientôt, bonne journée !",
+      "english": "See you soon, have a nice day!"
+    },
+    {
+      "id": "greetings_008",
+      "category": "greetings",
+      "french": "Salut, quoi de neuf ?",
+      "english": "Hi, what's new?"
+    },
+    {
+      "id": "greetings_009",
+      "category": "greetings",
+      "french": "Je suis ravi de vous revoir.",
+      "english": "I'm delighted to see you again."
+    },
+    {
+      "id": "greetings_010",
+      "category": "greetings",
+      "french": "Vous venez d'où ?",
+      "english": "Where are you from?"
+    },
+    {
+      "id": "greetings_011",
+      "category": "greetings",
+      "french": "Je suis français, et vous ?",
+      "english": "I'm French, and you?"
+    },
+    {
+      "id": "greetings_012",
+      "category": "greetings",
+      "french": "Qu'est-ce que vous faites dans la vie ?",
+      "english": "What do you do for a living?"
+    },
+    {
+      "id": "greetings_013",
+      "category": "greetings",
+      "french": "Vous habitez dans le quartier ?",
+      "english": "Do you live in the neighborhood?"
+    },
+    {
+      "id": "greetings_014",
+      "category": "greetings",
+      "french": "C'est un plaisir de vous rencontrer.",
+      "english": "It's a pleasure to meet you."
+    },
+    {
+      "id": "greetings_015",
+      "category": "greetings",
+      "french": "J'espère que vous passez une bonne soirée.",
+      "english": "I hope you're having a nice evening."
+    },
+    {
+      "id": "greetings_016",
+      "category": "greetings",
+      "french": "Vous avez fait bon voyage ?",
+      "english": "Did you have a good trip?"
+    },
+    {
+      "id": "greetings_017",
+      "category": "greetings",
+      "french": "Ça me fait très plaisir de te voir.",
+      "english": "I'm really happy to see you."
+    },
+    {
+      "id": "greetings_018",
+      "category": "greetings",
+      "french": "Bonne nuit, dormez bien !",
+      "english": "Good night, sleep well!"
+    },
+    {
+      "id": "greetings_019",
+      "category": "greetings",
+      "french": "À demain, reposez-vous bien.",
+      "english": "See you tomorrow, get some rest."
+    },
+    {
+      "id": "greetings_020",
+      "category": "greetings",
+      "french": "Pas mal, et toi ?",
+      "english": "Not bad, and you?"
+    },
+    {
+      "id": "greetings_021",
+      "category": "greetings",
+      "french": "Je vous présente mon collègue, Pierre.",
+      "english": "Let me introduce my colleague, Pierre."
+    },
+    {
+      "id": "greetings_022",
+      "category": "greetings",
+      "french": "Comment se passe votre journée ?",
+      "english": "How is your day going?"
+    },
+    {
+      "id": "greetings_023",
+      "category": "greetings",
+      "french": "Vous êtes en vacances ou pour le travail ?",
+      "english": "Are you here on vacation or for work?"
+    },
+    {
+      "id": "greetings_024",
+      "category": "greetings",
+      "french": "C'est la première fois que vous venez ici ?",
+      "english": "Is this your first time coming here?"
+    },
+    {
+      "id": "greetings_025",
+      "category": "greetings",
+      "french": "Je suis vraiment content de faire votre connaissance.",
+      "english": "I'm really glad to meet you."
+    },
+    {
+      "id": "greetings_026",
+      "category": "greetings",
+      "french": "Passez un bon week-end !",
+      "english": "Have a great weekend!"
+    },
+    {
+      "id": "greetings_027",
+      "category": "greetings",
+      "french": "On se retrouve la semaine prochaine ?",
+      "english": "Shall we meet again next week?"
+    },
+    {
+      "id": "greetings_028",
+      "category": "greetings",
+      "french": "Vous êtes très aimable, merci.",
+      "english": "You're very kind, thank you."
+    },
+    {
+      "id": "greetings_029",
+      "category": "greetings",
+      "french": "Je dois y aller, à la prochaine !",
+      "english": "I have to go, until next time!"
+    },
+    {
+      "id": "greetings_030",
+      "category": "greetings",
+      "french": "Toute ma famille va bien, merci de demander.",
+      "english": "My whole family is doing well, thanks for asking."
+    },
+    {
+      "id": "restaurant_001",
+      "category": "restaurant",
+      "french": "Je voudrais un café, s'il vous plaît.",
+      "english": "I would like a coffee, please."
+    },
+    {
+      "id": "restaurant_002",
+      "category": "restaurant",
+      "french": "L'addition, s'il vous plaît.",
+      "english": "The check, please."
+    },
+    {
+      "id": "restaurant_003",
+      "category": "restaurant",
+      "french": "Est-ce que vous avez une table pour deux ?",
+      "english": "Do you have a table for two?"
+    },
+    {
+      "id": "restaurant_004",
+      "category": "restaurant",
+      "french": "Qu'est-ce que vous recommandez ?",
+      "english": "What do you recommend?"
+    },
+    {
+      "id": "restaurant_005",
+      "category": "restaurant",
+      "french": "Je suis allergique aux noix.",
+      "english": "I am allergic to nuts."
+    },
+    {
+      "id": "restaurant_006",
+      "category": "restaurant",
+      "french": "Puis-je voir le menu, s'il vous plaît ?",
+      "english": "May I see the menu, please?"
+    },
+    {
+      "id": "restaurant_007",
+      "category": "restaurant",
+      "french": "Je vais prendre le plat du jour.",
+      "english": "I'll have the dish of the day."
+    },
+    {
+      "id": "restaurant_008",
+      "category": "restaurant",
+      "french": "C'était délicieux, merci beaucoup.",
+      "english": "It was delicious, thank you very much."
+    },
+    {
+      "id": "restaurant_009",
+      "category": "restaurant",
+      "french": "Je voudrais réserver une table pour ce soir.",
+      "english": "I would like to reserve a table for tonight."
+    },
+    {
+      "id": "restaurant_010",
+      "category": "restaurant",
+      "french": "Est-ce que ce plat est épicé ?",
+      "english": "Is this dish spicy?"
+    },
+    {
+      "id": "restaurant_011",
+      "category": "restaurant",
+      "french": "Nous sommes quatre personnes.",
+      "english": "There are four of us."
+    },
+    {
+      "id": "restaurant_012",
+      "category": "restaurant",
+      "french": "Est-ce que vous avez des plats végétariens ?",
+      "english": "Do you have any vegetarian dishes?"
+    },
+    {
+      "id": "restaurant_013",
+      "category": "restaurant",
+      "french": "Je prendrai une carafe d'eau, s'il vous plaît.",
+      "english": "I'll have a carafe of water, please."
+    },
+    {
+      "id": "restaurant_014",
+      "category": "restaurant",
+      "french": "Quel vin est-ce que vous conseillez avec le poisson ?",
+      "english": "Which wine do you recommend with the fish?"
+    },
+    {
+      "id": "restaurant_015",
+      "category": "restaurant",
+      "french": "Je voudrais un dessert, qu'est-ce que vous avez ?",
+      "english": "I'd like a dessert, what do you have?"
+    },
+    {
+      "id": "restaurant_016",
+      "category": "restaurant",
+      "french": "Est-ce que le service est compris ?",
+      "english": "Is the service charge included?"
+    },
+    {
+      "id": "restaurant_017",
+      "category": "restaurant",
+      "french": "Excusez-moi, il manque une fourchette.",
+      "english": "Excuse me, I'm missing a fork."
+    },
+    {
+      "id": "restaurant_018",
+      "category": "restaurant",
+      "french": "Pourriez-vous nous apporter du pain, s'il vous plaît ?",
+      "english": "Could you bring us some bread, please?"
+    },
+    {
+      "id": "restaurant_019",
+      "category": "restaurant",
+      "french": "Je voudrais mon steak bien cuit.",
+      "english": "I'd like my steak well done."
+    },
+    {
+      "id": "restaurant_020",
+      "category": "restaurant",
+      "french": "Est-ce que je peux avoir la même chose que lui ?",
+      "english": "Can I have the same thing as him?"
+    },
+    {
+      "id": "restaurant_021",
+      "category": "restaurant",
+      "french": "Nous voudrions commander des entrées pour commencer.",
+      "english": "We would like to order starters to begin with."
+    },
+    {
+      "id": "restaurant_022",
+      "category": "restaurant",
+      "french": "Le repas était excellent, mes compliments au chef.",
+      "english": "The meal was excellent, my compliments to the chef."
+    },
+    {
+      "id": "restaurant_023",
+      "category": "restaurant",
+      "french": "Est-ce que vous avez une carte des vins ?",
+      "english": "Do you have a wine list?"
+    },
+    {
+      "id": "restaurant_024",
+      "category": "restaurant",
+      "french": "Je suis intolérant au gluten, qu'est-ce que je peux manger ?",
+      "english": "I'm gluten intolerant, what can I eat?"
+    },
+    {
+      "id": "restaurant_025",
+      "category": "restaurant",
+      "french": "On peut payer séparément ?",
+      "english": "Can we pay separately?"
+    },
+    {
+      "id": "restaurant_026",
+      "category": "restaurant",
+      "french": "Excusez-moi, ce n'est pas ce que j'ai commandé.",
+      "english": "Excuse me, this isn't what I ordered."
+    },
+    {
+      "id": "restaurant_027",
+      "category": "restaurant",
+      "french": "Est-ce que la terrasse est disponible ?",
+      "english": "Is the terrace available?"
+    },
+    {
+      "id": "restaurant_028",
+      "category": "restaurant",
+      "french": "Je voudrais un thé avec un nuage de lait.",
+      "english": "I'd like a tea with a splash of milk."
+    },
+    {
+      "id": "restaurant_029",
+      "category": "restaurant",
+      "french": "Avez-vous quelque chose pour les enfants ?",
+      "english": "Do you have anything for children?"
+    },
+    {
+      "id": "restaurant_030",
+      "category": "restaurant",
+      "french": "La soupe du jour, c'est quoi exactement ?",
+      "english": "What exactly is the soup of the day?"
+    },
+    {
+      "id": "shopping_001",
+      "category": "shopping",
+      "french": "Combien ça coûte ?",
+      "english": "How much does it cost?"
+    },
+    {
+      "id": "shopping_002",
+      "category": "shopping",
+      "french": "Est-ce que je peux essayer cette taille ?",
+      "english": "Can I try this size?"
+    },
+    {
+      "id": "shopping_003",
+      "category": "shopping",
+      "french": "Vous acceptez la carte bancaire ?",
+      "english": "Do you accept credit cards?"
+    },
+    {
+      "id": "shopping_004",
+      "category": "shopping",
+      "french": "Je cherche un cadeau pour mon ami.",
+      "english": "I'm looking for a gift for my friend."
+    },
+    {
+      "id": "shopping_005",
+      "category": "shopping",
+      "french": "Est-ce qu'il y a une réduction ?",
+      "english": "Is there a discount?"
+    },
+    {
+      "id": "shopping_006",
+      "category": "shopping",
+      "french": "Je fais du trente-huit en chaussures.",
+      "english": "I'm a size thirty-eight in shoes."
+    },
+    {
+      "id": "shopping_007",
+      "category": "shopping",
+      "french": "Où sont les cabines d'essayage ?",
+      "english": "Where are the fitting rooms?"
+    },
+    {
+      "id": "shopping_008",
+      "category": "shopping",
+      "french": "Je voudrais échanger cet article.",
+      "english": "I would like to exchange this item."
+    },
+    {
+      "id": "shopping_009",
+      "category": "shopping",
+      "french": "Est-ce que vous l'avez en bleu ?",
+      "english": "Do you have it in blue?"
+    },
+    {
+      "id": "shopping_010",
+      "category": "shopping",
+      "french": "C'est trop cher pour moi.",
+      "english": "It's too expensive for me."
+    },
+    {
+      "id": "shopping_011",
+      "category": "shopping",
+      "french": "Je peux avoir un sac, s'il vous plaît ?",
+      "english": "Can I have a bag, please?"
+    },
+    {
+      "id": "shopping_012",
+      "category": "shopping",
+      "french": "À quelle heure est-ce que le magasin ferme ?",
+      "english": "What time does the store close?"
+    },
+    {
+      "id": "shopping_013",
+      "category": "shopping",
+      "french": "Est-ce que cet article est en solde ?",
+      "english": "Is this item on sale?"
+    },
+    {
+      "id": "shopping_014",
+      "category": "shopping",
+      "french": "Je regarde juste, merci.",
+      "english": "I'm just looking, thanks."
+    },
+    {
+      "id": "shopping_015",
+      "category": "shopping",
+      "french": "Est-ce que vous faites des retouches ?",
+      "english": "Do you do alterations?"
+    },
+    {
+      "id": "shopping_016",
+      "category": "shopping",
+      "french": "Vous avez la taille au-dessus ?",
+      "english": "Do you have the next size up?"
+    },
+    {
+      "id": "shopping_017",
+      "category": "shopping",
+      "french": "Je voudrais me faire rembourser.",
+      "english": "I would like a refund."
+    },
+    {
+      "id": "shopping_018",
+      "category": "shopping",
+      "french": "Où se trouve le rayon des chaussures ?",
+      "english": "Where is the shoe department?"
+    },
+    {
+      "id": "shopping_019",
+      "category": "shopping",
+      "french": "Est-ce que vous avez ce modèle dans une autre couleur ?",
+      "english": "Do you have this model in another color?"
+    },
+    {
+      "id": "shopping_020",
+      "category": "shopping",
+      "french": "C'est un peu trop grand, vous avez plus petit ?",
+      "english": "It's a bit too big, do you have something smaller?"
+    },
+    {
+      "id": "shopping_021",
+      "category": "shopping",
+      "french": "Puis-je payer en espèces ?",
+      "english": "Can I pay in cash?"
+    },
+    {
+      "id": "shopping_022",
+      "category": "shopping",
+      "french": "Avez-vous un programme de fidélité ?",
+      "english": "Do you have a loyalty program?"
+    },
+    {
+      "id": "shopping_023",
+      "category": "shopping",
+      "french": "J'aimerais voir ce qui est dans la vitrine.",
+      "english": "I'd like to see what's in the display window."
+    },
+    {
+      "id": "shopping_024",
+      "category": "shopping",
+      "french": "C'est en quelle matière ?",
+      "english": "What material is it made of?"
+    },
+    {
+      "id": "shopping_025",
+      "category": "shopping",
+      "french": "Les soldes commencent quand cette année ?",
+      "english": "When do the sales start this year?"
+    },
+    {
+      "id": "shopping_026",
+      "category": "shopping",
+      "french": "Je voudrais faire un paquet cadeau, c'est possible ?",
+      "english": "I'd like to have it gift-wrapped, is that possible?"
+    },
+    {
+      "id": "shopping_027",
+      "category": "shopping",
+      "french": "Est-ce que vous livrez à domicile ?",
+      "english": "Do you deliver to home addresses?"
+    },
+    {
+      "id": "shopping_028",
+      "category": "shopping",
+      "french": "Ce pantalon me va très bien, je le prends.",
+      "english": "These pants fit me very well, I'll take them."
+    },
+    {
+      "id": "shopping_029",
+      "category": "shopping",
+      "french": "Vous pouvez me montrer quelque chose de moins cher ?",
+      "english": "Can you show me something less expensive?"
+    },
+    {
+      "id": "shopping_030",
+      "category": "shopping",
+      "french": "J'ai acheté ça hier et ça ne marche pas.",
+      "english": "I bought this yesterday and it doesn't work."
+    },
+    {
+      "id": "directions_001",
+      "category": "directions",
+      "french": "Excusez-moi, où se trouve la gare ?",
+      "english": "Excuse me, where is the train station?"
+    },
+    {
+      "id": "directions_002",
+      "category": "directions",
+      "french": "Tournez à gauche au prochain carrefour.",
+      "english": "Turn left at the next intersection."
+    },
+    {
+      "id": "directions_003",
+      "category": "directions",
+      "french": "C'est à cinq minutes à pied d'ici.",
+      "english": "It's a five-minute walk from here."
+    },
+    {
+      "id": "directions_004",
+      "category": "directions",
+      "french": "Prenez la deuxième rue à droite.",
+      "english": "Take the second street on the right."
+    },
+    {
+      "id": "directions_005",
+      "category": "directions",
+      "french": "Est-ce que c'est loin d'ici ?",
+      "english": "Is it far from here?"
+    },
+    {
+      "id": "directions_006",
+      "category": "directions",
+      "french": "Continuez tout droit pendant deux cents mètres.",
+      "english": "Continue straight ahead for two hundred meters."
+    },
+    {
+      "id": "directions_007",
+      "category": "directions",
+      "french": "La pharmacie est en face de la boulangerie.",
+      "english": "The pharmacy is across from the bakery."
+    },
+    {
+      "id": "directions_008",
+      "category": "directions",
+      "french": "Je suis perdu, pouvez-vous m'aider ?",
+      "english": "I'm lost, can you help me?"
+    },
+    {
+      "id": "directions_009",
+      "category": "directions",
+      "french": "Est-ce qu'il y a une station de métro près d'ici ?",
+      "english": "Is there a metro station near here?"
+    },
+    {
+      "id": "directions_010",
+      "category": "directions",
+      "french": "Vous pouvez me montrer sur la carte ?",
+      "english": "Can you show me on the map?"
+    },
+    {
+      "id": "directions_011",
+      "category": "directions",
+      "french": "Il faut traverser le pont et c'est juste après.",
+      "english": "You need to cross the bridge and it's right after that."
+    },
+    {
+      "id": "directions_012",
+      "category": "directions",
+      "french": "Le musée est au bout de cette avenue.",
+      "english": "The museum is at the end of this avenue."
+    },
+    {
+      "id": "directions_013",
+      "category": "directions",
+      "french": "Où est le supermarché le plus proche ?",
+      "english": "Where is the nearest supermarket?"
+    },
+    {
+      "id": "directions_014",
+      "category": "directions",
+      "french": "C'est à combien de kilomètres d'ici ?",
+      "english": "How many kilometers is it from here?"
+    },
+    {
+      "id": "directions_015",
+      "category": "directions",
+      "french": "Vous allez tout droit jusqu'au rond-point.",
+      "english": "You go straight ahead until the roundabout."
+    },
+    {
+      "id": "directions_016",
+      "category": "directions",
+      "french": "C'est juste à côté de la poste.",
+      "english": "It's right next to the post office."
+    },
+    {
+      "id": "directions_017",
+      "category": "directions",
+      "french": "Prenez le bus numéro douze, il vous y emmènera.",
+      "english": "Take bus number twelve, it will take you there."
+    },
+    {
+      "id": "directions_018",
+      "category": "directions",
+      "french": "Il vaut mieux prendre un taxi, c'est assez loin.",
+      "english": "It's better to take a taxi, it's quite far."
+    },
+    {
+      "id": "directions_019",
+      "category": "directions",
+      "french": "Longez la rivière et vous le verrez sur votre gauche.",
+      "english": "Follow the river and you'll see it on your left."
+    },
+    {
+      "id": "directions_020",
+      "category": "directions",
+      "french": "C'est dans la rue piétonne, derrière l'église.",
+      "english": "It's on the pedestrian street, behind the church."
+    },
+    {
+      "id": "directions_021",
+      "category": "directions",
+      "french": "Excusez-moi, comment je fais pour aller au centre-ville ?",
+      "english": "Excuse me, how do I get to the city center?"
+    },
+    {
+      "id": "directions_022",
+      "category": "directions",
+      "french": "Vous êtes dans la mauvaise direction, il faut faire demi-tour.",
+      "english": "You're going the wrong way, you need to turn around."
+    },
+    {
+      "id": "directions_023",
+      "category": "directions",
+      "french": "Le parc est de l'autre côté de la place.",
+      "english": "The park is on the other side of the square."
+    },
+    {
+      "id": "directions_024",
+      "category": "directions",
+      "french": "Passez devant la mairie et tournez à droite.",
+      "english": "Go past the town hall and turn right."
+    },
+    {
+      "id": "directions_025",
+      "category": "directions",
+      "french": "Est-ce que je peux y aller à pied ou c'est trop loin ?",
+      "english": "Can I walk there or is it too far?"
+    },
+    {
+      "id": "directions_026",
+      "category": "directions",
+      "french": "La bibliothèque est au premier étage du bâtiment blanc.",
+      "english": "The library is on the first floor of the white building."
+    },
+    {
+      "id": "directions_027",
+      "category": "directions",
+      "french": "Descendez cette rue et vous tomberez dessus.",
+      "english": "Go down this street and you'll come right to it."
+    },
+    {
+      "id": "directions_028",
+      "category": "directions",
+      "french": "Il y a un parking souterrain sous la place principale.",
+      "english": "There's an underground parking lot under the main square."
+    },
+    {
+      "id": "directions_029",
+      "category": "directions",
+      "french": "C'est la troisième sortie du rond-point.",
+      "english": "It's the third exit from the roundabout."
+    },
+    {
+      "id": "directions_030",
+      "category": "directions",
+      "french": "Vous ne pouvez pas le manquer, c'est le grand bâtiment rouge.",
+      "english": "You can't miss it, it's the big red building."
+    },
+    {
+      "id": "travel_001",
+      "category": "travel",
+      "french": "À quelle heure part le prochain train ?",
+      "english": "What time does the next train leave?"
+    },
+    {
+      "id": "travel_002",
+      "category": "travel",
+      "french": "Je voudrais un billet aller-retour.",
+      "english": "I would like a round-trip ticket."
+    },
+    {
+      "id": "travel_003",
+      "category": "travel",
+      "french": "Où est l'arrêt de bus le plus proche ?",
+      "english": "Where is the nearest bus stop?"
+    },
+    {
+      "id": "travel_004",
+      "category": "travel",
+      "french": "Le vol a été retardé de deux heures.",
+      "english": "The flight has been delayed by two hours."
+    },
+    {
+      "id": "travel_005",
+      "category": "travel",
+      "french": "J'ai réservé une chambre pour trois nuits.",
+      "english": "I booked a room for three nights."
+    },
+    {
+      "id": "travel_006",
+      "category": "travel",
+      "french": "Où puis-je récupérer mes bagages ?",
+      "english": "Where can I pick up my luggage?"
+    },
+    {
+      "id": "travel_007",
+      "category": "travel",
+      "french": "Est-ce que le petit déjeuner est inclus ?",
+      "english": "Is breakfast included?"
+    },
+    {
+      "id": "travel_008",
+      "category": "travel",
+      "french": "Je voudrais louer une voiture pour la semaine.",
+      "english": "I would like to rent a car for the week."
+    },
+    {
+      "id": "travel_009",
+      "category": "travel",
+      "french": "Est-ce que le train est direct ou il faut changer ?",
+      "english": "Is the train direct or do I need to transfer?"
+    },
+    {
+      "id": "travel_010",
+      "category": "travel",
+      "french": "Mon vol est à quelle porte d'embarquement ?",
+      "english": "Which boarding gate is my flight at?"
+    },
+    {
+      "id": "travel_011",
+      "category": "travel",
+      "french": "Je voudrais un siège côté fenêtre, s'il vous plaît.",
+      "english": "I'd like a window seat, please."
+    },
+    {
+      "id": "travel_012",
+      "category": "travel",
+      "french": "Où est-ce qu'on enregistre les bagages ?",
+      "english": "Where do we check in our luggage?"
+    },
+    {
+      "id": "travel_013",
+      "category": "travel",
+      "french": "Le train arrive sur quel quai ?",
+      "english": "Which platform does the train arrive at?"
+    },
+    {
+      "id": "travel_014",
+      "category": "travel",
+      "french": "J'ai perdu ma valise pendant le voyage.",
+      "english": "I lost my suitcase during the trip."
+    },
+    {
+      "id": "travel_015",
+      "category": "travel",
+      "french": "Est-ce qu'il y a un bus qui va à l'aéroport ?",
+      "english": "Is there a bus that goes to the airport?"
+    },
+    {
+      "id": "travel_016",
+      "category": "travel",
+      "french": "Je dois passer la douane avant de sortir.",
+      "english": "I have to go through customs before leaving."
+    },
+    {
+      "id": "travel_017",
+      "category": "travel",
+      "french": "Combien de temps dure le trajet en train ?",
+      "english": "How long does the train journey take?"
+    },
+    {
+      "id": "travel_018",
+      "category": "travel",
+      "french": "Il faut arriver combien de temps avant le départ ?",
+      "english": "How early do we need to arrive before departure?"
+    },
+    {
+      "id": "travel_019",
+      "category": "travel",
+      "french": "J'ai un bagage en soute et un bagage à main.",
+      "english": "I have one checked bag and one carry-on."
+    },
+    {
+      "id": "travel_020",
+      "category": "travel",
+      "french": "Est-ce qu'on peut acheter les billets en ligne ?",
+      "english": "Can we buy the tickets online?"
+    },
+    {
+      "id": "travel_021",
+      "category": "travel",
+      "french": "Le ferry part tous les combien ?",
+      "english": "How often does the ferry leave?"
+    },
+    {
+      "id": "travel_022",
+      "category": "travel",
+      "french": "Nous avons raté notre correspondance à cause du retard.",
+      "english": "We missed our connection because of the delay."
+    },
+    {
+      "id": "travel_023",
+      "category": "travel",
+      "french": "Est-ce qu'il y a des réductions pour les étudiants ?",
+      "english": "Are there any discounts for students?"
+    },
+    {
+      "id": "travel_024",
+      "category": "travel",
+      "french": "Je voudrais modifier ma réservation, c'est possible ?",
+      "english": "I'd like to change my reservation, is that possible?"
+    },
+    {
+      "id": "travel_025",
+      "category": "travel",
+      "french": "La gare routière est à quelle distance du centre ?",
+      "english": "How far is the bus station from the center?"
+    },
+    {
+      "id": "travel_026",
+      "category": "travel",
+      "french": "Mon passeport est valide encore deux ans.",
+      "english": "My passport is valid for another two years."
+    },
+    {
+      "id": "travel_027",
+      "category": "travel",
+      "french": "Il faut compter environ quarante-cinq minutes de route.",
+      "english": "You should allow about forty-five minutes of driving."
+    },
+    {
+      "id": "travel_028",
+      "category": "travel",
+      "french": "Où est le bureau de change le plus proche ?",
+      "english": "Where is the nearest currency exchange?"
+    },
+    {
+      "id": "travel_029",
+      "category": "travel",
+      "french": "Est-ce que cette place est libre ?",
+      "english": "Is this seat taken?"
+    },
+    {
+      "id": "travel_030",
+      "category": "travel",
+      "french": "Le prochain départ est annulé à cause d'une grève.",
+      "english": "The next departure is canceled because of a strike."
+    },
+    {
+      "id": "phone_001",
+      "category": "phone",
+      "french": "Allô, est-ce que je pourrais parler à Monsieur Dupont ?",
+      "english": "Hello, could I speak to Mr. Dupont?"
+    },
+    {
+      "id": "phone_002",
+      "category": "phone",
+      "french": "Je vous rappelle dans cinq minutes.",
+      "english": "I'll call you back in five minutes."
+    },
+    {
+      "id": "phone_003",
+      "category": "phone",
+      "french": "Pouvez-vous répéter, s'il vous plaît ?",
+      "english": "Can you repeat that, please?"
+    },
+    {
+      "id": "phone_004",
+      "category": "phone",
+      "french": "La ligne est mauvaise, je vous entends mal.",
+      "english": "The connection is bad, I can barely hear you."
+    },
+    {
+      "id": "phone_005",
+      "category": "phone",
+      "french": "Je voudrais prendre rendez-vous.",
+      "english": "I would like to make an appointment."
+    },
+    {
+      "id": "phone_006",
+      "category": "phone",
+      "french": "Vous avez fait un faux numéro.",
+      "english": "You have the wrong number."
+    },
+    {
+      "id": "phone_007",
+      "category": "phone",
+      "french": "Ne quittez pas, je vous mets en attente.",
+      "english": "Hold on, I'm putting you on hold."
+    },
+    {
+      "id": "phone_008",
+      "category": "phone",
+      "french": "Merci d'avoir appelé, au revoir.",
+      "english": "Thank you for calling, goodbye."
+    },
+    {
+      "id": "phone_009",
+      "category": "phone",
+      "french": "Est-ce que je peux laisser un message ?",
+      "english": "Can I leave a message?"
+    },
+    {
+      "id": "phone_010",
+      "category": "phone",
+      "french": "C'est de la part de qui ?",
+      "english": "Who's calling, please?"
+    },
+    {
+      "id": "phone_011",
+      "category": "phone",
+      "french": "Je vous passe le service commercial.",
+      "english": "I'll put you through to the sales department."
+    },
+    {
+      "id": "phone_012",
+      "category": "phone",
+      "french": "Il n'est pas disponible pour le moment.",
+      "english": "He's not available at the moment."
+    },
+    {
+      "id": "phone_013",
+      "category": "phone",
+      "french": "Pourriez-vous lui demander de me rappeler ?",
+      "english": "Could you ask him to call me back?"
+    },
+    {
+      "id": "phone_014",
+      "category": "phone",
+      "french": "J'appelle au sujet de ma commande.",
+      "english": "I'm calling about my order."
+    },
+    {
+      "id": "phone_015",
+      "category": "phone",
+      "french": "Vous pouvez me donner votre numéro de téléphone ?",
+      "english": "Can you give me your phone number?"
+    },
+    {
+      "id": "phone_016",
+      "category": "phone",
+      "french": "Je suis en réunion, je peux vous rappeler plus tard ?",
+      "english": "I'm in a meeting, can I call you back later?"
+    },
+    {
+      "id": "phone_017",
+      "category": "phone",
+      "french": "Le poste que vous demandez ne répond pas.",
+      "english": "The extension you're asking for isn't answering."
+    },
+    {
+      "id": "phone_018",
+      "category": "phone",
+      "french": "Veuillez patienter, je vérifie cette information.",
+      "english": "Please hold, I'm checking that information."
+    },
+    {
+      "id": "phone_019",
+      "category": "phone",
+      "french": "Pourriez-vous parler un peu plus lentement ?",
+      "english": "Could you speak a bit more slowly?"
+    },
+    {
+      "id": "phone_020",
+      "category": "phone",
+      "french": "Je vous envoie un texto avec les détails.",
+      "english": "I'll send you a text with the details."
+    },
+    {
+      "id": "phone_021",
+      "category": "phone",
+      "french": "Mon téléphone est presque déchargé.",
+      "english": "My phone is almost dead."
+    },
+    {
+      "id": "phone_022",
+      "category": "phone",
+      "french": "J'ai essayé de vous joindre toute la matinée.",
+      "english": "I've been trying to reach you all morning."
+    },
+    {
+      "id": "phone_023",
+      "category": "phone",
+      "french": "Quel est le meilleur moment pour vous appeler ?",
+      "english": "What's the best time to call you?"
+    },
+    {
+      "id": "phone_024",
+      "category": "phone",
+      "french": "Je n'ai pas bien compris votre nom, pouvez-vous l'épeler ?",
+      "english": "I didn't quite catch your name, can you spell it?"
+    },
+    {
+      "id": "phone_025",
+      "category": "phone",
+      "french": "Allô, je voudrais annuler mon rendez-vous de jeudi.",
+      "english": "Hello, I'd like to cancel my Thursday appointment."
+    },
+    {
+      "id": "phone_026",
+      "category": "phone",
+      "french": "On a été coupés, excusez-moi.",
+      "english": "We got cut off, I'm sorry."
+    },
+    {
+      "id": "phone_027",
+      "category": "phone",
+      "french": "Est-ce que Madame Martin est de retour de vacances ?",
+      "english": "Is Mrs. Martin back from vacation?"
+    },
+    {
+      "id": "phone_028",
+      "category": "phone",
+      "french": "Je vous confirme le rendez-vous pour lundi à quatorze heures.",
+      "english": "I'm confirming the appointment for Monday at two o'clock."
+    },
+    {
+      "id": "phone_029",
+      "category": "phone",
+      "french": "Pouvez-vous me transférer au service après-vente ?",
+      "english": "Can you transfer me to customer service?"
+    },
+    {
+      "id": "phone_030",
+      "category": "phone",
+      "french": "Je préfère qu'on en discute par téléphone plutôt que par courriel.",
+      "english": "I'd rather discuss it by phone than by email."
+    },
+    {
+      "id": "hotel_001",
+      "category": "hotel",
+      "french": "Bonjour, j'ai une réservation au nom de Durand.",
+      "english": "Hello, I have a reservation under the name Durand."
+    },
+    {
+      "id": "hotel_002",
+      "category": "hotel",
+      "french": "À quelle heure est le départ de la chambre ?",
+      "english": "What time is checkout?"
+    },
+    {
+      "id": "hotel_003",
+      "category": "hotel",
+      "french": "Est-ce que vous avez une chambre disponible pour ce soir ?",
+      "english": "Do you have a room available for tonight?"
+    },
+    {
+      "id": "hotel_004",
+      "category": "hotel",
+      "french": "Je voudrais une chambre avec vue sur la mer.",
+      "english": "I'd like a room with a sea view."
+    },
+    {
+      "id": "hotel_005",
+      "category": "hotel",
+      "french": "Le petit déjeuner est servi de quelle heure à quelle heure ?",
+      "english": "What time is breakfast served from and until?"
+    },
+    {
+      "id": "hotel_006",
+      "category": "hotel",
+      "french": "Est-ce qu'il y a le wifi gratuit dans les chambres ?",
+      "english": "Is there free wifi in the rooms?"
+    },
+    {
+      "id": "hotel_007",
+      "category": "hotel",
+      "french": "La climatisation ne fonctionne pas dans ma chambre.",
+      "english": "The air conditioning isn't working in my room."
+    },
+    {
+      "id": "hotel_008",
+      "category": "hotel",
+      "french": "Pourriez-vous me donner des serviettes supplémentaires ?",
+      "english": "Could you give me extra towels?"
+    },
+    {
+      "id": "hotel_009",
+      "category": "hotel",
+      "french": "Je voudrais prolonger mon séjour d'une nuit.",
+      "english": "I'd like to extend my stay by one night."
+    },
+    {
+      "id": "hotel_010",
+      "category": "hotel",
+      "french": "Est-ce que vous avez un coffre-fort dans la chambre ?",
+      "english": "Do you have a safe in the room?"
+    },
+    {
+      "id": "hotel_011",
+      "category": "hotel",
+      "french": "Où est-ce que je peux garer ma voiture ?",
+      "english": "Where can I park my car?"
+    },
+    {
+      "id": "hotel_012",
+      "category": "hotel",
+      "french": "Les voisins sont très bruyants, est-ce que je peux changer de chambre ?",
+      "english": "The neighbors are very noisy, can I change rooms?"
+    },
+    {
+      "id": "hotel_013",
+      "category": "hotel",
+      "french": "J'ai laissé ma clé dans la chambre par accident.",
+      "english": "I accidentally left my key in the room."
+    },
+    {
+      "id": "hotel_014",
+      "category": "hotel",
+      "french": "Est-ce qu'il y a une piscine à l'hôtel ?",
+      "english": "Is there a swimming pool at the hotel?"
+    },
+    {
+      "id": "hotel_015",
+      "category": "hotel",
+      "french": "Quel est le mot de passe du wifi ?",
+      "english": "What is the wifi password?"
+    },
+    {
+      "id": "hotel_016",
+      "category": "hotel",
+      "french": "Je voudrais régler ma note, s'il vous plaît.",
+      "english": "I'd like to settle my bill, please."
+    },
+    {
+      "id": "hotel_017",
+      "category": "hotel",
+      "french": "Est-ce que vous pouvez me réveiller à sept heures demain matin ?",
+      "english": "Can you give me a wake-up call at seven o'clock tomorrow morning?"
+    },
+    {
+      "id": "hotel_018",
+      "category": "hotel",
+      "french": "Y a-t-il un restaurant dans l'hôtel ?",
+      "english": "Is there a restaurant in the hotel?"
+    },
+    {
+      "id": "hotel_019",
+      "category": "hotel",
+      "french": "La douche fuit, est-ce que quelqu'un peut venir la réparer ?",
+      "english": "The shower is leaking, can someone come fix it?"
+    },
+    {
+      "id": "hotel_020",
+      "category": "hotel",
+      "french": "Est-ce que je peux laisser mes bagages à la réception après le départ ?",
+      "english": "Can I leave my bags at reception after checkout?"
+    },
+    {
+      "id": "hotel_021",
+      "category": "hotel",
+      "french": "Je voudrais commander le service en chambre.",
+      "english": "I'd like to order room service."
+    },
+    {
+      "id": "hotel_022",
+      "category": "hotel",
+      "french": "Vous avez un service de blanchisserie ?",
+      "english": "Do you have a laundry service?"
+    },
+    {
+      "id": "hotel_023",
+      "category": "hotel",
+      "french": "Nous aurions besoin d'un lit bébé dans la chambre.",
+      "english": "We would need a baby cot in the room."
+    },
+    {
+      "id": "hotel_024",
+      "category": "hotel",
+      "french": "Pouvez-vous nous recommander un bon restaurant à proximité ?",
+      "english": "Can you recommend a good restaurant nearby?"
+    },
+    {
+      "id": "hotel_025",
+      "category": "hotel",
+      "french": "Est-ce que l'hôtel est bien desservi par les transports en commun ?",
+      "english": "Is the hotel well served by public transportation?"
+    },
+    {
+      "id": "hotel_026",
+      "category": "hotel",
+      "french": "Il manque un oreiller dans la chambre.",
+      "english": "There's a pillow missing in the room."
+    },
+    {
+      "id": "hotel_027",
+      "category": "hotel",
+      "french": "Je voudrais une chambre non-fumeur avec un grand lit.",
+      "english": "I'd like a non-smoking room with a double bed."
+    },
+    {
+      "id": "hotel_028",
+      "category": "hotel",
+      "french": "Est-ce que le parking est inclus dans le prix de la chambre ?",
+      "english": "Is parking included in the room price?"
+    },
+    {
+      "id": "hotel_029",
+      "category": "hotel",
+      "french": "Le chauffage ne marche pas et il fait très froid.",
+      "english": "The heating isn't working and it's very cold."
+    },
+    {
+      "id": "hotel_030",
+      "category": "hotel",
+      "french": "Nous avons passé un excellent séjour, merci beaucoup.",
+      "english": "We had an excellent stay, thank you very much."
+    },
+    {
+      "id": "doctor_001",
+      "category": "doctor",
+      "french": "Bonjour, j'ai rendez-vous avec le docteur à dix heures.",
+      "english": "Hello, I have an appointment with the doctor at ten o'clock."
+    },
+    {
+      "id": "doctor_002",
+      "category": "doctor",
+      "french": "J'ai mal à la tête depuis trois jours.",
+      "english": "I've had a headache for three days."
+    },
+    {
+      "id": "doctor_003",
+      "category": "doctor",
+      "french": "Est-ce que je dois prendre ce médicament avant ou après les repas ?",
+      "english": "Should I take this medicine before or after meals?"
+    },
+    {
+      "id": "doctor_004",
+      "category": "doctor",
+      "french": "J'ai de la fièvre et des frissons.",
+      "english": "I have a fever and chills."
+    },
+    {
+      "id": "doctor_005",
+      "category": "doctor",
+      "french": "Je tousse beaucoup depuis la semaine dernière.",
+      "english": "I've been coughing a lot since last week."
+    },
+    {
+      "id": "doctor_006",
+      "category": "doctor",
+      "french": "Est-ce que je suis contagieux ?",
+      "english": "Am I contagious?"
+    },
+    {
+      "id": "doctor_007",
+      "category": "doctor",
+      "french": "J'ai besoin d'un arrêt de travail.",
+      "english": "I need a sick note for work."
+    },
+    {
+      "id": "doctor_008",
+      "category": "doctor",
+      "french": "Je suis allergique à la pénicilline.",
+      "english": "I'm allergic to penicillin."
+    },
+    {
+      "id": "doctor_009",
+      "category": "doctor",
+      "french": "J'ai une douleur vive dans le bas du dos.",
+      "english": "I have a sharp pain in my lower back."
+    },
+    {
+      "id": "doctor_010",
+      "category": "doctor",
+      "french": "Est-ce que vous pouvez me prescrire quelque chose pour dormir ?",
+      "english": "Can you prescribe me something to help me sleep?"
+    },
+    {
+      "id": "doctor_011",
+      "category": "doctor",
+      "french": "Je me suis tordu la cheville en faisant du sport.",
+      "english": "I twisted my ankle while exercising."
+    },
+    {
+      "id": "doctor_012",
+      "category": "doctor",
+      "french": "Depuis quand est-ce que vous avez ces symptômes ?",
+      "english": "How long have you had these symptoms?"
+    },
+    {
+      "id": "doctor_013",
+      "category": "doctor",
+      "french": "Je prends déjà un traitement pour la tension.",
+      "english": "I'm already taking medication for blood pressure."
+    },
+    {
+      "id": "doctor_014",
+      "category": "doctor",
+      "french": "Il faut que je fasse une prise de sang.",
+      "english": "I need to get a blood test done."
+    },
+    {
+      "id": "doctor_015",
+      "category": "doctor",
+      "french": "J'ai des nausées depuis ce matin.",
+      "english": "I've been feeling nauseous since this morning."
+    },
+    {
+      "id": "doctor_016",
+      "category": "doctor",
+      "french": "Est-ce que je dois revenir pour un contrôle ?",
+      "english": "Do I need to come back for a follow-up?"
+    },
+    {
+      "id": "doctor_017",
+      "category": "doctor",
+      "french": "La douleur est là en permanence ou elle va et vient ?",
+      "english": "Is the pain constant or does it come and go?"
+    },
+    {
+      "id": "doctor_018",
+      "category": "doctor",
+      "french": "J'ai du mal à respirer quand je monte les escaliers.",
+      "english": "I have trouble breathing when I go upstairs."
+    },
+    {
+      "id": "doctor_019",
+      "category": "doctor",
+      "french": "Où est la pharmacie de garde la plus proche ?",
+      "english": "Where is the nearest on-duty pharmacy?"
+    },
+    {
+      "id": "doctor_020",
+      "category": "doctor",
+      "french": "Je n'ai pas d'appétit et je me sens très fatigué.",
+      "english": "I have no appetite and I feel very tired."
+    },
+    {
+      "id": "doctor_021",
+      "category": "doctor",
+      "french": "Est-ce que ce médicament a des effets secondaires ?",
+      "english": "Does this medicine have any side effects?"
+    },
+    {
+      "id": "doctor_022",
+      "category": "doctor",
+      "french": "J'ai une éruption cutanée sur le bras.",
+      "english": "I have a rash on my arm."
+    },
+    {
+      "id": "doctor_023",
+      "category": "doctor",
+      "french": "Il faudrait faire une radio pour vérifier.",
+      "english": "We should do an X-ray to check."
+    },
+    {
+      "id": "doctor_024",
+      "category": "doctor",
+      "french": "Je voudrais prendre rendez-vous avec un spécialiste.",
+      "english": "I'd like to make an appointment with a specialist."
+    },
+    {
+      "id": "doctor_025",
+      "category": "doctor",
+      "french": "J'ai très mal aux dents, est-ce que vous connaissez un bon dentiste ?",
+      "english": "I have a really bad toothache, do you know a good dentist?"
+    },
+    {
+      "id": "doctor_026",
+      "category": "doctor",
+      "french": "Prenez deux comprimés matin et soir pendant sept jours.",
+      "english": "Take two tablets morning and evening for seven days."
+    },
+    {
+      "id": "doctor_027",
+      "category": "doctor",
+      "french": "Ma fille a quarante degrés de fièvre.",
+      "english": "My daughter has a temperature of forty degrees."
+    },
+    {
+      "id": "doctor_028",
+      "category": "doctor",
+      "french": "J'ai les yeux rouges et qui grattent.",
+      "english": "My eyes are red and itchy."
+    },
+    {
+      "id": "doctor_029",
+      "category": "doctor",
+      "french": "Est-ce que la consultation est remboursée par la sécurité sociale ?",
+      "english": "Is the consultation covered by social security?"
+    },
+    {
+      "id": "doctor_030",
+      "category": "doctor",
+      "french": "Je me suis coupé et la plaie n'arrête pas de saigner.",
+      "english": "I cut myself and the wound won't stop bleeding."
+    },
+    {
+      "id": "weather_001",
+      "category": "weather",
+      "french": "Quel temps fait-il aujourd'hui ?",
+      "english": "What's the weather like today?"
+    },
+    {
+      "id": "weather_002",
+      "category": "weather",
+      "french": "Il pleut depuis ce matin sans arrêt.",
+      "english": "It's been raining nonstop since this morning."
+    },
+    {
+      "id": "weather_003",
+      "category": "weather",
+      "french": "La météo annonce du soleil pour le week-end.",
+      "english": "The forecast says it will be sunny this weekend."
+    },
+    {
+      "id": "weather_004",
+      "category": "weather",
+      "french": "Il fait très froid dehors, couvre-toi bien.",
+      "english": "It's very cold outside, bundle up."
+    },
+    {
+      "id": "weather_005",
+      "category": "weather",
+      "french": "On attend de la neige pour demain matin.",
+      "english": "We're expecting snow tomorrow morning."
+    },
+    {
+      "id": "weather_006",
+      "category": "weather",
+      "french": "L'été est ma saison préférée.",
+      "english": "Summer is my favorite season."
+    },
+    {
+      "id": "weather_007",
+      "category": "weather",
+      "french": "Il y a du brouillard sur l'autoroute, soyez prudents.",
+      "english": "There's fog on the highway, be careful."
+    },
+    {
+      "id": "weather_008",
+      "category": "weather",
+      "french": "Les températures vont monter jusqu'à trente-cinq degrés.",
+      "english": "Temperatures will rise to thirty-five degrees."
+    },
+    {
+      "id": "weather_009",
+      "category": "weather",
+      "french": "Prends un parapluie, il va pleuvoir cet après-midi.",
+      "english": "Take an umbrella, it's going to rain this afternoon."
+    },
+    {
+      "id": "weather_010",
+      "category": "weather",
+      "french": "Le printemps est la saison des fleurs.",
+      "english": "Spring is the season of flowers."
+    },
+    {
+      "id": "weather_011",
+      "category": "weather",
+      "french": "Il fait un temps magnifique pour se promener.",
+      "english": "The weather is beautiful for a walk."
+    },
+    {
+      "id": "weather_012",
+      "category": "weather",
+      "french": "Il y a eu un orage violent hier soir.",
+      "english": "There was a violent storm last night."
+    },
+    {
+      "id": "weather_013",
+      "category": "weather",
+      "french": "Le vent souffle très fort aujourd'hui.",
+      "english": "The wind is blowing very hard today."
+    },
+    {
+      "id": "weather_014",
+      "category": "weather",
+      "french": "En automne, les feuilles changent de couleur.",
+      "english": "In autumn, the leaves change color."
+    },
+    {
+      "id": "weather_015",
+      "category": "weather",
+      "french": "Il fait moins dix ce matin, les routes sont gelées.",
+      "english": "It's minus ten this morning, the roads are icy."
+    },
+    {
+      "id": "weather_016",
+      "category": "weather",
+      "french": "On a eu un été très chaud cette année.",
+      "english": "We had a very hot summer this year."
+    },
+    {
+      "id": "weather_017",
+      "category": "weather",
+      "french": "Il ne neige presque jamais dans le sud de la France.",
+      "english": "It almost never snows in the south of France."
+    },
+    {
+      "id": "weather_018",
+      "category": "weather",
+      "french": "Le ciel est couvert, on ne voit pas le soleil.",
+      "english": "The sky is overcast, you can't see the sun."
+    },
+    {
+      "id": "weather_019",
+      "category": "weather",
+      "french": "L'hiver dernier a été particulièrement doux.",
+      "english": "Last winter was particularly mild."
+    },
+    {
+      "id": "weather_020",
+      "category": "weather",
+      "french": "Il fait lourd, je crois qu'il va y avoir de l'orage.",
+      "english": "It's muggy, I think there's going to be a storm."
+    },
+    {
+      "id": "weather_021",
+      "category": "weather",
+      "french": "Mets de la crème solaire, le soleil tape fort.",
+      "english": "Put on sunscreen, the sun is strong."
+    },
+    {
+      "id": "weather_022",
+      "category": "weather",
+      "french": "Il y a des averses prévues pour la fin de journée.",
+      "english": "There are showers expected for the end of the day."
+    },
+    {
+      "id": "weather_023",
+      "category": "weather",
+      "french": "Les nuits sont de plus en plus courtes en été.",
+      "english": "The nights get shorter and shorter in summer."
+    },
+    {
+      "id": "weather_024",
+      "category": "weather",
+      "french": "Il gèle toutes les nuits en ce moment.",
+      "english": "It freezes every night at the moment."
+    },
+    {
+      "id": "weather_025",
+      "category": "weather",
+      "french": "Quelle chaleur insupportable, j'ai hâte que l'automne arrive.",
+      "english": "What unbearable heat, I can't wait for autumn to come."
+    },
+    {
+      "id": "weather_026",
+      "category": "weather",
+      "french": "Il y a un arc-en-ciel magnifique après la pluie.",
+      "english": "There's a beautiful rainbow after the rain."
+    },
+    {
+      "id": "weather_027",
+      "category": "weather",
+      "french": "La canicule va durer encore quelques jours.",
+      "english": "The heatwave is going to last a few more days."
+    },
+    {
+      "id": "weather_028",
+      "category": "weather",
+      "french": "On annonce des éclaircies en fin de matinée.",
+      "english": "They're forecasting sunny spells by late morning."
+    },
+    {
+      "id": "weather_029",
+      "category": "weather",
+      "french": "J'adore quand il neige, tout est blanc et silencieux.",
+      "english": "I love it when it snows, everything is white and quiet."
+    },
+    {
+      "id": "weather_030",
+      "category": "weather",
+      "french": "Le climat ici est très différent de celui de mon pays.",
+      "english": "The climate here is very different from my country's."
+    },
+    {
+      "id": "work_001",
+      "category": "work",
+      "french": "La réunion est prévue à quelle heure ?",
+      "english": "What time is the meeting scheduled?"
+    },
+    {
+      "id": "work_002",
+      "category": "work",
+      "french": "J'ai envoyé le rapport par courriel ce matin.",
+      "english": "I sent the report by email this morning."
+    },
+    {
+      "id": "work_003",
+      "category": "work",
+      "french": "Est-ce que tu peux me passer le dossier Martin ?",
+      "english": "Can you pass me the Martin file?"
+    },
+    {
+      "id": "work_004",
+      "category": "work",
+      "french": "La date limite pour ce projet est vendredi prochain.",
+      "english": "The deadline for this project is next Friday."
+    },
+    {
+      "id": "work_005",
+      "category": "work",
+      "french": "Je suis en retard, il y avait beaucoup de circulation.",
+      "english": "I'm late, there was a lot of traffic."
+    },
+    {
+      "id": "work_006",
+      "category": "work",
+      "french": "Qui est responsable de ce dossier ?",
+      "english": "Who is in charge of this file?"
+    },
+    {
+      "id": "work_007",
+      "category": "work",
+      "french": "L'imprimante est en panne depuis ce matin.",
+      "english": "The printer has been broken since this morning."
+    },
+    {
+      "id": "work_008",
+      "category": "work",
+      "french": "Je prends ma pause déjeuner à midi et demi.",
+      "english": "I take my lunch break at half past twelve."
+    },
+    {
+      "id": "work_009",
+      "category": "work",
+      "french": "Mon contrat se termine à la fin du mois.",
+      "english": "My contract ends at the end of the month."
+    },
+    {
+      "id": "work_010",
+      "category": "work",
+      "french": "Est-ce qu'on peut décaler la réunion à quinze heures ?",
+      "english": "Can we move the meeting to three o'clock?"
+    },
+    {
+      "id": "work_011",
+      "category": "work",
+      "french": "J'ai besoin de plus de temps pour finir cette tâche.",
+      "english": "I need more time to finish this task."
+    },
+    {
+      "id": "work_012",
+      "category": "work",
+      "french": "Le nouveau stagiaire commence la semaine prochaine.",
+      "english": "The new intern starts next week."
+    },
+    {
+      "id": "work_013",
+      "category": "work",
+      "french": "Il faut qu'on prépare la présentation pour le client.",
+      "english": "We need to prepare the presentation for the client."
+    },
+    {
+      "id": "work_014",
+      "category": "work",
+      "french": "Mon ordinateur est très lent aujourd'hui.",
+      "english": "My computer is very slow today."
+    },
+    {
+      "id": "work_015",
+      "category": "work",
+      "french": "Je travaille à distance deux jours par semaine.",
+      "english": "I work remotely two days a week."
+    },
+    {
+      "id": "work_016",
+      "category": "work",
+      "french": "Avez-vous reçu ma candidature pour le poste ?",
+      "english": "Did you receive my application for the position?"
+    },
+    {
+      "id": "work_017",
+      "category": "work",
+      "french": "La salle de conférence est réservée de quatorze heures à seize heures.",
+      "english": "The conference room is booked from two to four o'clock."
+    },
+    {
+      "id": "work_018",
+      "category": "work",
+      "french": "Je vais demander une augmentation lors de mon entretien annuel.",
+      "english": "I'm going to ask for a raise at my annual review."
+    },
+    {
+      "id": "work_019",
+      "category": "work",
+      "french": "Est-ce que quelqu'un peut m'aider avec ce logiciel ?",
+      "english": "Can someone help me with this software?"
+    },
+    {
+      "id": "work_020",
+      "category": "work",
+      "french": "Nous avons embauché trois nouvelles personnes ce trimestre.",
+      "english": "We hired three new people this quarter."
+    },
+    {
+      "id": "work_021",
+      "category": "work",
+      "french": "Le budget a été approuvé par la direction.",
+      "english": "The budget has been approved by management."
+    },
+    {
+      "id": "work_022",
+      "category": "work",
+      "french": "Je serai absent demain pour un rendez-vous médical.",
+      "english": "I'll be absent tomorrow for a medical appointment."
+    },
+    {
+      "id": "work_023",
+      "category": "work",
+      "french": "On organise un pot de départ pour Sophie vendredi.",
+      "english": "We're organizing a farewell party for Sophie on Friday."
+    },
+    {
+      "id": "work_024",
+      "category": "work",
+      "french": "Il faut envoyer les factures avant la fin de la semaine.",
+      "english": "We need to send the invoices before the end of the week."
+    },
+    {
+      "id": "work_025",
+      "category": "work",
+      "french": "Je n'ai pas encore eu le temps de lire tous les courriels.",
+      "english": "I haven't had time to read all the emails yet."
+    },
+    {
+      "id": "work_026",
+      "category": "work",
+      "french": "Pouvez-vous me faire un résumé des points importants ?",
+      "english": "Can you give me a summary of the important points?"
+    },
+    {
+      "id": "work_027",
+      "category": "work",
+      "french": "L'entreprise a décidé de recruter en interne.",
+      "english": "The company has decided to recruit internally."
+    },
+    {
+      "id": "work_028",
+      "category": "work",
+      "french": "Je dois partir plus tôt aujourd'hui, c'est possible ?",
+      "english": "I need to leave early today, is that possible?"
+    },
+    {
+      "id": "work_029",
+      "category": "work",
+      "french": "Le serveur est en panne, on ne peut pas accéder aux fichiers.",
+      "english": "The server is down, we can't access the files."
+    },
+    {
+      "id": "work_030",
+      "category": "work",
+      "french": "Nous avons atteint nos objectifs pour ce trimestre.",
+      "english": "We reached our targets for this quarter."
+    },
+    {
+      "id": "family_001",
+      "category": "family",
+      "french": "J'ai deux frères et une sœur.",
+      "english": "I have two brothers and one sister."
+    },
+    {
+      "id": "family_002",
+      "category": "family",
+      "french": "Ma grand-mère a quatre-vingt-cinq ans.",
+      "english": "My grandmother is eighty-five years old."
+    },
+    {
+      "id": "family_003",
+      "category": "family",
+      "french": "Mes parents habitent à la campagne.",
+      "english": "My parents live in the countryside."
+    },
+    {
+      "id": "family_004",
+      "category": "family",
+      "french": "Mon fils aîné est à l'université.",
+      "english": "My eldest son is at university."
+    },
+    {
+      "id": "family_005",
+      "category": "family",
+      "french": "On se retrouve en famille pour Noël chaque année.",
+      "english": "We get together as a family for Christmas every year."
+    },
+    {
+      "id": "family_006",
+      "category": "family",
+      "french": "Ma cousine vient de se marier le mois dernier.",
+      "english": "My cousin just got married last month."
+    },
+    {
+      "id": "family_007",
+      "category": "family",
+      "french": "Mon oncle et ma tante vivent au Canada.",
+      "english": "My uncle and aunt live in Canada."
+    },
+    {
+      "id": "family_008",
+      "category": "family",
+      "french": "Ma fille a eu son premier bébé en mars.",
+      "english": "My daughter had her first baby in March."
+    },
+    {
+      "id": "family_009",
+      "category": "family",
+      "french": "Nous fêtons l'anniversaire de mon père dimanche.",
+      "english": "We're celebrating my father's birthday on Sunday."
+    },
+    {
+      "id": "family_010",
+      "category": "family",
+      "french": "Mon frère cadet est plus grand que moi.",
+      "english": "My younger brother is taller than me."
+    },
+    {
+      "id": "family_011",
+      "category": "family",
+      "french": "Ma belle-mère cuisine très bien.",
+      "english": "My mother-in-law is a very good cook."
+    },
+    {
+      "id": "family_012",
+      "category": "family",
+      "french": "Mes enfants adorent jouer dans le jardin.",
+      "english": "My children love playing in the garden."
+    },
+    {
+      "id": "family_013",
+      "category": "family",
+      "french": "Mon mari travaille dans un hôpital.",
+      "english": "My husband works in a hospital."
+    },
+    {
+      "id": "family_014",
+      "category": "family",
+      "french": "Ma sœur attend des jumeaux pour septembre.",
+      "english": "My sister is expecting twins in September."
+    },
+    {
+      "id": "family_015",
+      "category": "family",
+      "french": "On organise une grande fête pour les cinquante ans de maman.",
+      "english": "We're organizing a big party for Mom's fiftieth birthday."
+    },
+    {
+      "id": "family_016",
+      "category": "family",
+      "french": "Mon neveu est très doué en musique.",
+      "english": "My nephew is very talented in music."
+    },
+    {
+      "id": "family_017",
+      "category": "family",
+      "french": "Mes grands-parents se sont rencontrés pendant la guerre.",
+      "english": "My grandparents met during the war."
+    },
+    {
+      "id": "family_018",
+      "category": "family",
+      "french": "Ma femme et moi, on est mariés depuis quinze ans.",
+      "english": "My wife and I have been married for fifteen years."
+    },
+    {
+      "id": "family_019",
+      "category": "family",
+      "french": "Les enfants, c'est l'heure d'aller se coucher !",
+      "english": "Kids, it's time to go to bed!"
+    },
+    {
+      "id": "family_020",
+      "category": "family",
+      "french": "Tu ressembles beaucoup à ton père.",
+      "english": "You look a lot like your father."
+    },
+    {
+      "id": "family_021",
+      "category": "family",
+      "french": "On va chez mes beaux-parents ce week-end.",
+      "english": "We're going to my in-laws' this weekend."
+    },
+    {
+      "id": "family_022",
+      "category": "family",
+      "french": "Mon petit-fils commence l'école en septembre.",
+      "english": "My grandson is starting school in September."
+    },
+    {
+      "id": "family_023",
+      "category": "family",
+      "french": "Ma nièce habite juste à côté de chez nous.",
+      "english": "My niece lives right next to us."
+    },
+    {
+      "id": "family_024",
+      "category": "family",
+      "french": "Toute la famille est invitée au mariage.",
+      "english": "The whole family is invited to the wedding."
+    },
+    {
+      "id": "family_025",
+      "category": "family",
+      "french": "Mon père est à la retraite depuis deux ans.",
+      "english": "My father has been retired for two years."
+    },
+    {
+      "id": "family_026",
+      "category": "family",
+      "french": "Ma mère m'appelle tous les dimanches.",
+      "english": "My mother calls me every Sunday."
+    },
+    {
+      "id": "family_027",
+      "category": "family",
+      "french": "Mon beau-frère est très drôle.",
+      "english": "My brother-in-law is very funny."
+    },
+    {
+      "id": "family_028",
+      "category": "family",
+      "french": "On va bientôt avoir un nouveau membre dans la famille.",
+      "english": "We're going to have a new member of the family soon."
+    },
+    {
+      "id": "family_029",
+      "category": "family",
+      "french": "Les enfants passent les vacances chez leurs grands-parents.",
+      "english": "The children are spending the holidays at their grandparents' house."
+    },
+    {
+      "id": "family_030",
+      "category": "family",
+      "french": "Je suis très proche de ma sœur, on se dit tout.",
+      "english": "I'm very close to my sister, we tell each other everything."
+    },
+    {
+      "id": "emergencies_001",
+      "category": "emergencies",
+      "french": "Appelez les pompiers, il y a un incendie !",
+      "english": "Call the fire department, there's a fire!"
+    },
+    {
+      "id": "emergencies_002",
+      "category": "emergencies",
+      "french": "Au secours, j'ai besoin d'aide !",
+      "english": "Help, I need help!"
+    },
+    {
+      "id": "emergencies_003",
+      "category": "emergencies",
+      "french": "Il y a eu un accident sur la route.",
+      "english": "There's been an accident on the road."
+    },
+    {
+      "id": "emergencies_004",
+      "category": "emergencies",
+      "french": "On m'a volé mon portefeuille.",
+      "english": "Someone stole my wallet."
+    },
+    {
+      "id": "emergencies_005",
+      "category": "emergencies",
+      "french": "J'ai perdu mes papiers d'identité.",
+      "english": "I've lost my identity documents."
+    },
+    {
+      "id": "emergencies_006",
+      "category": "emergencies",
+      "french": "Appelez une ambulance, quelqu'un est blessé.",
+      "english": "Call an ambulance, someone is injured."
+    },
+    {
+      "id": "emergencies_007",
+      "category": "emergencies",
+      "french": "Je voudrais porter plainte pour vol.",
+      "english": "I'd like to file a complaint for theft."
+    },
+    {
+      "id": "emergencies_008",
+      "category": "emergencies",
+      "french": "Ma voiture est tombée en panne sur l'autoroute.",
+      "english": "My car broke down on the highway."
+    },
+    {
+      "id": "emergencies_009",
+      "category": "emergencies",
+      "french": "Où est le commissariat de police le plus proche ?",
+      "english": "Where is the nearest police station?"
+    },
+    {
+      "id": "emergencies_010",
+      "category": "emergencies",
+      "french": "Quelqu'un a cambriolé mon appartement.",
+      "english": "Someone broke into my apartment."
+    },
+    {
+      "id": "emergencies_011",
+      "category": "emergencies",
+      "french": "Il faut évacuer le bâtiment immédiatement.",
+      "english": "We need to evacuate the building immediately."
+    },
+    {
+      "id": "emergencies_012",
+      "category": "emergencies",
+      "french": "J'ai été agressé dans la rue hier soir.",
+      "english": "I was attacked in the street last night."
+    },
+    {
+      "id": "emergencies_013",
+      "category": "emergencies",
+      "french": "Nous sommes bloqués dans l'ascenseur.",
+      "english": "We're stuck in the elevator."
+    },
+    {
+      "id": "emergencies_014",
+      "category": "emergencies",
+      "french": "Mon enfant s'est perdu dans le centre commercial.",
+      "english": "My child got lost in the shopping center."
+    },
+    {
+      "id": "emergencies_015",
+      "category": "emergencies",
+      "french": "Il y a une fuite de gaz dans l'immeuble.",
+      "english": "There's a gas leak in the building."
+    },
+    {
+      "id": "emergencies_016",
+      "category": "emergencies",
+      "french": "Pouvez-vous m'emmener aux urgences ?",
+      "english": "Can you take me to the emergency room?"
+    },
+    {
+      "id": "emergencies_017",
+      "category": "emergencies",
+      "french": "J'ai perdu mon téléphone, est-ce que je peux utiliser le vôtre ?",
+      "english": "I lost my phone, can I use yours?"
+    },
+    {
+      "id": "emergencies_018",
+      "category": "emergencies",
+      "french": "Restez calme et ne bougez pas.",
+      "english": "Stay calm and don't move."
+    },
+    {
+      "id": "emergencies_019",
+      "category": "emergencies",
+      "french": "Le numéro d'urgence en France est le quinze pour le médical.",
+      "english": "The emergency number in France is fifteen for medical."
+    },
+    {
+      "id": "emergencies_020",
+      "category": "emergencies",
+      "french": "J'ai glissé dans les escaliers et je crois que je me suis cassé le bras.",
+      "english": "I slipped on the stairs and I think I broke my arm."
+    },
+    {
+      "id": "emergencies_021",
+      "category": "emergencies",
+      "french": "Ma voiture a un pneu crevé et je n'ai pas de roue de secours.",
+      "english": "My car has a flat tire and I don't have a spare."
+    },
+    {
+      "id": "emergencies_022",
+      "category": "emergencies",
+      "french": "Quelqu'un est-il médecin ici ?",
+      "english": "Is anyone here a doctor?"
+    },
+    {
+      "id": "emergencies_023",
+      "category": "emergencies",
+      "french": "Il y a une inondation dans ma cave.",
+      "english": "There's a flood in my basement."
+    },
+    {
+      "id": "emergencies_024",
+      "category": "emergencies",
+      "french": "J'ai besoin d'un serrurier, je suis enfermé dehors.",
+      "english": "I need a locksmith, I'm locked out."
+    },
+    {
+      "id": "emergencies_025",
+      "category": "emergencies",
+      "french": "Attention, il y a un chien dangereux qui s'est échappé.",
+      "english": "Watch out, a dangerous dog has escaped."
+    },
+    {
+      "id": "emergencies_026",
+      "category": "emergencies",
+      "french": "J'ai perdu mon passeport, que dois-je faire ?",
+      "english": "I lost my passport, what should I do?"
+    },
+    {
+      "id": "emergencies_027",
+      "category": "emergencies",
+      "french": "La police est déjà en route.",
+      "english": "The police are already on their way."
+    },
+    {
+      "id": "emergencies_028",
+      "category": "emergencies",
+      "french": "Il y a eu un tremblement de terre cette nuit.",
+      "english": "There was an earthquake last night."
+    },
+    {
+      "id": "emergencies_029",
+      "category": "emergencies",
+      "french": "Mon voisin ne répond pas et j'entends son alarme depuis des heures.",
+      "english": "My neighbor isn't answering and I've been hearing their alarm for hours."
+    },
+    {
+      "id": "emergencies_030",
+      "category": "emergencies",
+      "french": "Ne touchez à rien, les secours arrivent.",
+      "english": "Don't touch anything, help is on the way."
+    }
+  ]
+}
