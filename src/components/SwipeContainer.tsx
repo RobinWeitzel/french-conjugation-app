@@ -18,26 +18,54 @@ export const SwipeContainer = forwardRef<SwipeContainerHandle, SwipeContainerPro
   function SwipeContainer({ children, enabled, onSwipeRight, onSwipeLeft, cardKey }, ref) {
     const x = useMotionValue(0);
     const rotate = useTransform(x, [-200, 0, 200], [-15, 0, 15]);
-    const correctOpacity = useTransform(x, [0, SWIPE_THRESHOLD], [0, 0.3]);
-    const incorrectOpacity = useTransform(x, [-SWIPE_THRESHOLD, 0], [0.3, 0]);
+    const correctOpacity = useTransform(x, [0, SWIPE_THRESHOLD], [0, 0.4]);
+    const incorrectOpacity = useTransform(x, [-SWIPE_THRESHOLD, 0], [0.4, 0]);
     const [exiting, setExiting] = useState(false);
 
     const flyOff = useCallback(
       (direction: 'left' | 'right') => {
         if (exiting) return;
         setExiting(true);
-        const target = direction === 'right' ? 400 : -400;
-        animate(x, target, {
-          type: 'spring',
-          stiffness: 300,
-          damping: 30,
-          onComplete: () => {
-            if (direction === 'right') onSwipeRight();
-            else onSwipeLeft();
-            x.set(0);
-            setExiting(false);
-          },
-        });
+        const target = direction === 'right' ? 500 : -500;
+        const hint = direction === 'right' ? SWIPE_THRESHOLD : -SWIPE_THRESHOLD;
+
+        // If starting near center (keyboard), flash the color first
+        const currentX = x.get();
+        const needsHint = Math.abs(currentX) < SWIPE_THRESHOLD * 0.5;
+
+        if (needsHint) {
+          // Quick nudge to show color, then fly off
+          animate(x, hint, {
+            type: 'tween',
+            duration: 0.1,
+            onComplete: () => {
+              animate(x, target, {
+                type: 'tween',
+                duration: 0.15,
+                ease: 'easeIn',
+                onComplete: () => {
+                  if (direction === 'right') onSwipeRight();
+                  else onSwipeLeft();
+                  x.set(0);
+                  setExiting(false);
+                },
+              });
+            },
+          });
+        } else {
+          // Already dragged past threshold, just fly off fast
+          animate(x, target, {
+            type: 'tween',
+            duration: 0.15,
+            ease: 'easeIn',
+            onComplete: () => {
+              if (direction === 'right') onSwipeRight();
+              else onSwipeLeft();
+              x.set(0);
+              setExiting(false);
+            },
+          });
+        }
       },
       [exiting, x, onSwipeRight, onSwipeLeft]
     );
@@ -62,9 +90,9 @@ export const SwipeContainer = forwardRef<SwipeContainerHandle, SwipeContainerPro
           key={cardKey}
           className="relative"
           style={{ x, rotate }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+          initial={{ opacity: 0, scale: 0.97, y: 8 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: 'tween', duration: 0.15, ease: 'easeOut' }}
           drag={enabled && !exiting ? 'x' : false}
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.8}
