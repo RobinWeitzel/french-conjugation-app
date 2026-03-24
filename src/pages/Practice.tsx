@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Navigation } from '../components/Navigation';
 import { Flashcard, useFlipState } from '../components/Flashcard';
-import { SwipeContainer } from '../components/SwipeContainer';
+import { SwipeContainer, type SwipeContainerHandle } from '../components/SwipeContainer';
 import { StatsBar } from '../components/StatsBar';
 import { useMastery } from '../hooks/useMastery';
 import { usePracticeSettings } from '../hooks/useSettings';
@@ -16,6 +16,7 @@ export function Practice() {
   const { direction, showInfinitive, tenses } = usePracticeSettings();
   const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery();
   const { flipped, flip, reset: resetFlip } = useFlipState();
+  const swipeRef = useRef<SwipeContainerHandle>(null);
 
   const [cards, setCards] = useState<PracticeCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -107,14 +108,14 @@ export function Practice() {
         e.preventDefault();
         flip();
       } else if (e.key === 'ArrowRight' && flipped) {
-        handleSwipeRight();
+        swipeRef.current?.swipe('right');
       } else if (e.key === 'ArrowLeft' && flipped) {
-        handleSwipeLeft();
+        swipeRef.current?.swipe('left');
       }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [flip, flipped, handleSwipeRight, handleSwipeLeft]);
+  }, [flip, flipped]);
 
   const handleReset = async () => {
     await resetStats();
@@ -187,9 +188,11 @@ export function Practice() {
       <div className="flex flex-1 flex-col justify-center gap-6 py-4">
         {currentCard && (
           <SwipeContainer
+            ref={swipeRef}
             enabled={flipped}
             onSwipeRight={handleSwipeRight}
             onSwipeLeft={handleSwipeLeft}
+            cardKey={currentCard.statId}
           >
             <Flashcard
               flipped={flipped}
