@@ -60,6 +60,7 @@ export function useSentences(categories?: string[]): Sentence[] | undefined {
 }
 
 export function useSentenceCategories(): Record<string, string> | undefined {
+  useEffect(() => { fetchAndUpdateSentences(); }, []);
   return useLiveQuery(async () => {
     const stored = await db.metadata.get('sentenceCategories');
     if (stored?.value) return JSON.parse(stored.value) as Record<string, string>;
@@ -68,6 +69,7 @@ export function useSentenceCategories(): Record<string, string> | undefined {
 }
 
 export function useAudioCategories(): string[] | undefined {
+  useEffect(() => { fetchAndUpdateSentences(); }, []);
   return useLiveQuery(async () => {
     const stored = await db.metadata.get('audioCategories');
     if (stored?.value) return JSON.parse(stored.value) as string[];
