@@ -9,6 +9,7 @@ import { Listening } from './pages/Listening';
 import { Settings } from './pages/Settings';
 import { GrammarIndex } from './pages/GrammarIndex';
 import { GrammarSection } from './pages/GrammarSection';
+import { Statistics } from './pages/Statistics';
 
 export function App() {
   return (
@@ -23,6 +24,7 @@ export function App() {
           <Route path="/listening" element={<Listening />} />
           <Route path="/grammar" element={<GrammarIndex />} />
           <Route path="/grammar/:sectionId" element={<GrammarSection />} />
+          <Route path="/statistics" element={<Statistics />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </HashRouter>
