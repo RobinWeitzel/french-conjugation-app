@@ -23,15 +23,10 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
     wasCorrect: boolean;
   } | null>(null);
 
-  const getStat = useCallback(async (id: string): Promise<Stat> => {
-    const stat = await db.stats.get(id);
-    return stat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
-  }, []);
-
   const recordCorrect = useCallback(async (id: string): Promise<boolean> => {
-    const stat = await getStat(id);
-    const today = getToday();
     const previousStat = (await db.stats.get(id)) ?? null;
+    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
+    const today = getToday();
     const newBox = Math.min(stat.box + 1, MAX_BOX);
     const interval = BOX_INTERVALS[newBox] ?? 30;
     await db.stats.put({
@@ -46,12 +41,12 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: true };
     // "removed from session" when moved to box 2+ (has future review date)
     return interval > 0;
-  }, [getStat, mode]);
+  }, [mode]);
 
   const recordIncorrect = useCallback(async (id: string) => {
-    const stat = await getStat(id);
-    const today = getToday();
     const previousStat = (await db.stats.get(id)) ?? null;
+    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
+    const today = getToday();
     await db.stats.put({
       ...stat,
       correctCount: 0,
@@ -62,7 +57,7 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
     const activityId = await db.activity.add({ date: today, mode, correct: false });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: false };
-  }, [getStat, mode]);
+  }, [mode]);
 
   const undo = useCallback(async () => {
     const action = lastActionRef.current;
@@ -77,8 +72,8 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
     await db.activity.delete(action.activityId);
 
     setSessionStats((s) => ({
-      correct: s.correct - (action.wasCorrect ? 1 : 0),
-      incorrect: s.incorrect - (action.wasCorrect ? 0 : 1),
+      correct: Math.max(0, s.correct - (action.wasCorrect ? 1 : 0)),
+      incorrect: Math.max(0, s.incorrect - (action.wasCorrect ? 0 : 1)),
     }));
 
     lastActionRef.current = null;
