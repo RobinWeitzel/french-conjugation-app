@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useState, useImperativeHandle, forwardRef } from 'react';
+import { type ReactNode, useCallback, useState, useRef, useImperativeHandle, forwardRef } from 'react';
 import { motion, useMotionValue, useTransform, animate, type PanInfo } from 'framer-motion';
 import { SWIPE_THRESHOLD } from '../lib/constants';
 
@@ -21,6 +21,14 @@ export const SwipeContainer = forwardRef<SwipeContainerHandle, SwipeContainerPro
     const correctOpacity = useTransform(x, [0, SWIPE_THRESHOLD], [0, 0.4]);
     const incorrectOpacity = useTransform(x, [-SWIPE_THRESHOLD, 0], [0.4, 0]);
     const [exiting, setExiting] = useState(false);
+    const prevCardKeyRef = useRef(cardKey);
+
+    // Reset position synchronously during render when card changes
+    if (prevCardKeyRef.current !== cardKey) {
+      prevCardKeyRef.current = cardKey;
+      x.set(0);
+      if (exiting) setExiting(false);
+    }
 
     const flyOff = useCallback(
       (direction: 'left' | 'right') => {
@@ -46,8 +54,6 @@ export const SwipeContainer = forwardRef<SwipeContainerHandle, SwipeContainerPro
                 onComplete: () => {
                   if (direction === 'right') onSwipeRight();
                   else onSwipeLeft();
-                  x.set(0);
-                  setExiting(false);
                 },
               });
             },
@@ -61,8 +67,6 @@ export const SwipeContainer = forwardRef<SwipeContainerHandle, SwipeContainerPro
             onComplete: () => {
               if (direction === 'right') onSwipeRight();
               else onSwipeLeft();
-              x.set(0);
-              setExiting(false);
             },
           });
         }

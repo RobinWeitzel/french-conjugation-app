@@ -1,6 +1,6 @@
 import { db } from './db';
 import { PRONOUNS, VERB_TIERS, TIER_UNLOCK_THRESHOLD, TIER_UNLOCK_MIN_BOX } from './constants';
-import type { Gate, GateStatus, TenseKey } from './types';
+import type { Gate, GateStatus, TenseKey, Verb } from './types';
 
 // The 8-gate linear chain for en-fr direction
 export const FULL_GATE_CHAIN: Gate[] = [
@@ -39,10 +39,12 @@ export async function computeGateStatuses(
   tense: TenseKey,
   direction: 'en-fr' | 'fr-en',
   allVerbs: string[],
+  verbData?: Verb[],
 ): Promise<GateStatus[]> {
   const chain = getGateChain(direction);
   const results: GateStatus[] = [];
   let previousCompleted = true; // Gate 0 (before T1F) is always "completed"
+  const verbMap = verbData ? new Map(verbData.map((v) => [v.infinitive, v])) : null;
 
   for (const gate of chain) {
     const tierVerbs = getVerbsForTier(gate.tier, allVerbs);
@@ -51,6 +53,11 @@ export async function computeGateStatuses(
 
     for (const infinitive of tierVerbs) {
       for (const pronoun of PRONOUNS) {
+        // Skip pronouns with no conjugation (e.g. falloir only has "il")
+        if (verbMap) {
+          const verb = verbMap.get(infinitive);
+          if (verb && !verb.tenses[tense]?.[pronoun]) continue;
+        }
         const statId = `${infinitive}_${pronoun}_${tense}_${gate.mode}`;
         total++;
         const stat = await db.stats.get(statId);

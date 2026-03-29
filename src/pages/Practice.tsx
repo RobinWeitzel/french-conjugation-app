@@ -53,7 +53,7 @@ export function Practice() {
 
       for (const tense of tenses) {
         // Compute gate statuses for this tense
-        const statuses = await computeGateStatuses(tense, direction, allInfinitives);
+        const statuses = await computeGateStatuses(tense, direction, allInfinitives, verbs);
         const chain = getGateChain(direction);
 
         // Determine the active gate: use override if set, otherwise use frontier

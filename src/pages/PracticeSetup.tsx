@@ -12,6 +12,7 @@ function useAllGateStatuses(
   tenses: TenseKey[],
   direction: Direction,
   allVerbs: string[],
+  verbData?: import('../lib/types').Verb[],
 ) {
   const [statuses, setStatuses] = useState<Record<TenseKey, GateStatus[]>>({} as Record<TenseKey, GateStatus[]>);
 
@@ -22,7 +23,7 @@ function useAllGateStatuses(
     const compute = async () => {
       const result: Partial<Record<TenseKey, GateStatus[]>> = {};
       for (const tense of tenses) {
-        const s = await computeGateStatuses(tense, direction, allVerbs);
+        const s = await computeGateStatuses(tense, direction, allVerbs, verbData);
         result[tense] = s;
       }
       if (!cancelled) setStatuses(result as Record<TenseKey, GateStatus[]>);
@@ -30,7 +31,7 @@ function useAllGateStatuses(
     compute();
 
     return () => { cancelled = true; };
-  }, [tenses, direction, allVerbs]);
+  }, [tenses, direction, allVerbs, verbData]);
 
   return statuses;
 }
@@ -47,7 +48,7 @@ export function PracticeSetup() {
   const verbs = useVerbs();
   const allVerbs = useMemo(() => verbs?.map(v => v.infinitive) ?? [], [verbs]);
 
-  const gateStatuses = useAllGateStatuses(tenses, direction, allVerbs);
+  const gateStatuses = useAllGateStatuses(tenses, direction, allVerbs, verbs);
 
   const toggleTense = (tense: TenseKey) => {
     if (tenses.includes(tense)) {
@@ -247,19 +248,21 @@ export function PracticeSetup() {
                     {/* Progress bar for active gate */}
                     {activeProgress && activeProgress.total > 0 && !activeGateStatus?.completed && (
                       <div className="mt-3 flex items-center gap-2">
-                        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                        <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
                           <div
                             className="h-full rounded-full bg-indigo-400 transition-all"
                             style={{
-                              width: `${Math.min(
-                                (activeProgress.current / (activeProgress.total * TIER_UNLOCK_THRESHOLD)) * 100,
-                                100
-                              )}%`
+                              width: `${(activeProgress.current / activeProgress.total) * 100}%`
                             }}
+                          />
+                          {/* Unlock threshold marker at 70% */}
+                          <div
+                            className="absolute top-1/2 h-3 w-0.5 -translate-y-1/2 rounded-full bg-slate-400 dark:bg-slate-500"
+                            style={{ left: `${TIER_UNLOCK_THRESHOLD * 100}%` }}
                           />
                         </div>
                         <span className="text-xs text-slate-400 dark:text-slate-500">
-                          {activeProgress.current}/{Math.ceil(activeProgress.total * TIER_UNLOCK_THRESHOLD)}
+                          {activeProgress.current}/{activeProgress.total}
                         </span>
                       </div>
                     )}
