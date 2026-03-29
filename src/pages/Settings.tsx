@@ -100,6 +100,7 @@ export function Settings() {
 
   const clearStats = async () => {
     await db.stats.clear();
+    await db.activity.clear();
     alert('Stats cleared successfully.');
   };
 

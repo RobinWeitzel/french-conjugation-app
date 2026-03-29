@@ -50,7 +50,7 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-    await db.activity.add({ date: getToday(), mode, correct: false });
+    await db.activity.add({ date: today, mode, correct: false });
   }, [getStat, mode]);
 
   const isDue = useCallback(async (id: string): Promise<boolean> => {

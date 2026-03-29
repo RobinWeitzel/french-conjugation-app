@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../lib/db';
-import { TENSES } from '../lib/constants';
-import type { TenseKey } from '../lib/types';
+import { TENSES, PRONOUNS } from '../lib/constants';
+import type { TenseKey, InputMode } from '../lib/types';
 
 interface BoxDistribution {
   [box: number]: number;
@@ -28,7 +28,6 @@ export interface StatisticsData {
   accuracy: number;
   tenses: Record<string, GroupStats>;
   listeningCategories: Record<string, GroupStats>;
-  listeningOverall: GroupStats;
   dailyActivity: DailyActivity[];
 }
 
@@ -65,22 +64,29 @@ export function useStatistics(): StatisticsData | undefined {
     const accuracy = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
 
     // Per-tense breakdown
-    const tenseKeys = Object.keys(TENSES) as TenseKey[];
+    // Stat ID format: {infinitive}_{pronoun}_{tense}_{mode}
+    // Parse from right: strip known mode suffix, then known pronoun, remainder is tense
+    const tenseKeys = new Set(Object.keys(TENSES) as TenseKey[]);
+    const pronounSet = new Set(PRONOUNS as readonly string[]);
+    const modes: Set<string> = new Set<InputMode>(['flashcard', 'typing']);
     const tenses: Record<string, GroupStats> = {};
 
     for (const stat of conjugationStats) {
-      let matchedTense: string | null = null;
-      const sortedKeys = [...tenseKeys].sort((a, b) => b.length - a.length);
-      for (const tk of sortedKeys) {
-        if (stat.id.includes(`_${tk}_`)) {
-          matchedTense = tk;
-          break;
-        }
-      }
-      if (!matchedTense) continue;
+      const parts = stat.id.split('_');
+      // Strip mode (last segment)
+      const mode = parts.pop();
+      if (!mode || !modes.has(mode)) continue;
+      // Strip pronoun (now last segment)
+      const pronoun = parts.pop();
+      if (!pronoun || !pronounSet.has(pronoun)) continue;
+      // Strip infinitive (first segment)
+      parts.shift();
+      // Remaining segments joined = tense key
+      const tense = parts.join('_');
+      if (!tenseKeys.has(tense as TenseKey)) continue;
 
-      if (!tenses[matchedTense]) tenses[matchedTense] = emptyGroupStats();
-      const group = tenses[matchedTense]!;
+      if (!tenses[tense]) tenses[tense] = emptyGroupStats();
+      const group = tenses[tense]!;
       group.total++;
       if (stat.box >= 5) group.mastered++;
       group.boxes[stat.box] = (group.boxes[stat.box] ?? 0) + 1;
@@ -88,21 +94,16 @@ export function useStatistics(): StatisticsData | undefined {
 
     // Listening breakdown by category
     const listeningCategories: Record<string, GroupStats> = {};
-    const listeningOverall = emptyGroupStats();
 
     for (const stat of listeningStats) {
       const sentenceId = stat.id.replace('listening_', '');
       const category = sentenceCategoryMap.get(sentenceId) ?? 'Unknown';
 
       if (!listeningCategories[category]) listeningCategories[category] = emptyGroupStats();
-      const group = listeningCategories[category];
+      const group = listeningCategories[category]!;
       group.total++;
       if (stat.box >= 5) group.mastered++;
       group.boxes[stat.box] = (group.boxes[stat.box] ?? 0) + 1;
-
-      listeningOverall.total++;
-      if (stat.box >= 5) listeningOverall.mastered++;
-      listeningOverall.boxes[stat.box] = (listeningOverall.boxes[stat.box] ?? 0) + 1;
     }
 
     // Daily activity (last 14 days)
@@ -132,7 +133,6 @@ export function useStatistics(): StatisticsData | undefined {
       accuracy,
       tenses,
       listeningCategories,
-      listeningOverall,
       dailyActivity: days,
     };
   });
