@@ -33,10 +33,12 @@ export function ConjugationTable({ tenseData, highlightPronoun }: ConjugationTab
 
 function Cell({ pronoun, french, highlight }: { pronoun: string; french: string | null; highlight: boolean }) {
   if (french === null) return <td colSpan={2} />;
+  const elide = pronoun === 'je' && /^[aeéèêëiîïoôuûùühyæœ]/i.test(french);
+  const displayPronoun = elide ? "j'" : pronoun;
   return (
     <>
       <td className={`py-1 pr-2 text-right font-medium ${highlight ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'}`}>
-        {pronoun}
+        {displayPronoun}
       </td>
       <td className={`py-1 ${highlight ? 'font-semibold text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-300'}`}>
         {french}

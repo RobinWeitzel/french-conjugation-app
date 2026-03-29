@@ -33,6 +33,13 @@ function normalizeAnswer(s: string): string {
   return s.trim().toLowerCase();
 }
 
+function formatPronounVerb(pronoun: string, verb: string): string {
+  if (pronoun === 'je' && /^[aeéèêëiîïoôuûùühyæœ]/i.test(verb)) {
+    return `j'${verb}`;
+  }
+  return `${pronoun} ${verb}`;
+}
+
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, inputMode: savedInputMode, tiers } = usePracticeSettings();
@@ -270,8 +277,8 @@ export function Practice() {
         {direction === 'en-fr'
           ? currentCard.englishConjugation
           : inputMode === 'typing'
-            ? `${currentCard.pronoun} ___`
-            : `${currentCard.pronoun} ${currentCard.french}`}
+            ? `${currentCard.pronoun === 'je' && /^[aeéèêëiîïoôuûùühyæœ]/i.test(currentCard.french) ? "j'" : currentCard.pronoun} ___`
+            : formatPronounVerb(currentCard.pronoun, currentCard.french)}
       </p>
       {direction === 'en-fr' && currentCard.pronoun === 'tu' && (
         <p className="mt-2 text-xs italic text-slate-400 dark:text-slate-500">singular / informal</p>
@@ -295,7 +302,7 @@ export function Practice() {
       <p className="text-xs text-slate-400 dark:text-slate-500">{TENSES[currentCard.tense]}</p>
       <p className="mt-4 text-2xl font-semibold">
         {direction === 'en-fr'
-          ? `${currentCard.pronoun} ${currentCard.french}`
+          ? formatPronounVerb(currentCard.pronoun, currentCard.french)
           : currentCard.englishConjugation}
       </p>
       {currentTenseData && (
