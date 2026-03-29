@@ -62,12 +62,12 @@ export function TypingInput({ onSubmit, disabled }: TypingInputProps) {
           autoCapitalize="off"
           autoCorrect="off"
           spellCheck={false}
-          className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-lg outline-none transition-colors focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:focus:border-indigo-500 dark:focus:ring-indigo-500/20"
+          className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-lg outline-none transition-colors focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:focus:border-indigo-500 dark:focus:ring-indigo-500/20"
         />
         <button
           onClick={handleSubmit}
           disabled={disabled || !value.trim()}
-          className="rounded-xl bg-indigo-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-indigo-600 disabled:opacity-50"
+          className="shrink-0 rounded-xl bg-indigo-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-indigo-600 disabled:opacity-50"
         >
           Check
         </button>
