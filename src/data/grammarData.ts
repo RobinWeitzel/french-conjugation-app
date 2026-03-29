@@ -5,7 +5,7 @@ export interface GrammarExample {
 
 export interface GrammarEntry {
   rule: string;
-  examples: GrammarExample[];
+  examples?: GrammarExample[];
   tip?: string;
   warning?: string;
 }
