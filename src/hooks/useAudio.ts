@@ -6,6 +6,8 @@ export function useAudio(speed: number) {
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+
     const findVoice = () => {
       const voices = speechSynthesis.getVoices();
       const french = voices.find((v) => v.lang.startsWith('fr-FR'))
@@ -25,7 +27,7 @@ export function useAudio(speed: number) {
         audioRef.current.pause();
         audioRef.current = null;
       }
-      speechSynthesis.cancel();
+      if ('speechSynthesis' in window) speechSynthesis.cancel();
 
       // Try MP3 first
       if (audioFile) {
@@ -51,6 +53,7 @@ export function useAudio(speed: number) {
         utterance.rate = speed;
         utterance.lang = 'fr-FR';
         utterance.addEventListener('end', () => setPlaying(false));
+        utterance.addEventListener('error', () => setPlaying(false));
         setPlaying(true);
         speechSynthesis.speak(utterance);
       }
@@ -63,7 +66,7 @@ export function useAudio(speed: number) {
       audioRef.current.pause();
       audioRef.current = null;
     }
-    speechSynthesis.cancel();
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
     setPlaying(false);
   }, []);
 

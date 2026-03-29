@@ -98,8 +98,10 @@ export function useUpdateCheck() {
   };
 
   const applyUpdate = async () => {
-    const registrations = await navigator.serviceWorker.getRegistrations();
-    for (const reg of registrations) await reg.unregister();
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const reg of registrations) await reg.unregister();
+    }
     const cacheNames = await caches.keys();
     for (const name of cacheNames) await caches.delete(name);
     window.location.reload();

@@ -87,7 +87,6 @@ export function Listening() {
     if (currentIndex < cards.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
-      setCards((prev) => prev.filter((_, i) => i > currentIndex));
       setCurrentIndex(0);
     }
   }, [currentIndex, cards.length, resetFlip, stop]);
@@ -96,7 +95,13 @@ export function Listening() {
     if (!currentCard) return;
     const removedFromSession = await recordCorrect(currentCard.statId);
     if (removedFromSession) {
-      setCards((prev) => prev.filter((c) => c.statId !== currentCard.statId));
+      setCards((prev) => {
+        const next = prev.filter((c) => c.statId !== currentCard.statId);
+        if (currentIndex >= next.length && next.length > 0) {
+          setCurrentIndex(0);
+        }
+        return next;
+      });
       stop();
       resetFlip();
     } else {

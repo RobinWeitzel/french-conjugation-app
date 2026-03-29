@@ -1,11 +1,11 @@
 {
   "name": "french-conjugation-app",
   "private": true,
-  "version": "5.3.0",
+  "version": "6.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node -e \"const p=JSON.parse(require('fs').readFileSync('package.json','utf8')); require('fs').writeFileSync('public/version.json', JSON.stringify({version:p.version})+'\\n')\"",
+    "prebuild": "node scripts/gen-version.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

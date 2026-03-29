@@ -23,11 +23,11 @@ function useAudioDownload() {
 
       let cached = 0;
       const keys = await caches.keys();
-      for (const key of keys) {
-        const cache = await caches.open(key);
-        for (const s of audioSentences) {
+      for (const s of audioSentences) {
+        for (const key of keys) {
+          const cache = await caches.open(key);
           const match = await cache.match(`./audio/${s.id}.mp3`);
-          if (match) cached++;
+          if (match) { cached++; break; }
         }
       }
       setCachedCount(cached);
@@ -86,8 +86,10 @@ export function Settings() {
     try {
       await db.delete();
       localStorage.clear();
-      const registrations = await navigator.serviceWorker.getRegistrations();
-      for (const reg of registrations) await reg.unregister();
+      if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (const reg of registrations) await reg.unregister();
+      }
       const cacheNames = await caches.keys();
       for (const name of cacheNames) await caches.delete(name);
       window.location.reload();

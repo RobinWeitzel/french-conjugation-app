@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "3.1.0",
   "verbs": [
     {
       "infinitive": "être",
@@ -137,27 +137,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais été",
+            "french": "avais été",
             "english": "I had been"
           },
           "tu": {
-            "french": "tu avais été",
+            "french": "avais été",
             "english": "you had been"
           },
           "il": {
-            "french": "il avait été",
+            "french": "avait été",
             "english": "he had been"
           },
           "nous": {
-            "french": "nous avions été",
+            "french": "avions été",
             "english": "we had been"
           },
           "vous": {
-            "french": "vous aviez été",
+            "french": "aviez été",
             "english": "you had been"
           },
           "ils": {
-            "french": "ils avaient été",
+            "french": "avaient été",
             "english": "they had been"
           }
         },
@@ -206,53 +206,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais être",
+            "french": "vais être",
             "english": "I am going to be"
           },
           "tu": {
-            "french": "tu vas être",
+            "french": "vas être",
             "english": "you are going to be"
           },
           "il": {
-            "french": "il va être",
+            "french": "va être",
             "english": "he is going to be"
           },
           "nous": {
-            "french": "nous allons être",
+            "french": "allons être",
             "english": "we are going to be"
           },
           "vous": {
-            "french": "vous allez être",
+            "french": "allez être",
             "english": "you are going to be"
           },
           "ils": {
-            "french": "ils vont être",
+            "french": "vont être",
             "english": "they are going to be"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens d'être",
+            "french": "viens d'être",
             "english": "I have just been"
           },
           "tu": {
-            "french": "tu viens d'être",
+            "french": "viens d'être",
             "english": "you have just been"
           },
           "il": {
-            "french": "il vient d'être",
+            "french": "vient d'être",
             "english": "he has just been"
           },
           "nous": {
-            "french": "nous venons d'être",
+            "french": "venons d'être",
             "english": "we have just been"
           },
           "vous": {
-            "french": "vous venez d'être",
+            "french": "venez d'être",
             "english": "you have just been"
           },
           "ils": {
-            "french": "ils viennent d'être",
+            "french": "viennent d'être",
             "english": "they have just been"
           }
         },
@@ -402,27 +402,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais eu",
+            "french": "avais eu",
             "english": "I had had"
           },
           "tu": {
-            "french": "tu avais eu",
+            "french": "avais eu",
             "english": "you had had"
           },
           "il": {
-            "french": "il avait eu",
+            "french": "avait eu",
             "english": "he had had"
           },
           "nous": {
-            "french": "nous avions eu",
+            "french": "avions eu",
             "english": "we had had"
           },
           "vous": {
-            "french": "vous aviez eu",
+            "french": "aviez eu",
             "english": "you had had"
           },
           "ils": {
-            "french": "ils avaient eu",
+            "french": "avaient eu",
             "english": "they had had"
           }
         },
@@ -471,53 +471,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais avoir",
+            "french": "vais avoir",
             "english": "I am going to have"
           },
           "tu": {
-            "french": "tu vas avoir",
+            "french": "vas avoir",
             "english": "you are going to have"
           },
           "il": {
-            "french": "il va avoir",
+            "french": "va avoir",
             "english": "he is going to have"
           },
           "nous": {
-            "french": "nous allons avoir",
+            "french": "allons avoir",
             "english": "we are going to have"
           },
           "vous": {
-            "french": "vous allez avoir",
+            "french": "allez avoir",
             "english": "you are going to have"
           },
           "ils": {
-            "french": "ils vont avoir",
+            "french": "vont avoir",
             "english": "they are going to have"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens d'avoir",
+            "french": "viens d'avoir",
             "english": "I have just had"
           },
           "tu": {
-            "french": "tu viens d'avoir",
+            "french": "viens d'avoir",
             "english": "you have just had"
           },
           "il": {
-            "french": "il vient d'avoir",
+            "french": "vient d'avoir",
             "english": "he has just had"
           },
           "nous": {
-            "french": "nous venons d'avoir",
+            "french": "venons d'avoir",
             "english": "we have just had"
           },
           "vous": {
-            "french": "vous venez d'avoir",
+            "french": "venez d'avoir",
             "english": "you have just had"
           },
           "ils": {
-            "french": "ils viennent d'avoir",
+            "french": "viennent d'avoir",
             "english": "they have just had"
           }
         },
@@ -667,27 +667,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais dit",
+            "french": "avais dit",
             "english": "I had said"
           },
           "tu": {
-            "french": "tu avais dit",
+            "french": "avais dit",
             "english": "you had said"
           },
           "il": {
-            "french": "il avait dit",
+            "french": "avait dit",
             "english": "he had said"
           },
           "nous": {
-            "french": "nous avions dit",
+            "french": "avions dit",
             "english": "we had said"
           },
           "vous": {
-            "french": "vous aviez dit",
+            "french": "aviez dit",
             "english": "you had said"
           },
           "ils": {
-            "french": "ils avaient dit",
+            "french": "avaient dit",
             "english": "they had said"
           }
         },
@@ -736,79 +736,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais dire",
+            "french": "vais dire",
             "english": "I am going to say"
           },
           "tu": {
-            "french": "tu vas dire",
+            "french": "vas dire",
             "english": "you are going to say"
           },
           "il": {
-            "french": "il va dire",
+            "french": "va dire",
             "english": "he is going to say"
           },
           "nous": {
-            "french": "nous allons dire",
+            "french": "allons dire",
             "english": "we are going to say"
           },
           "vous": {
-            "french": "vous allez dire",
+            "french": "allez dire",
             "english": "you are going to say"
           },
           "ils": {
-            "french": "ils vont dire",
+            "french": "vont dire",
             "english": "they are going to say"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de dire",
+            "french": "viens de dire",
             "english": "I have just said"
           },
           "tu": {
-            "french": "tu viens de dire",
+            "french": "viens de dire",
             "english": "you have just said"
           },
           "il": {
-            "french": "il vient de dire",
+            "french": "vient de dire",
             "english": "he has just said"
           },
           "nous": {
-            "french": "nous venons de dire",
+            "french": "venons de dire",
             "english": "we have just said"
           },
           "vous": {
-            "french": "vous venez de dire",
+            "french": "venez de dire",
             "english": "you have just said"
           },
           "ils": {
-            "french": "ils viennent de dire",
+            "french": "viennent de dire",
             "english": "they have just said"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis dit",
+            "french": "suis dit",
             "english": "I am said"
           },
           "tu": {
-            "french": "tu es dit",
+            "french": "es dit",
             "english": "you are said"
           },
           "il": {
-            "french": "il est dit",
+            "french": "est dit",
             "english": "he is said"
           },
           "nous": {
-            "french": "nous sommes dits",
+            "french": "sommes dits",
             "english": "we are said"
           },
           "vous": {
-            "french": "vous êtes dit",
+            "french": "êtes dit",
             "english": "you are said"
           },
           "ils": {
-            "french": "ils sont dits",
+            "french": "sont dits",
             "english": "they are said"
           }
         }
@@ -950,27 +950,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais dû",
+            "french": "avais dû",
             "english": "I had had to"
           },
           "tu": {
-            "french": "tu avais dû",
+            "french": "avais dû",
             "english": "you had had to"
           },
           "il": {
-            "french": "il avait dû",
+            "french": "avait dû",
             "english": "he had had to"
           },
           "nous": {
-            "french": "nous avions dû",
+            "french": "avions dû",
             "english": "we had had to"
           },
           "vous": {
-            "french": "vous aviez dû",
+            "french": "aviez dû",
             "english": "you had had to"
           },
           "ils": {
-            "french": "ils avaient dû",
+            "french": "avaient dû",
             "english": "they had had to"
           }
         },
@@ -1019,79 +1019,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais devoir",
+            "french": "vais devoir",
             "english": "I am going to have to"
           },
           "tu": {
-            "french": "tu vas devoir",
+            "french": "vas devoir",
             "english": "you are going to have to"
           },
           "il": {
-            "french": "il va devoir",
+            "french": "va devoir",
             "english": "he is going to have to"
           },
           "nous": {
-            "french": "nous allons devoir",
+            "french": "allons devoir",
             "english": "we are going to have to"
           },
           "vous": {
-            "french": "vous allez devoir",
+            "french": "allez devoir",
             "english": "you are going to have to"
           },
           "ils": {
-            "french": "ils vont devoir",
+            "french": "vont devoir",
             "english": "they are going to have to"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de devoir",
+            "french": "viens de devoir",
             "english": "I have just had to"
           },
           "tu": {
-            "french": "tu viens de devoir",
+            "french": "viens de devoir",
             "english": "you have just had to"
           },
           "il": {
-            "french": "il vient de devoir",
+            "french": "vient de devoir",
             "english": "he has just had to"
           },
           "nous": {
-            "french": "nous venons de devoir",
+            "french": "venons de devoir",
             "english": "we have just had to"
           },
           "vous": {
-            "french": "vous venez de devoir",
+            "french": "venez de devoir",
             "english": "you have just had to"
           },
           "ils": {
-            "french": "ils viennent de devoir",
+            "french": "viennent de devoir",
             "english": "they have just had to"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis dû",
+            "french": "suis dû",
             "english": "I am owed"
           },
           "tu": {
-            "french": "tu es dû",
+            "french": "es dû",
             "english": "you are owed"
           },
           "il": {
-            "french": "il est dû",
+            "french": "est dû",
             "english": "he is owed"
           },
           "nous": {
-            "french": "nous sommes dus",
+            "french": "sommes dus",
             "english": "we are owed"
           },
           "vous": {
-            "french": "vous êtes dû",
+            "french": "êtes dû",
             "english": "you are owed"
           },
           "ils": {
-            "french": "ils sont dus",
+            "french": "sont dus",
             "english": "they are owed"
           }
         }
@@ -1233,27 +1233,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais pris",
+            "french": "avais pris",
             "english": "I had taken"
           },
           "tu": {
-            "french": "tu avais pris",
+            "french": "avais pris",
             "english": "you had taken"
           },
           "il": {
-            "french": "il avait pris",
+            "french": "avait pris",
             "english": "he had taken"
           },
           "nous": {
-            "french": "nous avions pris",
+            "french": "avions pris",
             "english": "we had taken"
           },
           "vous": {
-            "french": "vous aviez pris",
+            "french": "aviez pris",
             "english": "you had taken"
           },
           "ils": {
-            "french": "ils avaient pris",
+            "french": "avaient pris",
             "english": "they had taken"
           }
         },
@@ -1302,79 +1302,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais prendre",
+            "french": "vais prendre",
             "english": "I am going to take"
           },
           "tu": {
-            "french": "tu vas prendre",
+            "french": "vas prendre",
             "english": "you are going to take"
           },
           "il": {
-            "french": "il va prendre",
+            "french": "va prendre",
             "english": "he is going to take"
           },
           "nous": {
-            "french": "nous allons prendre",
+            "french": "allons prendre",
             "english": "we are going to take"
           },
           "vous": {
-            "french": "vous allez prendre",
+            "french": "allez prendre",
             "english": "you are going to take"
           },
           "ils": {
-            "french": "ils vont prendre",
+            "french": "vont prendre",
             "english": "they are going to take"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de prendre",
+            "french": "viens de prendre",
             "english": "I have just taken"
           },
           "tu": {
-            "french": "tu viens de prendre",
+            "french": "viens de prendre",
             "english": "you have just taken"
           },
           "il": {
-            "french": "il vient de prendre",
+            "french": "vient de prendre",
             "english": "he has just taken"
           },
           "nous": {
-            "french": "nous venons de prendre",
+            "french": "venons de prendre",
             "english": "we have just taken"
           },
           "vous": {
-            "french": "vous venez de prendre",
+            "french": "venez de prendre",
             "english": "you have just taken"
           },
           "ils": {
-            "french": "ils viennent de prendre",
+            "french": "viennent de prendre",
             "english": "they have just taken"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis pris",
+            "french": "suis pris",
             "english": "I am taken"
           },
           "tu": {
-            "french": "tu es pris",
+            "french": "es pris",
             "english": "you are taken"
           },
           "il": {
-            "french": "il est pris",
+            "french": "est pris",
             "english": "he is taken"
           },
           "nous": {
-            "french": "nous sommes pris",
+            "french": "sommes pris",
             "english": "we are taken"
           },
           "vous": {
-            "french": "vous êtes pris",
+            "french": "êtes pris",
             "english": "you are taken"
           },
           "ils": {
-            "french": "ils sont pris",
+            "french": "sont pris",
             "english": "they are taken"
           }
         }
@@ -1516,27 +1516,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais pu",
+            "french": "avais pu",
             "english": "I had been able"
           },
           "tu": {
-            "french": "tu avais pu",
+            "french": "avais pu",
             "english": "you had been able"
           },
           "il": {
-            "french": "il avait pu",
+            "french": "avait pu",
             "english": "he had been able"
           },
           "nous": {
-            "french": "nous avions pu",
+            "french": "avions pu",
             "english": "we had been able"
           },
           "vous": {
-            "french": "vous aviez pu",
+            "french": "aviez pu",
             "english": "you had been able"
           },
           "ils": {
-            "french": "ils avaient pu",
+            "french": "avaient pu",
             "english": "they had been able"
           }
         },
@@ -1576,53 +1576,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais pouvoir",
+            "french": "vais pouvoir",
             "english": "I am going to be able"
           },
           "tu": {
-            "french": "tu vas pouvoir",
+            "french": "vas pouvoir",
             "english": "you are going to be able"
           },
           "il": {
-            "french": "il va pouvoir",
+            "french": "va pouvoir",
             "english": "he is going to be able"
           },
           "nous": {
-            "french": "nous allons pouvoir",
+            "french": "allons pouvoir",
             "english": "we are going to be able"
           },
           "vous": {
-            "french": "vous allez pouvoir",
+            "french": "allez pouvoir",
             "english": "you are going to be able"
           },
           "ils": {
-            "french": "ils vont pouvoir",
+            "french": "vont pouvoir",
             "english": "they are going to be able"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de pouvoir",
+            "french": "viens de pouvoir",
             "english": "I have just been able"
           },
           "tu": {
-            "french": "tu viens de pouvoir",
+            "french": "viens de pouvoir",
             "english": "you have just been able"
           },
           "il": {
-            "french": "il vient de pouvoir",
+            "french": "vient de pouvoir",
             "english": "he has just been able"
           },
           "nous": {
-            "french": "nous venons de pouvoir",
+            "french": "venons de pouvoir",
             "english": "we have just been able"
           },
           "vous": {
-            "french": "vous venez de pouvoir",
+            "french": "venez de pouvoir",
             "english": "you have just been able"
           },
           "ils": {
-            "french": "ils viennent de pouvoir",
+            "french": "viennent de pouvoir",
             "english": "they have just been able"
           }
         },
@@ -1772,27 +1772,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais fait",
+            "french": "avais fait",
             "english": "I had done"
           },
           "tu": {
-            "french": "tu avais fait",
+            "french": "avais fait",
             "english": "you had done"
           },
           "il": {
-            "french": "il avait fait",
+            "french": "avait fait",
             "english": "he had done"
           },
           "nous": {
-            "french": "nous avions fait",
+            "french": "avions fait",
             "english": "we had done"
           },
           "vous": {
-            "french": "vous aviez fait",
+            "french": "aviez fait",
             "english": "you had done"
           },
           "ils": {
-            "french": "ils avaient fait",
+            "french": "avaient fait",
             "english": "they had done"
           }
         },
@@ -1841,79 +1841,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais faire",
+            "french": "vais faire",
             "english": "I am going to do"
           },
           "tu": {
-            "french": "tu vas faire",
+            "french": "vas faire",
             "english": "you are going to do"
           },
           "il": {
-            "french": "il va faire",
+            "french": "va faire",
             "english": "he is going to do"
           },
           "nous": {
-            "french": "nous allons faire",
+            "french": "allons faire",
             "english": "we are going to do"
           },
           "vous": {
-            "french": "vous allez faire",
+            "french": "allez faire",
             "english": "you are going to do"
           },
           "ils": {
-            "french": "ils vont faire",
+            "french": "vont faire",
             "english": "they are going to do"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de faire",
+            "french": "viens de faire",
             "english": "I have just done"
           },
           "tu": {
-            "french": "tu viens de faire",
+            "french": "viens de faire",
             "english": "you have just done"
           },
           "il": {
-            "french": "il vient de faire",
+            "french": "vient de faire",
             "english": "he has just done"
           },
           "nous": {
-            "french": "nous venons de faire",
+            "french": "venons de faire",
             "english": "we have just done"
           },
           "vous": {
-            "french": "vous venez de faire",
+            "french": "venez de faire",
             "english": "you have just done"
           },
           "ils": {
-            "french": "ils viennent de faire",
+            "french": "viennent de faire",
             "english": "they have just done"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis fait",
+            "french": "suis fait",
             "english": "I am done"
           },
           "tu": {
-            "french": "tu es fait",
+            "french": "es fait",
             "english": "you are done"
           },
           "il": {
-            "french": "il est fait",
+            "french": "est fait",
             "english": "he is done"
           },
           "nous": {
-            "french": "nous sommes faits",
+            "french": "sommes faits",
             "english": "we are done"
           },
           "vous": {
-            "french": "vous êtes fait",
+            "french": "êtes fait",
             "english": "you are done"
           },
           "ils": {
-            "french": "ils sont faits",
+            "french": "sont faits",
             "english": "they are done"
           }
         }
@@ -2055,27 +2055,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais mis",
+            "french": "avais mis",
             "english": "I had put"
           },
           "tu": {
-            "french": "tu avais mis",
+            "french": "avais mis",
             "english": "you had put"
           },
           "il": {
-            "french": "il avait mis",
+            "french": "avait mis",
             "english": "he had put"
           },
           "nous": {
-            "french": "nous avions mis",
+            "french": "avions mis",
             "english": "we had put"
           },
           "vous": {
-            "french": "vous aviez mis",
+            "french": "aviez mis",
             "english": "you had put"
           },
           "ils": {
-            "french": "ils avaient mis",
+            "french": "avaient mis",
             "english": "they had put"
           }
         },
@@ -2124,79 +2124,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais mettre",
+            "french": "vais mettre",
             "english": "I am going to put"
           },
           "tu": {
-            "french": "tu vas mettre",
+            "french": "vas mettre",
             "english": "you are going to put"
           },
           "il": {
-            "french": "il va mettre",
+            "french": "va mettre",
             "english": "he is going to put"
           },
           "nous": {
-            "french": "nous allons mettre",
+            "french": "allons mettre",
             "english": "we are going to put"
           },
           "vous": {
-            "french": "vous allez mettre",
+            "french": "allez mettre",
             "english": "you are going to put"
           },
           "ils": {
-            "french": "ils vont mettre",
+            "french": "vont mettre",
             "english": "they are going to put"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de mettre",
+            "french": "viens de mettre",
             "english": "I have just put"
           },
           "tu": {
-            "french": "tu viens de mettre",
+            "french": "viens de mettre",
             "english": "you have just put"
           },
           "il": {
-            "french": "il vient de mettre",
+            "french": "vient de mettre",
             "english": "he has just put"
           },
           "nous": {
-            "french": "nous venons de mettre",
+            "french": "venons de mettre",
             "english": "we have just put"
           },
           "vous": {
-            "french": "vous venez de mettre",
+            "french": "venez de mettre",
             "english": "you have just put"
           },
           "ils": {
-            "french": "ils viennent de mettre",
+            "french": "viennent de mettre",
             "english": "they have just put"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis mis",
+            "french": "suis mis",
             "english": "I am put"
           },
           "tu": {
-            "french": "tu es mis",
+            "french": "es mis",
             "english": "you are put"
           },
           "il": {
-            "french": "il est mis",
+            "french": "est mis",
             "english": "he is put"
           },
           "nous": {
-            "french": "nous sommes mis",
+            "french": "sommes mis",
             "english": "we are put"
           },
           "vous": {
-            "french": "vous êtes mis",
+            "french": "êtes mis",
             "english": "you are put"
           },
           "ils": {
-            "french": "ils sont mis",
+            "french": "sont mis",
             "english": "they are put"
           }
         }
@@ -2338,27 +2338,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais su",
+            "french": "avais su",
             "english": "I had known"
           },
           "tu": {
-            "french": "tu avais su",
+            "french": "avais su",
             "english": "you had known"
           },
           "il": {
-            "french": "il avait su",
+            "french": "avait su",
             "english": "he had known"
           },
           "nous": {
-            "french": "nous avions su",
+            "french": "avions su",
             "english": "we had known"
           },
           "vous": {
-            "french": "vous aviez su",
+            "french": "aviez su",
             "english": "you had known"
           },
           "ils": {
-            "french": "ils avaient su",
+            "french": "avaient su",
             "english": "they had known"
           }
         },
@@ -2407,79 +2407,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais savoir",
+            "french": "vais savoir",
             "english": "I am going to know"
           },
           "tu": {
-            "french": "tu vas savoir",
+            "french": "vas savoir",
             "english": "you are going to know"
           },
           "il": {
-            "french": "il va savoir",
+            "french": "va savoir",
             "english": "he is going to know"
           },
           "nous": {
-            "french": "nous allons savoir",
+            "french": "allons savoir",
             "english": "we are going to know"
           },
           "vous": {
-            "french": "vous allez savoir",
+            "french": "allez savoir",
             "english": "you are going to know"
           },
           "ils": {
-            "french": "ils vont savoir",
+            "french": "vont savoir",
             "english": "they are going to know"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de savoir",
+            "french": "viens de savoir",
             "english": "I have just known"
           },
           "tu": {
-            "french": "tu viens de savoir",
+            "french": "viens de savoir",
             "english": "you have just known"
           },
           "il": {
-            "french": "il vient de savoir",
+            "french": "vient de savoir",
             "english": "he has just known"
           },
           "nous": {
-            "french": "nous venons de savoir",
+            "french": "venons de savoir",
             "english": "we have just known"
           },
           "vous": {
-            "french": "vous venez de savoir",
+            "french": "venez de savoir",
             "english": "you have just known"
           },
           "ils": {
-            "french": "ils viennent de savoir",
+            "french": "viennent de savoir",
             "english": "they have just known"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis su",
+            "french": "suis su",
             "english": "I am known"
           },
           "tu": {
-            "french": "tu es su",
+            "french": "es su",
             "english": "you are known"
           },
           "il": {
-            "french": "il est su",
+            "french": "est su",
             "english": "he is known"
           },
           "nous": {
-            "french": "nous sommes sus",
+            "french": "sommes sus",
             "english": "we are known"
           },
           "vous": {
-            "french": "vous êtes su",
+            "french": "êtes su",
             "english": "you are known"
           },
           "ils": {
-            "french": "ils sont sus",
+            "french": "sont sus",
             "english": "they are known"
           }
         }
@@ -2548,7 +2548,7 @@
           "je": null,
           "tu": null,
           "il": {
-            "french": "il avait fallu",
+            "french": "avait fallu",
             "english": "it had been necessary"
           },
           "nous": null,
@@ -2578,7 +2578,7 @@
           "je": null,
           "tu": null,
           "il": {
-            "french": "il va falloir",
+            "french": "va falloir",
             "english": "it is going to be necessary"
           },
           "nous": null,
@@ -2589,7 +2589,7 @@
           "je": null,
           "tu": null,
           "il": {
-            "french": "il vient de falloir",
+            "french": "vient de falloir",
             "english": "it has just been necessary"
           },
           "nous": null,
@@ -2742,27 +2742,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais vu",
+            "french": "avais vu",
             "english": "I had seen"
           },
           "tu": {
-            "french": "tu avais vu",
+            "french": "avais vu",
             "english": "you had seen"
           },
           "il": {
-            "french": "il avait vu",
+            "french": "avait vu",
             "english": "he had seen"
           },
           "nous": {
-            "french": "nous avions vu",
+            "french": "avions vu",
             "english": "we had seen"
           },
           "vous": {
-            "french": "vous aviez vu",
+            "french": "aviez vu",
             "english": "you had seen"
           },
           "ils": {
-            "french": "ils avaient vu",
+            "french": "avaient vu",
             "english": "they had seen"
           }
         },
@@ -2811,79 +2811,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais voir",
+            "french": "vais voir",
             "english": "I am going to see"
           },
           "tu": {
-            "french": "tu vas voir",
+            "french": "vas voir",
             "english": "you are going to see"
           },
           "il": {
-            "french": "il va voir",
+            "french": "va voir",
             "english": "he is going to see"
           },
           "nous": {
-            "french": "nous allons voir",
+            "french": "allons voir",
             "english": "we are going to see"
           },
           "vous": {
-            "french": "vous allez voir",
+            "french": "allez voir",
             "english": "you are going to see"
           },
           "ils": {
-            "french": "ils vont voir",
+            "french": "vont voir",
             "english": "they are going to see"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de voir",
+            "french": "viens de voir",
             "english": "I have just seen"
           },
           "tu": {
-            "french": "tu viens de voir",
+            "french": "viens de voir",
             "english": "you have just seen"
           },
           "il": {
-            "french": "il vient de voir",
+            "french": "vient de voir",
             "english": "he has just seen"
           },
           "nous": {
-            "french": "nous venons de voir",
+            "french": "venons de voir",
             "english": "we have just seen"
           },
           "vous": {
-            "french": "vous venez de voir",
+            "french": "venez de voir",
             "english": "you have just seen"
           },
           "ils": {
-            "french": "ils viennent de voir",
+            "french": "viennent de voir",
             "english": "they have just seen"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis vu",
+            "french": "suis vu",
             "english": "I am seen"
           },
           "tu": {
-            "french": "tu es vu",
+            "french": "es vu",
             "english": "you are seen"
           },
           "il": {
-            "french": "il est vu",
+            "french": "est vu",
             "english": "he is seen"
           },
           "nous": {
-            "french": "nous sommes vus",
+            "french": "sommes vus",
             "english": "we are seen"
           },
           "vous": {
-            "french": "vous êtes vu",
+            "french": "êtes vu",
             "english": "you are seen"
           },
           "ils": {
-            "french": "ils sont vus",
+            "french": "sont vus",
             "english": "they are seen"
           }
         }
@@ -3025,27 +3025,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais donné",
+            "french": "avais donné",
             "english": "I had given"
           },
           "tu": {
-            "french": "tu avais donné",
+            "french": "avais donné",
             "english": "you had given"
           },
           "il": {
-            "french": "il avait donné",
+            "french": "avait donné",
             "english": "he had given"
           },
           "nous": {
-            "french": "nous avions donné",
+            "french": "avions donné",
             "english": "we had given"
           },
           "vous": {
-            "french": "vous aviez donné",
+            "french": "aviez donné",
             "english": "you had given"
           },
           "ils": {
-            "french": "ils avaient donné",
+            "french": "avaient donné",
             "english": "they had given"
           }
         },
@@ -3094,79 +3094,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais donner",
+            "french": "vais donner",
             "english": "I am going to give"
           },
           "tu": {
-            "french": "tu vas donner",
+            "french": "vas donner",
             "english": "you are going to give"
           },
           "il": {
-            "french": "il va donner",
+            "french": "va donner",
             "english": "he is going to give"
           },
           "nous": {
-            "french": "nous allons donner",
+            "french": "allons donner",
             "english": "we are going to give"
           },
           "vous": {
-            "french": "vous allez donner",
+            "french": "allez donner",
             "english": "you are going to give"
           },
           "ils": {
-            "french": "ils vont donner",
+            "french": "vont donner",
             "english": "they are going to give"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de donner",
+            "french": "viens de donner",
             "english": "I have just given"
           },
           "tu": {
-            "french": "tu viens de donner",
+            "french": "viens de donner",
             "english": "you have just given"
           },
           "il": {
-            "french": "il vient de donner",
+            "french": "vient de donner",
             "english": "he has just given"
           },
           "nous": {
-            "french": "nous venons de donner",
+            "french": "venons de donner",
             "english": "we have just given"
           },
           "vous": {
-            "french": "vous venez de donner",
+            "french": "venez de donner",
             "english": "you have just given"
           },
           "ils": {
-            "french": "ils viennent de donner",
+            "french": "viennent de donner",
             "english": "they have just given"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis donné",
+            "french": "suis donné",
             "english": "I am given"
           },
           "tu": {
-            "french": "tu es donné",
+            "french": "es donné",
             "english": "you are given"
           },
           "il": {
-            "french": "il est donné",
+            "french": "est donné",
             "english": "he is given"
           },
           "nous": {
-            "french": "nous sommes donnés",
+            "french": "sommes donnés",
             "english": "we are given"
           },
           "vous": {
-            "french": "vous êtes donné",
+            "french": "êtes donné",
             "english": "you are given"
           },
           "ils": {
-            "french": "ils sont donnés",
+            "french": "sont donnés",
             "english": "they are given"
           }
         }
@@ -3308,27 +3308,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais allé",
+            "french": "étais allé",
             "english": "I had gone"
           },
           "tu": {
-            "french": "tu étais allé",
+            "french": "étais allé",
             "english": "you had gone"
           },
           "il": {
-            "french": "il était allé",
+            "french": "était allé",
             "english": "he had gone"
           },
           "nous": {
-            "french": "nous étions allés",
+            "french": "étions allés",
             "english": "we had gone"
           },
           "vous": {
-            "french": "vous étiez allé",
+            "french": "étiez allé",
             "english": "you had gone"
           },
           "ils": {
-            "french": "ils étaient allés",
+            "french": "étaient allés",
             "english": "they had gone"
           }
         },
@@ -3377,53 +3377,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais aller",
+            "french": "vais aller",
             "english": "I am going to go"
           },
           "tu": {
-            "french": "tu vas aller",
+            "french": "vas aller",
             "english": "you are going to go"
           },
           "il": {
-            "french": "il va aller",
+            "french": "va aller",
             "english": "he is going to go"
           },
           "nous": {
-            "french": "nous allons aller",
+            "french": "allons aller",
             "english": "we are going to go"
           },
           "vous": {
-            "french": "vous allez aller",
+            "french": "allez aller",
             "english": "you are going to go"
           },
           "ils": {
-            "french": "ils vont aller",
+            "french": "vont aller",
             "english": "they are going to go"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens d'aller",
+            "french": "viens d'aller",
             "english": "I have just gone"
           },
           "tu": {
-            "french": "tu viens d'aller",
+            "french": "viens d'aller",
             "english": "you have just gone"
           },
           "il": {
-            "french": "il vient d'aller",
+            "french": "vient d'aller",
             "english": "he has just gone"
           },
           "nous": {
-            "french": "nous venons d'aller",
+            "french": "venons d'aller",
             "english": "we have just gone"
           },
           "vous": {
-            "french": "vous venez d'aller",
+            "french": "venez d'aller",
             "english": "you have just gone"
           },
           "ils": {
-            "french": "ils viennent d'aller",
+            "french": "viennent d'aller",
             "english": "they have just gone"
           }
         },
@@ -3573,27 +3573,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais voulu",
+            "french": "avais voulu",
             "english": "I had wanted"
           },
           "tu": {
-            "french": "tu avais voulu",
+            "french": "avais voulu",
             "english": "you had wanted"
           },
           "il": {
-            "french": "il avait voulu",
+            "french": "avait voulu",
             "english": "he had wanted"
           },
           "nous": {
-            "french": "nous avions voulu",
+            "french": "avions voulu",
             "english": "we had wanted"
           },
           "vous": {
-            "french": "vous aviez voulu",
+            "french": "aviez voulu",
             "english": "you had wanted"
           },
           "ils": {
-            "french": "ils avaient voulu",
+            "french": "avaient voulu",
             "english": "they had wanted"
           }
         },
@@ -3642,79 +3642,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais vouloir",
+            "french": "vais vouloir",
             "english": "I am going to want"
           },
           "tu": {
-            "french": "tu vas vouloir",
+            "french": "vas vouloir",
             "english": "you are going to want"
           },
           "il": {
-            "french": "il va vouloir",
+            "french": "va vouloir",
             "english": "he is going to want"
           },
           "nous": {
-            "french": "nous allons vouloir",
+            "french": "allons vouloir",
             "english": "we are going to want"
           },
           "vous": {
-            "french": "vous allez vouloir",
+            "french": "allez vouloir",
             "english": "you are going to want"
           },
           "ils": {
-            "french": "ils vont vouloir",
+            "french": "vont vouloir",
             "english": "they are going to want"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de vouloir",
+            "french": "viens de vouloir",
             "english": "I have just wanted"
           },
           "tu": {
-            "french": "tu viens de vouloir",
+            "french": "viens de vouloir",
             "english": "you have just wanted"
           },
           "il": {
-            "french": "il vient de vouloir",
+            "french": "vient de vouloir",
             "english": "he has just wanted"
           },
           "nous": {
-            "french": "nous venons de vouloir",
+            "french": "venons de vouloir",
             "english": "we have just wanted"
           },
           "vous": {
-            "french": "vous venez de vouloir",
+            "french": "venez de vouloir",
             "english": "you have just wanted"
           },
           "ils": {
-            "french": "ils viennent de vouloir",
+            "french": "viennent de vouloir",
             "english": "they have just wanted"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis voulu",
+            "french": "suis voulu",
             "english": "I am wanted"
           },
           "tu": {
-            "french": "tu es voulu",
+            "french": "es voulu",
             "english": "you are wanted"
           },
           "il": {
-            "french": "il est voulu",
+            "french": "est voulu",
             "english": "he is wanted"
           },
           "nous": {
-            "french": "nous sommes voulus",
+            "french": "sommes voulus",
             "english": "we are wanted"
           },
           "vous": {
-            "french": "vous êtes voulu",
+            "french": "êtes voulu",
             "english": "you are wanted"
           },
           "ils": {
-            "french": "ils sont voulus",
+            "french": "sont voulus",
             "english": "they are wanted"
           }
         }
@@ -3856,27 +3856,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais demandé",
+            "french": "avais demandé",
             "english": "I had asked"
           },
           "tu": {
-            "french": "tu avais demandé",
+            "french": "avais demandé",
             "english": "you had asked"
           },
           "il": {
-            "french": "il avait demandé",
+            "french": "avait demandé",
             "english": "he had asked"
           },
           "nous": {
-            "french": "nous avions demandé",
+            "french": "avions demandé",
             "english": "we had asked"
           },
           "vous": {
-            "french": "vous aviez demandé",
+            "french": "aviez demandé",
             "english": "you had asked"
           },
           "ils": {
-            "french": "ils avaient demandé",
+            "french": "avaient demandé",
             "english": "they had asked"
           }
         },
@@ -3925,79 +3925,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais demander",
+            "french": "vais demander",
             "english": "I am going to ask"
           },
           "tu": {
-            "french": "tu vas demander",
+            "french": "vas demander",
             "english": "you are going to ask"
           },
           "il": {
-            "french": "il va demander",
+            "french": "va demander",
             "english": "he is going to ask"
           },
           "nous": {
-            "french": "nous allons demander",
+            "french": "allons demander",
             "english": "we are going to ask"
           },
           "vous": {
-            "french": "vous allez demander",
+            "french": "allez demander",
             "english": "you are going to ask"
           },
           "ils": {
-            "french": "ils vont demander",
+            "french": "vont demander",
             "english": "they are going to ask"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de demander",
+            "french": "viens de demander",
             "english": "I have just asked"
           },
           "tu": {
-            "french": "tu viens de demander",
+            "french": "viens de demander",
             "english": "you have just asked"
           },
           "il": {
-            "french": "il vient de demander",
+            "french": "vient de demander",
             "english": "he has just asked"
           },
           "nous": {
-            "french": "nous venons de demander",
+            "french": "venons de demander",
             "english": "we have just asked"
           },
           "vous": {
-            "french": "vous venez de demander",
+            "french": "venez de demander",
             "english": "you have just asked"
           },
           "ils": {
-            "french": "ils viennent de demander",
+            "french": "viennent de demander",
             "english": "they have just asked"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis demandé",
+            "french": "suis demandé",
             "english": "I am asked"
           },
           "tu": {
-            "french": "tu es demandé",
+            "french": "es demandé",
             "english": "you are asked"
           },
           "il": {
-            "french": "il est demandé",
+            "french": "est demandé",
             "english": "he is asked"
           },
           "nous": {
-            "french": "nous sommes demandés",
+            "french": "sommes demandés",
             "english": "we are asked"
           },
           "vous": {
-            "french": "vous êtes demandé",
+            "french": "êtes demandé",
             "english": "you are asked"
           },
           "ils": {
-            "french": "ils sont demandés",
+            "french": "sont demandés",
             "english": "they are asked"
           }
         }
@@ -4139,27 +4139,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais trouvé",
+            "french": "avais trouvé",
             "english": "I had found"
           },
           "tu": {
-            "french": "tu avais trouvé",
+            "french": "avais trouvé",
             "english": "you had found"
           },
           "il": {
-            "french": "il avait trouvé",
+            "french": "avait trouvé",
             "english": "he had found"
           },
           "nous": {
-            "french": "nous avions trouvé",
+            "french": "avions trouvé",
             "english": "we had found"
           },
           "vous": {
-            "french": "vous aviez trouvé",
+            "french": "aviez trouvé",
             "english": "you had found"
           },
           "ils": {
-            "french": "ils avaient trouvé",
+            "french": "avaient trouvé",
             "english": "they had found"
           }
         },
@@ -4208,79 +4208,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais trouver",
+            "french": "vais trouver",
             "english": "I am going to find"
           },
           "tu": {
-            "french": "tu vas trouver",
+            "french": "vas trouver",
             "english": "you are going to find"
           },
           "il": {
-            "french": "il va trouver",
+            "french": "va trouver",
             "english": "he is going to find"
           },
           "nous": {
-            "french": "nous allons trouver",
+            "french": "allons trouver",
             "english": "we are going to find"
           },
           "vous": {
-            "french": "vous allez trouver",
+            "french": "allez trouver",
             "english": "you are going to find"
           },
           "ils": {
-            "french": "ils vont trouver",
+            "french": "vont trouver",
             "english": "they are going to find"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de trouver",
+            "french": "viens de trouver",
             "english": "I have just found"
           },
           "tu": {
-            "french": "tu viens de trouver",
+            "french": "viens de trouver",
             "english": "you have just found"
           },
           "il": {
-            "french": "il vient de trouver",
+            "french": "vient de trouver",
             "english": "he has just found"
           },
           "nous": {
-            "french": "nous venons de trouver",
+            "french": "venons de trouver",
             "english": "we have just found"
           },
           "vous": {
-            "french": "vous venez de trouver",
+            "french": "venez de trouver",
             "english": "you have just found"
           },
           "ils": {
-            "french": "ils viennent de trouver",
+            "french": "viennent de trouver",
             "english": "they have just found"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis trouvé",
+            "french": "suis trouvé",
             "english": "I am found"
           },
           "tu": {
-            "french": "tu es trouvé",
+            "french": "es trouvé",
             "english": "you are found"
           },
           "il": {
-            "french": "il est trouvé",
+            "french": "est trouvé",
             "english": "he is found"
           },
           "nous": {
-            "french": "nous sommes trouvés",
+            "french": "sommes trouvés",
             "english": "we are found"
           },
           "vous": {
-            "french": "vous êtes trouvé",
+            "french": "êtes trouvé",
             "english": "you are found"
           },
           "ils": {
-            "french": "ils sont trouvés",
+            "french": "sont trouvés",
             "english": "they are found"
           }
         }
@@ -4422,27 +4422,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais venu",
+            "french": "étais venu",
             "english": "I had come"
           },
           "tu": {
-            "french": "tu étais venu",
+            "french": "étais venu",
             "english": "you had come"
           },
           "il": {
-            "french": "il était venu",
+            "french": "était venu",
             "english": "he had come"
           },
           "nous": {
-            "french": "nous étions venus",
+            "french": "étions venus",
             "english": "we had come"
           },
           "vous": {
-            "french": "vous étiez venu",
+            "french": "étiez venu",
             "english": "you had come"
           },
           "ils": {
-            "french": "ils étaient venus",
+            "french": "étaient venus",
             "english": "they had come"
           }
         },
@@ -4491,53 +4491,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais venir",
+            "french": "vais venir",
             "english": "I am going to come"
           },
           "tu": {
-            "french": "tu vas venir",
+            "french": "vas venir",
             "english": "you are going to come"
           },
           "il": {
-            "french": "il va venir",
+            "french": "va venir",
             "english": "he is going to come"
           },
           "nous": {
-            "french": "nous allons venir",
+            "french": "allons venir",
             "english": "we are going to come"
           },
           "vous": {
-            "french": "vous allez venir",
+            "french": "allez venir",
             "english": "you are going to come"
           },
           "ils": {
-            "french": "ils vont venir",
+            "french": "vont venir",
             "english": "they are going to come"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de venir",
+            "french": "viens de venir",
             "english": "I have just come"
           },
           "tu": {
-            "french": "tu viens de venir",
+            "french": "viens de venir",
             "english": "you have just come"
           },
           "il": {
-            "french": "il vient de venir",
+            "french": "vient de venir",
             "english": "he has just come"
           },
           "nous": {
-            "french": "nous venons de venir",
+            "french": "venons de venir",
             "english": "we have just come"
           },
           "vous": {
-            "french": "vous venez de venir",
+            "french": "venez de venir",
             "english": "you have just come"
           },
           "ils": {
-            "french": "ils viennent de venir",
+            "french": "viennent de venir",
             "english": "they have just come"
           }
         },
@@ -4687,27 +4687,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais passé",
+            "french": "étais passé",
             "english": "I had spent"
           },
           "tu": {
-            "french": "tu étais passé",
+            "french": "étais passé",
             "english": "you had spent"
           },
           "il": {
-            "french": "il était passé",
+            "french": "était passé",
             "english": "he had spent"
           },
           "nous": {
-            "french": "nous étions passés",
+            "french": "étions passés",
             "english": "we had spent"
           },
           "vous": {
-            "french": "vous étiez passé",
+            "french": "étiez passé",
             "english": "you had spent"
           },
           "ils": {
-            "french": "ils étaient passés",
+            "french": "étaient passés",
             "english": "they had spent"
           }
         },
@@ -4756,79 +4756,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais passer",
+            "french": "vais passer",
             "english": "I am going to spend"
           },
           "tu": {
-            "french": "tu vas passer",
+            "french": "vas passer",
             "english": "you are going to spend"
           },
           "il": {
-            "french": "il va passer",
+            "french": "va passer",
             "english": "he is going to spend"
           },
           "nous": {
-            "french": "nous allons passer",
+            "french": "allons passer",
             "english": "we are going to spend"
           },
           "vous": {
-            "french": "vous allez passer",
+            "french": "allez passer",
             "english": "you are going to spend"
           },
           "ils": {
-            "french": "ils vont passer",
+            "french": "vont passer",
             "english": "they are going to spend"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de passer",
+            "french": "viens de passer",
             "english": "I have just spent"
           },
           "tu": {
-            "french": "tu viens de passer",
+            "french": "viens de passer",
             "english": "you have just spent"
           },
           "il": {
-            "french": "il vient de passer",
+            "french": "vient de passer",
             "english": "he has just spent"
           },
           "nous": {
-            "french": "nous venons de passer",
+            "french": "venons de passer",
             "english": "we have just spent"
           },
           "vous": {
-            "french": "vous venez de passer",
+            "french": "venez de passer",
             "english": "you have just spent"
           },
           "ils": {
-            "french": "ils viennent de passer",
+            "french": "viennent de passer",
             "english": "they have just spent"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis passé",
+            "french": "suis passé",
             "english": "I am spent"
           },
           "tu": {
-            "french": "tu es passé",
+            "french": "es passé",
             "english": "you are spent"
           },
           "il": {
-            "french": "il est passé",
+            "french": "est passé",
             "english": "he is spent"
           },
           "nous": {
-            "french": "nous sommes passés",
+            "french": "sommes passés",
             "english": "we are spent"
           },
           "vous": {
-            "french": "vous êtes passé",
+            "french": "êtes passé",
             "english": "you are spent"
           },
           "ils": {
-            "french": "ils sont passés",
+            "french": "sont passés",
             "english": "they are spent"
           }
         }
@@ -4970,27 +4970,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais compris",
+            "french": "avais compris",
             "english": "I had understood"
           },
           "tu": {
-            "french": "tu avais compris",
+            "french": "avais compris",
             "english": "you had understood"
           },
           "il": {
-            "french": "il avait compris",
+            "french": "avait compris",
             "english": "he had understood"
           },
           "nous": {
-            "french": "nous avions compris",
+            "french": "avions compris",
             "english": "we had understood"
           },
           "vous": {
-            "french": "vous aviez compris",
+            "french": "aviez compris",
             "english": "you had understood"
           },
           "ils": {
-            "french": "ils avaient compris",
+            "french": "avaient compris",
             "english": "they had understood"
           }
         },
@@ -5039,79 +5039,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais comprendre",
+            "french": "vais comprendre",
             "english": "I am going to understand"
           },
           "tu": {
-            "french": "tu vas comprendre",
+            "french": "vas comprendre",
             "english": "you are going to understand"
           },
           "il": {
-            "french": "il va comprendre",
+            "french": "va comprendre",
             "english": "he is going to understand"
           },
           "nous": {
-            "french": "nous allons comprendre",
+            "french": "allons comprendre",
             "english": "we are going to understand"
           },
           "vous": {
-            "french": "vous allez comprendre",
+            "french": "allez comprendre",
             "english": "you are going to understand"
           },
           "ils": {
-            "french": "ils vont comprendre",
+            "french": "vont comprendre",
             "english": "they are going to understand"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de comprendre",
+            "french": "viens de comprendre",
             "english": "I have just understood"
           },
           "tu": {
-            "french": "tu viens de comprendre",
+            "french": "viens de comprendre",
             "english": "you have just understood"
           },
           "il": {
-            "french": "il vient de comprendre",
+            "french": "vient de comprendre",
             "english": "he has just understood"
           },
           "nous": {
-            "french": "nous venons de comprendre",
+            "french": "venons de comprendre",
             "english": "we have just understood"
           },
           "vous": {
-            "french": "vous venez de comprendre",
+            "french": "venez de comprendre",
             "english": "you have just understood"
           },
           "ils": {
-            "french": "ils viennent de comprendre",
+            "french": "viennent de comprendre",
             "english": "they have just understood"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis compris",
+            "french": "suis compris",
             "english": "I am understood"
           },
           "tu": {
-            "french": "tu es compris",
+            "french": "es compris",
             "english": "you are understood"
           },
           "il": {
-            "french": "il est compris",
+            "french": "est compris",
             "english": "he is understood"
           },
           "nous": {
-            "french": "nous sommes compris",
+            "french": "sommes compris",
             "english": "we are understood"
           },
           "vous": {
-            "french": "vous êtes compris",
+            "french": "êtes compris",
             "english": "you are understood"
           },
           "ils": {
-            "french": "ils sont compris",
+            "french": "sont compris",
             "english": "they are understood"
           }
         }
@@ -5253,27 +5253,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais rendu",
+            "french": "avais rendu",
             "english": "I had returned"
           },
           "tu": {
-            "french": "tu avais rendu",
+            "french": "avais rendu",
             "english": "you had returned"
           },
           "il": {
-            "french": "il avait rendu",
+            "french": "avait rendu",
             "english": "he had returned"
           },
           "nous": {
-            "french": "nous avions rendu",
+            "french": "avions rendu",
             "english": "we had returned"
           },
           "vous": {
-            "french": "vous aviez rendu",
+            "french": "aviez rendu",
             "english": "you had returned"
           },
           "ils": {
-            "french": "ils avaient rendu",
+            "french": "avaient rendu",
             "english": "they had returned"
           }
         },
@@ -5322,79 +5322,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais rendre",
+            "french": "vais rendre",
             "english": "I am going to return"
           },
           "tu": {
-            "french": "tu vas rendre",
+            "french": "vas rendre",
             "english": "you are going to return"
           },
           "il": {
-            "french": "il va rendre",
+            "french": "va rendre",
             "english": "he is going to return"
           },
           "nous": {
-            "french": "nous allons rendre",
+            "french": "allons rendre",
             "english": "we are going to return"
           },
           "vous": {
-            "french": "vous allez rendre",
+            "french": "allez rendre",
             "english": "you are going to return"
           },
           "ils": {
-            "french": "ils vont rendre",
+            "french": "vont rendre",
             "english": "they are going to return"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de rendre",
+            "french": "viens de rendre",
             "english": "I have just returned"
           },
           "tu": {
-            "french": "tu viens de rendre",
+            "french": "viens de rendre",
             "english": "you have just returned"
           },
           "il": {
-            "french": "il vient de rendre",
+            "french": "vient de rendre",
             "english": "he has just returned"
           },
           "nous": {
-            "french": "nous venons de rendre",
+            "french": "venons de rendre",
             "english": "we have just returned"
           },
           "vous": {
-            "french": "vous venez de rendre",
+            "french": "venez de rendre",
             "english": "you have just returned"
           },
           "ils": {
-            "french": "ils viennent de rendre",
+            "french": "viennent de rendre",
             "english": "they have just returned"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis rendu",
+            "french": "suis rendu",
             "english": "I am returned"
           },
           "tu": {
-            "french": "tu es rendu",
+            "french": "es rendu",
             "english": "you are returned"
           },
           "il": {
-            "french": "il est rendu",
+            "french": "est rendu",
             "english": "he is returned"
           },
           "nous": {
-            "french": "nous sommes rendus",
+            "french": "sommes rendus",
             "english": "we are returned"
           },
           "vous": {
-            "french": "vous êtes rendu",
+            "french": "êtes rendu",
             "english": "you are returned"
           },
           "ils": {
-            "french": "ils sont rendus",
+            "french": "sont rendus",
             "english": "they are returned"
           }
         }
@@ -5536,27 +5536,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais parlé",
+            "french": "avais parlé",
             "english": "I had spoken"
           },
           "tu": {
-            "french": "tu avais parlé",
+            "french": "avais parlé",
             "english": "you had spoken"
           },
           "il": {
-            "french": "il avait parlé",
+            "french": "avait parlé",
             "english": "he had spoken"
           },
           "nous": {
-            "french": "nous avions parlé",
+            "french": "avions parlé",
             "english": "we had spoken"
           },
           "vous": {
-            "french": "vous aviez parlé",
+            "french": "aviez parlé",
             "english": "you had spoken"
           },
           "ils": {
-            "french": "ils avaient parlé",
+            "french": "avaient parlé",
             "english": "they had spoken"
           }
         },
@@ -5605,79 +5605,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais parler",
+            "french": "vais parler",
             "english": "I am going to speak"
           },
           "tu": {
-            "french": "tu vas parler",
+            "french": "vas parler",
             "english": "you are going to speak"
           },
           "il": {
-            "french": "il va parler",
+            "french": "va parler",
             "english": "he is going to speak"
           },
           "nous": {
-            "french": "nous allons parler",
+            "french": "allons parler",
             "english": "we are going to speak"
           },
           "vous": {
-            "french": "vous allez parler",
+            "french": "allez parler",
             "english": "you are going to speak"
           },
           "ils": {
-            "french": "ils vont parler",
+            "french": "vont parler",
             "english": "they are going to speak"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de parler",
+            "french": "viens de parler",
             "english": "I have just spoken"
           },
           "tu": {
-            "french": "tu viens de parler",
+            "french": "viens de parler",
             "english": "you have just spoken"
           },
           "il": {
-            "french": "il vient de parler",
+            "french": "vient de parler",
             "english": "he has just spoken"
           },
           "nous": {
-            "french": "nous venons de parler",
+            "french": "venons de parler",
             "english": "we have just spoken"
           },
           "vous": {
-            "french": "vous venez de parler",
+            "french": "venez de parler",
             "english": "you have just spoken"
           },
           "ils": {
-            "french": "ils viennent de parler",
+            "french": "viennent de parler",
             "english": "they have just spoken"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis parlé",
+            "french": "suis parlé",
             "english": "I am spoken"
           },
           "tu": {
-            "french": "tu es parlé",
+            "french": "es parlé",
             "english": "you are spoken"
           },
           "il": {
-            "french": "il est parlé",
+            "french": "est parlé",
             "english": "he is spoken"
           },
           "nous": {
-            "french": "nous sommes parlés",
+            "french": "sommes parlés",
             "english": "we are spoken"
           },
           "vous": {
-            "french": "vous êtes parlé",
+            "french": "êtes parlé",
             "english": "you are spoken"
           },
           "ils": {
-            "french": "ils sont parlés",
+            "french": "sont parlés",
             "english": "they are spoken"
           }
         }
@@ -5819,27 +5819,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais montré",
+            "french": "avais montré",
             "english": "I had shown"
           },
           "tu": {
-            "french": "tu avais montré",
+            "french": "avais montré",
             "english": "you had shown"
           },
           "il": {
-            "french": "il avait montré",
+            "french": "avait montré",
             "english": "he had shown"
           },
           "nous": {
-            "french": "nous avions montré",
+            "french": "avions montré",
             "english": "we had shown"
           },
           "vous": {
-            "french": "vous aviez montré",
+            "french": "aviez montré",
             "english": "you had shown"
           },
           "ils": {
-            "french": "ils avaient montré",
+            "french": "avaient montré",
             "english": "they had shown"
           }
         },
@@ -5888,79 +5888,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais montrer",
+            "french": "vais montrer",
             "english": "I am going to show"
           },
           "tu": {
-            "french": "tu vas montrer",
+            "french": "vas montrer",
             "english": "you are going to show"
           },
           "il": {
-            "french": "il va montrer",
+            "french": "va montrer",
             "english": "he is going to show"
           },
           "nous": {
-            "french": "nous allons montrer",
+            "french": "allons montrer",
             "english": "we are going to show"
           },
           "vous": {
-            "french": "vous allez montrer",
+            "french": "allez montrer",
             "english": "you are going to show"
           },
           "ils": {
-            "french": "ils vont montrer",
+            "french": "vont montrer",
             "english": "they are going to show"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de montrer",
+            "french": "viens de montrer",
             "english": "I have just shown"
           },
           "tu": {
-            "french": "tu viens de montrer",
+            "french": "viens de montrer",
             "english": "you have just shown"
           },
           "il": {
-            "french": "il vient de montrer",
+            "french": "vient de montrer",
             "english": "he has just shown"
           },
           "nous": {
-            "french": "nous venons de montrer",
+            "french": "venons de montrer",
             "english": "we have just shown"
           },
           "vous": {
-            "french": "vous venez de montrer",
+            "french": "venez de montrer",
             "english": "you have just shown"
           },
           "ils": {
-            "french": "ils viennent de montrer",
+            "french": "viennent de montrer",
             "english": "they have just shown"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis montré",
+            "french": "suis montré",
             "english": "I am shown"
           },
           "tu": {
-            "french": "tu es montré",
+            "french": "es montré",
             "english": "you are shown"
           },
           "il": {
-            "french": "il est montré",
+            "french": "est montré",
             "english": "he is shown"
           },
           "nous": {
-            "french": "nous sommes montrés",
+            "french": "sommes montrés",
             "english": "we are shown"
           },
           "vous": {
-            "french": "vous êtes montré",
+            "french": "êtes montré",
             "english": "you are shown"
           },
           "ils": {
-            "french": "ils sont montrés",
+            "french": "sont montrés",
             "english": "they are shown"
           }
         }
@@ -6102,27 +6102,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais continué",
+            "french": "avais continué",
             "english": "I had continued"
           },
           "tu": {
-            "french": "tu avais continué",
+            "french": "avais continué",
             "english": "you had continued"
           },
           "il": {
-            "french": "il avait continué",
+            "french": "avait continué",
             "english": "he had continued"
           },
           "nous": {
-            "french": "nous avions continué",
+            "french": "avions continué",
             "english": "we had continued"
           },
           "vous": {
-            "french": "vous aviez continué",
+            "french": "aviez continué",
             "english": "you had continued"
           },
           "ils": {
-            "french": "ils avaient continué",
+            "french": "avaient continué",
             "english": "they had continued"
           }
         },
@@ -6171,79 +6171,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais continuer",
+            "french": "vais continuer",
             "english": "I am going to continue"
           },
           "tu": {
-            "french": "tu vas continuer",
+            "french": "vas continuer",
             "english": "you are going to continue"
           },
           "il": {
-            "french": "il va continuer",
+            "french": "va continuer",
             "english": "he is going to continue"
           },
           "nous": {
-            "french": "nous allons continuer",
+            "french": "allons continuer",
             "english": "we are going to continue"
           },
           "vous": {
-            "french": "vous allez continuer",
+            "french": "allez continuer",
             "english": "you are going to continue"
           },
           "ils": {
-            "french": "ils vont continuer",
+            "french": "vont continuer",
             "english": "they are going to continue"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de continuer",
+            "french": "viens de continuer",
             "english": "I have just continued"
           },
           "tu": {
-            "french": "tu viens de continuer",
+            "french": "viens de continuer",
             "english": "you have just continued"
           },
           "il": {
-            "french": "il vient de continuer",
+            "french": "vient de continuer",
             "english": "he has just continued"
           },
           "nous": {
-            "french": "nous venons de continuer",
+            "french": "venons de continuer",
             "english": "we have just continued"
           },
           "vous": {
-            "french": "vous venez de continuer",
+            "french": "venez de continuer",
             "english": "you have just continued"
           },
           "ils": {
-            "french": "ils viennent de continuer",
+            "french": "viennent de continuer",
             "english": "they have just continued"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis continué",
+            "french": "suis continué",
             "english": "I am continued"
           },
           "tu": {
-            "french": "tu es continué",
+            "french": "es continué",
             "english": "you are continued"
           },
           "il": {
-            "french": "il est continué",
+            "french": "est continué",
             "english": "he is continued"
           },
           "nous": {
-            "french": "nous sommes continués",
+            "french": "sommes continués",
             "english": "we are continued"
           },
           "vous": {
-            "french": "vous êtes continué",
+            "french": "êtes continué",
             "english": "you are continued"
           },
           "ils": {
-            "french": "ils sont continués",
+            "french": "sont continués",
             "english": "they are continued"
           }
         }
@@ -6385,27 +6385,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais resté",
+            "french": "étais resté",
             "english": "I had stayed"
           },
           "tu": {
-            "french": "tu étais resté",
+            "french": "étais resté",
             "english": "you had stayed"
           },
           "il": {
-            "french": "il était resté",
+            "french": "était resté",
             "english": "he had stayed"
           },
           "nous": {
-            "french": "nous étions restés",
+            "french": "étions restés",
             "english": "we had stayed"
           },
           "vous": {
-            "french": "vous étiez resté",
+            "french": "étiez resté",
             "english": "you had stayed"
           },
           "ils": {
-            "french": "ils étaient restés",
+            "french": "étaient restés",
             "english": "they had stayed"
           }
         },
@@ -6454,53 +6454,53 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais rester",
+            "french": "vais rester",
             "english": "I am going to stay"
           },
           "tu": {
-            "french": "tu vas rester",
+            "french": "vas rester",
             "english": "you are going to stay"
           },
           "il": {
-            "french": "il va rester",
+            "french": "va rester",
             "english": "he is going to stay"
           },
           "nous": {
-            "french": "nous allons rester",
+            "french": "allons rester",
             "english": "we are going to stay"
           },
           "vous": {
-            "french": "vous allez rester",
+            "french": "allez rester",
             "english": "you are going to stay"
           },
           "ils": {
-            "french": "ils vont rester",
+            "french": "vont rester",
             "english": "they are going to stay"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de rester",
+            "french": "viens de rester",
             "english": "I have just stayed"
           },
           "tu": {
-            "french": "tu viens de rester",
+            "french": "viens de rester",
             "english": "you have just stayed"
           },
           "il": {
-            "french": "il vient de rester",
+            "french": "vient de rester",
             "english": "he has just stayed"
           },
           "nous": {
-            "french": "nous venons de rester",
+            "french": "venons de rester",
             "english": "we have just stayed"
           },
           "vous": {
-            "french": "vous venez de rester",
+            "french": "venez de rester",
             "english": "you have just stayed"
           },
           "ils": {
-            "french": "ils viennent de rester",
+            "french": "viennent de rester",
             "english": "they have just stayed"
           }
         },
@@ -6650,27 +6650,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais tenu",
+            "french": "avais tenu",
             "english": "I had held"
           },
           "tu": {
-            "french": "tu avais tenu",
+            "french": "avais tenu",
             "english": "you had held"
           },
           "il": {
-            "french": "il avait tenu",
+            "french": "avait tenu",
             "english": "he had held"
           },
           "nous": {
-            "french": "nous avions tenu",
+            "french": "avions tenu",
             "english": "we had held"
           },
           "vous": {
-            "french": "vous aviez tenu",
+            "french": "aviez tenu",
             "english": "you had held"
           },
           "ils": {
-            "french": "ils avaient tenu",
+            "french": "avaient tenu",
             "english": "they had held"
           }
         },
@@ -6719,79 +6719,79 @@
         },
         "futur_proche": {
           "je": {
-            "french": "je vais tenir",
+            "french": "vais tenir",
             "english": "I am going to hold"
           },
           "tu": {
-            "french": "tu vas tenir",
+            "french": "vas tenir",
             "english": "you are going to hold"
           },
           "il": {
-            "french": "il va tenir",
+            "french": "va tenir",
             "english": "he is going to hold"
           },
           "nous": {
-            "french": "nous allons tenir",
+            "french": "allons tenir",
             "english": "we are going to hold"
           },
           "vous": {
-            "french": "vous allez tenir",
+            "french": "allez tenir",
             "english": "you are going to hold"
           },
           "ils": {
-            "french": "ils vont tenir",
+            "french": "vont tenir",
             "english": "they are going to hold"
           }
         },
         "passe_recent": {
           "je": {
-            "french": "je viens de tenir",
+            "french": "viens de tenir",
             "english": "I have just held"
           },
           "tu": {
-            "french": "tu viens de tenir",
+            "french": "viens de tenir",
             "english": "you have just held"
           },
           "il": {
-            "french": "il vient de tenir",
+            "french": "vient de tenir",
             "english": "he has just held"
           },
           "nous": {
-            "french": "nous venons de tenir",
+            "french": "venons de tenir",
             "english": "we have just held"
           },
           "vous": {
-            "french": "vous venez de tenir",
+            "french": "venez de tenir",
             "english": "you have just held"
           },
           "ils": {
-            "french": "ils viennent de tenir",
+            "french": "viennent de tenir",
             "english": "they have just held"
           }
         },
         "voix_passive": {
           "je": {
-            "french": "je suis tenu",
+            "french": "suis tenu",
             "english": "I am held"
           },
           "tu": {
-            "french": "tu es tenu",
+            "french": "es tenu",
             "english": "you are held"
           },
           "il": {
-            "french": "il est tenu",
+            "french": "est tenu",
             "english": "he is held"
           },
           "nous": {
-            "french": "nous sommes tenus",
+            "french": "sommes tenus",
             "english": "we are held"
           },
           "vous": {
-            "french": "vous êtes tenu",
+            "french": "êtes tenu",
             "english": "you are held"
           },
           "ils": {
-            "french": "ils sont tenus",
+            "french": "sont tenus",
             "english": "they are held"
           }
         }
@@ -20876,27 +20876,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais sorti",
+            "french": "étais sorti",
             "english": "I had gone out"
           },
           "tu": {
-            "french": "tu étais sorti",
+            "french": "étais sorti",
             "english": "you had gone out"
           },
           "il": {
-            "french": "il était sorti",
+            "french": "était sorti",
             "english": "he had gone out"
           },
           "nous": {
-            "french": "nous étions sortis",
+            "french": "étions sortis",
             "english": "we had gone out"
           },
           "vous": {
-            "french": "vous étiez sortis",
+            "french": "étiez sortis",
             "english": "you had gone out"
           },
           "ils": {
-            "french": "ils étaient sortis",
+            "french": "étaient sortis",
             "english": "they had gone out"
           }
         },
@@ -21141,27 +21141,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais repris",
+            "french": "avais repris",
             "english": "I had taken back"
           },
           "tu": {
-            "french": "tu avais repris",
+            "french": "avais repris",
             "english": "you had taken back"
           },
           "il": {
-            "french": "il avait repris",
+            "french": "avait repris",
             "english": "he had taken back"
           },
           "nous": {
-            "french": "nous avions repris",
+            "french": "avions repris",
             "english": "we had taken back"
           },
           "vous": {
-            "french": "vous aviez repris",
+            "french": "aviez repris",
             "english": "you had taken back"
           },
           "ils": {
-            "french": "ils avaient repris",
+            "french": "avaient repris",
             "english": "they had taken back"
           }
         },
@@ -21424,27 +21424,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais mené",
+            "french": "avais mené",
             "english": "I had led"
           },
           "tu": {
-            "french": "tu avais mené",
+            "french": "avais mené",
             "english": "you had led"
           },
           "il": {
-            "french": "il avait mené",
+            "french": "avait mené",
             "english": "he had led"
           },
           "nous": {
-            "french": "nous avions mené",
+            "french": "avions mené",
             "english": "we had led"
           },
           "vous": {
-            "french": "vous aviez mené",
+            "french": "aviez mené",
             "english": "you had led"
           },
           "ils": {
-            "french": "ils avaient mené",
+            "french": "avaient mené",
             "english": "they had led"
           }
         },
@@ -21707,27 +21707,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais appartenu",
+            "french": "avais appartenu",
             "english": "I had belonged"
           },
           "tu": {
-            "french": "tu avais appartenu",
+            "french": "avais appartenu",
             "english": "you had belonged"
           },
           "il": {
-            "french": "il avait appartenu",
+            "french": "avait appartenu",
             "english": "he had belonged"
           },
           "nous": {
-            "french": "nous avions appartenu",
+            "french": "avions appartenu",
             "english": "we had belonged"
           },
           "vous": {
-            "french": "vous aviez appartenu",
+            "french": "aviez appartenu",
             "english": "you had belonged"
           },
           "ils": {
-            "french": "ils avaient appartenu",
+            "french": "avaient appartenu",
             "english": "they had belonged"
           }
         },
@@ -21972,27 +21972,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais risqué",
+            "french": "avais risqué",
             "english": "I had risked"
           },
           "tu": {
-            "french": "tu avais risqué",
+            "french": "avais risqué",
             "english": "you had risked"
           },
           "il": {
-            "french": "il avait risqué",
+            "french": "avait risqué",
             "english": "he had risked"
           },
           "nous": {
-            "french": "nous avions risqué",
+            "french": "avions risqué",
             "english": "we had risked"
           },
           "vous": {
-            "french": "vous aviez risqué",
+            "french": "aviez risqué",
             "english": "you had risked"
           },
           "ils": {
-            "french": "ils avaient risqué",
+            "french": "avaient risqué",
             "english": "they had risked"
           }
         },
@@ -22255,27 +22255,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais concerné",
+            "french": "avais concerné",
             "english": "I had concerned"
           },
           "tu": {
-            "french": "tu avais concerné",
+            "french": "avais concerné",
             "english": "you had concerned"
           },
           "il": {
-            "french": "il avait concerné",
+            "french": "avait concerné",
             "english": "he had concerned"
           },
           "nous": {
-            "french": "nous avions concerné",
+            "french": "avions concerné",
             "english": "we had concerned"
           },
           "vous": {
-            "french": "vous aviez concerné",
+            "french": "aviez concerné",
             "english": "you had concerned"
           },
           "ils": {
-            "french": "ils avaient concerné",
+            "french": "avaient concerné",
             "english": "they had concerned"
           }
         },
@@ -22538,27 +22538,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais appris",
+            "french": "avais appris",
             "english": "I had learned"
           },
           "tu": {
-            "french": "tu avais appris",
+            "french": "avais appris",
             "english": "you had learned"
           },
           "il": {
-            "french": "il avait appris",
+            "french": "avait appris",
             "english": "he had learned"
           },
           "nous": {
-            "french": "nous avions appris",
+            "french": "avions appris",
             "english": "we had learned"
           },
           "vous": {
-            "french": "vous aviez appris",
+            "french": "aviez appris",
             "english": "you had learned"
           },
           "ils": {
-            "french": "ils avaient appris",
+            "french": "avaient appris",
             "english": "they had learned"
           }
         },
@@ -22821,27 +22821,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais rencontré",
+            "french": "avais rencontré",
             "english": "I had met"
           },
           "tu": {
-            "french": "tu avais rencontré",
+            "french": "avais rencontré",
             "english": "you had met"
           },
           "il": {
-            "french": "il avait rencontré",
+            "french": "avait rencontré",
             "english": "he had met"
           },
           "nous": {
-            "french": "nous avions rencontré",
+            "french": "avions rencontré",
             "english": "we had met"
           },
           "vous": {
-            "french": "vous aviez rencontré",
+            "french": "aviez rencontré",
             "english": "you had met"
           },
           "ils": {
-            "french": "ils avaient rencontré",
+            "french": "avaient rencontré",
             "english": "they had met"
           }
         },
@@ -23104,27 +23104,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais créé",
+            "french": "avais créé",
             "english": "I had created"
           },
           "tu": {
-            "french": "tu avais créé",
+            "french": "avais créé",
             "english": "you had created"
           },
           "il": {
-            "french": "il avait créé",
+            "french": "avait créé",
             "english": "he had created"
           },
           "nous": {
-            "french": "nous avions créé",
+            "french": "avions créé",
             "english": "we had created"
           },
           "vous": {
-            "french": "vous aviez créé",
+            "french": "aviez créé",
             "english": "you had created"
           },
           "ils": {
-            "french": "ils avaient créé",
+            "french": "avaient créé",
             "english": "they had created"
           }
         },
@@ -23387,27 +23387,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais obtenu",
+            "french": "avais obtenu",
             "english": "I had obtained"
           },
           "tu": {
-            "french": "tu avais obtenu",
+            "french": "avais obtenu",
             "english": "you had obtained"
           },
           "il": {
-            "french": "il avait obtenu",
+            "french": "avait obtenu",
             "english": "he had obtained"
           },
           "nous": {
-            "french": "nous avions obtenu",
+            "french": "avions obtenu",
             "english": "we had obtained"
           },
           "vous": {
-            "french": "vous aviez obtenu",
+            "french": "aviez obtenu",
             "english": "you had obtained"
           },
           "ils": {
-            "french": "ils avaient obtenu",
+            "french": "avaient obtenu",
             "english": "they had obtained"
           }
         },
@@ -23670,27 +23670,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais cherché",
+            "french": "avais cherché",
             "english": "I had looked for"
           },
           "tu": {
-            "french": "tu avais cherché",
+            "french": "avais cherché",
             "english": "you had looked for"
           },
           "il": {
-            "french": "il avait cherché",
+            "french": "avait cherché",
             "english": "he had looked for"
           },
           "nous": {
-            "french": "nous avions cherché",
+            "french": "avions cherché",
             "english": "we had looked for"
           },
           "vous": {
-            "french": "vous aviez cherché",
+            "french": "aviez cherché",
             "english": "you had looked for"
           },
           "ils": {
-            "french": "ils avaient cherché",
+            "french": "avaient cherché",
             "english": "they had looked for"
           }
         },
@@ -23953,27 +23953,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'étais entré",
+            "french": "étais entré",
             "english": "I had entered"
           },
           "tu": {
-            "french": "tu étais entré",
+            "french": "étais entré",
             "english": "you had entered"
           },
           "il": {
-            "french": "il était entré",
+            "french": "était entré",
             "english": "he had entered"
           },
           "nous": {
-            "french": "nous étions entrés",
+            "french": "étions entrés",
             "english": "we had entered"
           },
           "vous": {
-            "french": "vous étiez entrés",
+            "french": "étiez entrés",
             "english": "you had entered"
           },
           "ils": {
-            "french": "ils étaient entrés",
+            "french": "étaient entrés",
             "english": "they had entered"
           }
         },
@@ -24218,27 +24218,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais proposé",
+            "french": "avais proposé",
             "english": "I had suggested"
           },
           "tu": {
-            "french": "tu avais proposé",
+            "french": "avais proposé",
             "english": "you had suggested"
           },
           "il": {
-            "french": "il avait proposé",
+            "french": "avait proposé",
             "english": "he had suggested"
           },
           "nous": {
-            "french": "nous avions proposé",
+            "french": "avions proposé",
             "english": "we had suggested"
           },
           "vous": {
-            "french": "vous aviez proposé",
+            "french": "aviez proposé",
             "english": "you had suggested"
           },
           "ils": {
-            "french": "ils avaient proposé",
+            "french": "avaient proposé",
             "english": "they had suggested"
           }
         },
@@ -24501,27 +24501,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais apporté",
+            "french": "avais apporté",
             "english": "I had brought"
           },
           "tu": {
-            "french": "tu avais apporté",
+            "french": "avais apporté",
             "english": "you had brought"
           },
           "il": {
-            "french": "il avait apporté",
+            "french": "avait apporté",
             "english": "he had brought"
           },
           "nous": {
-            "french": "nous avions apporté",
+            "french": "avions apporté",
             "english": "we had brought"
           },
           "vous": {
-            "french": "vous aviez apporté",
+            "french": "aviez apporté",
             "english": "you had brought"
           },
           "ils": {
-            "french": "ils avaient apporté",
+            "french": "avaient apporté",
             "english": "they had brought"
           }
         },
@@ -24784,27 +24784,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais utilisé",
+            "french": "avais utilisé",
             "english": "I had used"
           },
           "tu": {
-            "french": "tu avais utilisé",
+            "french": "avais utilisé",
             "english": "you had used"
           },
           "il": {
-            "french": "il avait utilisé",
+            "french": "avait utilisé",
             "english": "he had used"
           },
           "nous": {
-            "french": "nous avions utilisé",
+            "french": "avions utilisé",
             "english": "we had used"
           },
           "vous": {
-            "french": "vous aviez utilisé",
+            "french": "aviez utilisé",
             "english": "you had used"
           },
           "ils": {
-            "french": "ils avaient utilisé",
+            "french": "avaient utilisé",
             "english": "they had used"
           }
         },
@@ -25067,27 +25067,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais atteint",
+            "french": "avais atteint",
             "english": "I had reached"
           },
           "tu": {
-            "french": "tu avais atteint",
+            "french": "avais atteint",
             "english": "you had reached"
           },
           "il": {
-            "french": "il avait atteint",
+            "french": "avait atteint",
             "english": "he had reached"
           },
           "nous": {
-            "french": "nous avions atteint",
+            "french": "avions atteint",
             "english": "we had reached"
           },
           "vous": {
-            "french": "vous aviez atteint",
+            "french": "aviez atteint",
             "english": "you had reached"
           },
           "ils": {
-            "french": "ils avaient atteint",
+            "french": "avaient atteint",
             "english": "they had reached"
           }
         },
@@ -25350,27 +25350,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais tenté",
+            "french": "avais tenté",
             "english": "I had tried"
           },
           "tu": {
-            "french": "tu avais tenté",
+            "french": "avais tenté",
             "english": "you had tried"
           },
           "il": {
-            "french": "il avait tenté",
+            "french": "avait tenté",
             "english": "he had tried"
           },
           "nous": {
-            "french": "nous avions tenté",
+            "french": "avions tenté",
             "english": "we had tried"
           },
           "vous": {
-            "french": "vous aviez tenté",
+            "french": "aviez tenté",
             "english": "you had tried"
           },
           "ils": {
-            "french": "ils avaient tenté",
+            "french": "avaient tenté",
             "english": "they had tried"
           }
         },
@@ -25633,27 +25633,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais importé",
+            "french": "avais importé",
             "english": "I had imported"
           },
           "tu": {
-            "french": "tu avais importé",
+            "french": "avais importé",
             "english": "you had imported"
           },
           "il": {
-            "french": "il avait importé",
+            "french": "avait importé",
             "english": "he had imported"
           },
           "nous": {
-            "french": "nous avions importé",
+            "french": "avions importé",
             "english": "we had imported"
           },
           "vous": {
-            "french": "vous aviez importé",
+            "french": "aviez importé",
             "english": "you had imported"
           },
           "ils": {
-            "french": "ils avaient importé",
+            "french": "avaient importé",
             "english": "they had imported"
           }
         },
@@ -25916,27 +25916,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais ajouté",
+            "french": "avais ajouté",
             "english": "I had added"
           },
           "tu": {
-            "french": "tu avais ajouté",
+            "french": "avais ajouté",
             "english": "you had added"
           },
           "il": {
-            "french": "il avait ajouté",
+            "french": "avait ajouté",
             "english": "he had added"
           },
           "nous": {
-            "french": "nous avions ajouté",
+            "french": "avions ajouté",
             "english": "we had added"
           },
           "vous": {
-            "french": "vous aviez ajouté",
+            "french": "aviez ajouté",
             "english": "you had added"
           },
           "ils": {
-            "french": "ils avaient ajouté",
+            "french": "avaient ajouté",
             "english": "they had added"
           }
         },
@@ -26199,27 +26199,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais produit",
+            "french": "avais produit",
             "english": "I had produced"
           },
           "tu": {
-            "french": "tu avais produit",
+            "french": "avais produit",
             "english": "you had produced"
           },
           "il": {
-            "french": "il avait produit",
+            "french": "avait produit",
             "english": "he had produced"
           },
           "nous": {
-            "french": "nous avions produit",
+            "french": "avions produit",
             "english": "we had produced"
           },
           "vous": {
-            "french": "vous aviez produit",
+            "french": "aviez produit",
             "english": "you had produced"
           },
           "ils": {
-            "french": "ils avaient produit",
+            "french": "avaient produit",
             "english": "they had produced"
           }
         },
@@ -26482,27 +26482,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais préparé",
+            "french": "avais préparé",
             "english": "I had prepared"
           },
           "tu": {
-            "french": "tu avais préparé",
+            "french": "avais préparé",
             "english": "you had prepared"
           },
           "il": {
-            "french": "il avait préparé",
+            "french": "avait préparé",
             "english": "he had prepared"
           },
           "nous": {
-            "french": "nous avions préparé",
+            "french": "avions préparé",
             "english": "we had prepared"
           },
           "vous": {
-            "french": "vous aviez préparé",
+            "french": "aviez préparé",
             "english": "you had prepared"
           },
           "ils": {
-            "french": "ils avaient préparé",
+            "french": "avaient préparé",
             "english": "they had prepared"
           }
         },
@@ -26765,27 +26765,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais relevé",
+            "french": "avais relevé",
             "english": "I had stood up"
           },
           "tu": {
-            "french": "tu avais relevé",
+            "french": "avais relevé",
             "english": "you had stood up"
           },
           "il": {
-            "french": "il avait relevé",
+            "french": "avait relevé",
             "english": "he had stood up"
           },
           "nous": {
-            "french": "nous avions relevé",
+            "french": "avions relevé",
             "english": "we had stood up"
           },
           "vous": {
-            "french": "vous aviez relevé",
+            "french": "aviez relevé",
             "english": "you had stood up"
           },
           "ils": {
-            "french": "ils avaient relevé",
+            "french": "avaient relevé",
             "english": "they had stood up"
           }
         },
@@ -27048,27 +27048,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais écrit",
+            "french": "avais écrit",
             "english": "I had written"
           },
           "tu": {
-            "french": "tu avais écrit",
+            "french": "avais écrit",
             "english": "you had written"
           },
           "il": {
-            "french": "il avait écrit",
+            "french": "avait écrit",
             "english": "he had written"
           },
           "nous": {
-            "french": "nous avions écrit",
+            "french": "avions écrit",
             "english": "we had written"
           },
           "vous": {
-            "french": "vous aviez écrit",
+            "french": "aviez écrit",
             "english": "you had written"
           },
           "ils": {
-            "french": "ils avaient écrit",
+            "french": "avaient écrit",
             "english": "they had written"
           }
         },
@@ -27331,27 +27331,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais défendu",
+            "french": "avais défendu",
             "english": "I had defended"
           },
           "tu": {
-            "french": "tu avais défendu",
+            "french": "avais défendu",
             "english": "you had defended"
           },
           "il": {
-            "french": "il avait défendu",
+            "french": "avait défendu",
             "english": "he had defended"
           },
           "nous": {
-            "french": "nous avions défendu",
+            "french": "avions défendu",
             "english": "we had defended"
           },
           "vous": {
-            "french": "vous aviez défendu",
+            "french": "aviez défendu",
             "english": "you had defended"
           },
           "ils": {
-            "french": "ils avaient défendu",
+            "french": "avaient défendu",
             "english": "they had defended"
           }
         },
@@ -27614,27 +27614,27 @@
         },
         "plus_que_parfait": {
           "je": {
-            "french": "j'avais tiré",
+            "french": "avais tiré",
             "english": "I had pulled"
           },
           "tu": {
-            "french": "tu avais tiré",
+            "french": "avais tiré",
             "english": "you had pulled"
           },
           "il": {
-            "french": "il avait tiré",
+            "french": "avait tiré",
             "english": "he had pulled"
           },
           "nous": {
-            "french": "nous avions tiré",
+            "french": "avions tiré",
             "english": "we had pulled"
           },
           "vous": {
-            "french": "vous aviez tiré",
+            "french": "aviez tiré",
             "english": "you had pulled"
           },
           "ils": {
-            "french": "ils avaient tiré",
+            "french": "avaient tiré",
             "english": "they had pulled"
           }
         },

@@ -23,19 +23,22 @@ function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => voi
   return [state, setValue];
 }
 
+export interface GateOverride {
+  tier: number;
+  mode: InputMode;
+}
+
 export function usePracticeSettings() {
   const [direction, setDirection] = useLocalStorage<Direction>('practiceDirection', 'en-fr');
   const [showInfinitive, setShowInfinitive] = useLocalStorage<boolean>('practiceShowInfinitive', true);
   const [tenses, setTenses] = useLocalStorage<TenseKey[]>('practiceTenses', ['present']);
-  const [inputMode, setInputMode] = useLocalStorage<InputMode>('practiceInputMode', 'flashcard');
-  const [tiers, setTiers] = useLocalStorage<number[]>('practiceTiers', [1]);
+  const [gateOverrides, setGateOverrides] = useLocalStorage<Partial<Record<TenseKey, GateOverride>>>('practiceGateOverrides', {});
 
   return {
     direction, setDirection,
     showInfinitive, setShowInfinitive,
     tenses, setTenses,
-    inputMode, setInputMode,
-    tiers, setTiers,
+    gateOverrides, setGateOverrides,
   };
 }
 

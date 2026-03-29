@@ -1,61 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
 import { Navigation } from '../components/Navigation';
 import { usePracticeSettings } from '../hooks/useSettings';
-import { TENSES, PRONOUNS, VERB_TIERS, TIER_UNLOCK_THRESHOLD, TIER_UNLOCK_MIN_BOX } from '../lib/constants';
-import { db } from '../lib/db';
-import type { TenseKey, Direction, InputMode } from '../lib/types';
+import { useVerbs } from '../hooks/useDatabase';
+import { TENSES, VERB_TIERS, TIER_UNLOCK_THRESHOLD } from '../lib/constants';
+import { computeGateStatuses, getFrontierIndex } from '../lib/gates';
+import type { TenseKey, Direction, GateStatus } from '../lib/types';
 
-function useTierUnlockStatus(tenses: TenseKey[]) {
-  const [unlocked, setUnlocked] = useState<Record<number, boolean>>({ 1: true });
-  const [progress, setProgress] = useState<Record<number, { current: number; total: number }>>({});
+function useAllGateStatuses(
+  tenses: TenseKey[],
+  direction: Direction,
+  allVerbs: string[],
+) {
+  const [statuses, setStatuses] = useState<Record<TenseKey, GateStatus[]>>({} as Record<TenseKey, GateStatus[]>);
 
   useEffect(() => {
+    if (allVerbs.length === 0) return;
+
+    let cancelled = false;
     const compute = async () => {
-      const newUnlocked: Record<number, boolean> = { 1: true };
-      const newProgress: Record<number, { current: number; total: number }> = {};
-
-      for (let i = 0; i < VERB_TIERS.length; i++) {
-        const tier = VERB_TIERS[i]!;
-        let total = 0;
-        let atLevel = 0;
-        const tierVerbs = tier.verbs.length > 0 ? tier.verbs : [];
-
-        if (tierVerbs.length === 0) {
-          newUnlocked[tier.id] = newUnlocked[tier.id - 1] ?? false;
-          continue;
-        }
-
-        for (const infinitive of tierVerbs) {
-          for (const tense of tenses) {
-            for (const pronoun of PRONOUNS) {
-              const statId = `${infinitive}_${pronoun}_${tense}`;
-              total++;
-              const stat = await db.stats.get(statId);
-              if (stat && stat.box >= TIER_UNLOCK_MIN_BOX) {
-                atLevel++;
-              }
-            }
-          }
-        }
-
-        newProgress[tier.id] = { current: atLevel, total };
-
-        if (i + 1 < VERB_TIERS.length) {
-          const ratio = total > 0 ? atLevel / total : 0;
-          newUnlocked[VERB_TIERS[i + 1]!.id] = (newUnlocked[tier.id] ?? false) && ratio >= TIER_UNLOCK_THRESHOLD;
-        }
+      const result: Partial<Record<TenseKey, GateStatus[]>> = {};
+      for (const tense of tenses) {
+        const s = await computeGateStatuses(tense, direction, allVerbs);
+        result[tense] = s;
       }
-
-      setUnlocked(newUnlocked);
-      setProgress(newProgress);
+      if (!cancelled) setStatuses(result as Record<TenseKey, GateStatus[]>);
     };
-
     compute();
-  }, [tenses]);
 
-  return { unlocked, progress };
+    return () => { cancelled = true; };
+  }, [tenses, direction, allVerbs]);
+
+  return statuses;
 }
 
 export function PracticeSetup() {
@@ -64,29 +41,51 @@ export function PracticeSetup() {
     direction, setDirection,
     showInfinitive, setShowInfinitive,
     tenses, setTenses,
-    inputMode, setInputMode,
-    tiers, setTiers,
+    gateOverrides, setGateOverrides,
   } = usePracticeSettings();
 
-  const { unlocked, progress } = useTierUnlockStatus(tenses);
+  const verbs = useVerbs();
+  const allVerbs = useMemo(() => verbs?.map(v => v.infinitive) ?? [], [verbs]);
+
+  const gateStatuses = useAllGateStatuses(tenses, direction, allVerbs);
 
   const toggleTense = (tense: TenseKey) => {
     if (tenses.includes(tense)) {
-      setTenses(tenses.filter((t) => t !== tense));
+      if (tenses.length > 1) {
+        setTenses(tenses.filter((t) => t !== tense));
+        // Remove gate override for deselected tense
+        const newOverrides = { ...gateOverrides };
+        delete newOverrides[tense];
+        setGateOverrides(newOverrides);
+      }
     } else {
       setTenses([...tenses, tense]);
     }
   };
 
-  const toggleTier = (tierId: number) => {
-    if (!unlocked[tierId]) return;
-    if (tiers.includes(tierId)) {
-      if (tiers.length > 1) {
-        setTiers(tiers.filter((t) => t !== tierId));
-      }
+  const handleDirectionChange = (d: Direction) => {
+    setDirection(d);
+    // Clear all gate overrides when direction changes since chain changes
+    setGateOverrides({});
+  };
+
+  const handleGateTap = (tense: TenseKey, gateIndex: number, statuses: GateStatus[]) => {
+    const frontierIdx = getFrontierIndex(statuses);
+    const gate = statuses[gateIndex]?.gate;
+    if (!gate) return;
+
+    // Only allow tapping unlocked gates
+    if (!statuses[gateIndex]?.unlocked) return;
+
+    const newOverrides = { ...gateOverrides };
+    if (gateIndex === frontierIdx) {
+      // Tapping frontier removes override (use auto)
+      delete newOverrides[tense];
     } else {
-      setTiers([...tiers, tierId]);
+      // Set override to this gate
+      newOverrides[tense] = { tier: gate.tier, mode: gate.mode };
     }
+    setGateOverrides(newOverrides);
   };
 
   return (
@@ -101,10 +100,7 @@ export function PracticeSetup() {
             {(['en-fr', 'fr-en'] as Direction[]).map((d) => (
               <button
                 key={d}
-                onClick={() => {
-                  setDirection(d);
-                  if (d === 'fr-en') setInputMode('flashcard');
-                }}
+                onClick={() => handleDirectionChange(d)}
                 className={`flex-1 rounded-lg py-2.5 text-sm font-medium transition-all ${
                   direction === d
                     ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-slate-100'
@@ -122,31 +118,6 @@ export function PracticeSetup() {
             ))}
           </div>
         </div>
-
-        {/* Input Mode — only available for en-fr direction */}
-        {direction === 'en-fr' && (
-        <div>
-          <label className="mb-3 block text-sm font-medium text-slate-500 dark:text-slate-400">Input Mode</label>
-          <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1 dark:border-slate-700 dark:bg-slate-800/50">
-            {(['flashcard', 'typing'] as InputMode[]).map((m) => (
-              <button
-                key={m}
-                onClick={() => setInputMode(m)}
-                className={`flex-1 rounded-lg py-2.5 text-sm font-medium transition-all ${
-                  inputMode === m
-                    ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-slate-100'
-                    : 'text-slate-500 dark:text-slate-400'
-                }`}
-              >
-                {m === 'flashcard' ? 'Flashcard' : 'Typing'}
-              </button>
-            ))}
-          </div>
-          <p className="mt-2 text-xs text-slate-400 dark:text-slate-500">
-            {inputMode === 'flashcard' ? 'Flip and swipe to self-grade' : 'Type the conjugation for a harder drill'}
-          </p>
-        </div>
-        )}
 
         {/* Infinitive hint */}
         <div className="flex items-center justify-between">
@@ -168,111 +139,136 @@ export function PracticeSetup() {
           </button>
         </div>
 
-        {/* Verb Tiers */}
-        <div>
-          <label className="mb-3 block text-sm font-medium text-slate-500 dark:text-slate-400">Verb Groups</label>
-          <div className="space-y-2">
-            {VERB_TIERS.map((tier) => {
-              const isUnlocked = unlocked[tier.id] ?? false;
-              const isSelected = tiers.includes(tier.id);
-              const tierProgress = progress[tier.id];
-
-              return (
-                <button
-                  key={tier.id}
-                  onClick={() => toggleTier(tier.id)}
-                  disabled={!isUnlocked}
-                  className={`flex w-full flex-col gap-1 rounded-xl px-4 py-3 text-left transition-colors ${
-                    !isUnlocked
-                      ? 'cursor-not-allowed bg-slate-100 text-slate-400 opacity-60 dark:bg-slate-800/30 dark:text-slate-600'
-                      : isSelected
-                        ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300'
-                        : 'bg-slate-50 text-slate-700 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-800'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`flex size-5 items-center justify-center rounded border ${
-                        !isUnlocked
-                          ? 'border-slate-300 dark:border-slate-700'
-                          : isSelected
-                            ? 'border-indigo-500 bg-indigo-500 dark:border-indigo-400 dark:bg-indigo-400'
-                            : 'border-slate-300 dark:border-slate-600'
-                      }`}
-                    >
-                      {!isUnlocked ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-3">
-                          <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
-                        </svg>
-                      ) : isSelected ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="size-3">
-                          <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
-                        </svg>
-                      ) : null}
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-sm font-medium">
-                        Tier {tier.id}: {tier.name}
-                      </span>
-                      <span className="ml-2 text-xs text-slate-400 dark:text-slate-500">
-                        {tier.verbs.length > 0 ? `${tier.verbs.length} verbs` : 'remaining verbs'}
-                      </span>
-                    </div>
-                  </div>
-                  {!isUnlocked && tierProgress && (
-                    <div className="ml-8 mt-1">
-                      <div className="flex items-center gap-2">
-                        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                          <div
-                            className="h-full rounded-full bg-indigo-400 transition-all"
-                            style={{ width: `${tierProgress.total > 0 ? Math.min((tierProgress.current / (tierProgress.total * TIER_UNLOCK_THRESHOLD)) * 100, 100) : 0}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-slate-400">
-                          {tierProgress.current}/{Math.ceil(tierProgress.total * TIER_UNLOCK_THRESHOLD)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  <p className="ml-8 text-xs text-slate-400 dark:text-slate-500">{tier.description}</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Tense selection */}
         <div>
           <label className="mb-3 block text-sm font-medium text-slate-500 dark:text-slate-400">Tenses</label>
-          <div className="space-y-2">
+          <div className="flex flex-wrap gap-2">
             {(Object.entries(TENSES) as [TenseKey, string][]).map(([key, name]) => (
               <button
                 key={key}
                 onClick={() => toggleTense(key)}
-                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors ${
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   tenses.includes(key)
-                    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300'
-                    : 'bg-slate-50 text-slate-700 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-800'
+                    ? 'bg-indigo-500 text-white shadow-sm dark:bg-indigo-600'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700'
                 }`}
               >
-                <div
-                  className={`flex size-5 items-center justify-center rounded border ${
-                    tenses.includes(key)
-                      ? 'border-indigo-500 bg-indigo-500 dark:border-indigo-400 dark:bg-indigo-400'
-                      : 'border-slate-300 dark:border-slate-600'
-                  }`}
-                >
-                  {tenses.includes(key) && (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="size-3">
-                      <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </div>
-                <span className="text-sm font-medium">{name}</span>
+                {name}
               </button>
             ))}
           </div>
         </div>
+
+        {/* Per-tense progression */}
+        {tenses.length > 0 && (
+          <div>
+            <label className="mb-3 block text-sm font-medium text-slate-500 dark:text-slate-400">Progression</label>
+            <div className="space-y-4">
+              {tenses.map((tense) => {
+                const statuses = gateStatuses[tense];
+                if (!statuses || statuses.length === 0) return null;
+
+                const frontierIdx = getFrontierIndex(statuses);
+                const override = gateOverrides[tense];
+
+                // Determine active gate index: override or frontier
+                const activeIdx = override
+                  ? statuses.findIndex(s => s.gate.tier === override.tier && s.gate.mode === override.mode)
+                  : frontierIdx;
+
+                const activeGateStatus = statuses[activeIdx >= 0 ? activeIdx : frontierIdx];
+                const activeProgress = activeGateStatus?.progress;
+
+                return (
+                  <div
+                    key={tense}
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50"
+                  >
+                    <p className="mb-3 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                      {TENSES[tense]}
+                    </p>
+
+                    {/* Gate chain indicators */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {statuses.map((status, idx) => {
+                        const isCompleted = status.completed;
+                        const isActive = idx === (activeIdx >= 0 ? activeIdx : frontierIdx);
+                        const isUnlocked = status.unlocked;
+                        const isLocked = !isUnlocked;
+
+                        const tierInfo = VERB_TIERS.find(t => t.id === status.gate.tier);
+                        const label = status.gate.mode === 'typing'
+                          ? `T${status.gate.tier} Type`
+                          : `T${status.gate.tier}`;
+
+                        let pillClasses = 'px-2.5 py-1 rounded-full text-xs font-medium transition-all ';
+                        if (isCompleted) {
+                          pillClasses += 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300';
+                        } else if (isActive) {
+                          pillClasses += 'bg-indigo-500 text-white shadow-sm ring-2 ring-indigo-300 dark:ring-indigo-400';
+                        } else if (isUnlocked) {
+                          pillClasses += 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200 cursor-pointer dark:bg-indigo-500/15 dark:text-indigo-300 dark:hover:bg-indigo-500/25';
+                        } else {
+                          pillClasses += 'bg-slate-200 text-slate-400 cursor-not-allowed dark:bg-slate-700 dark:text-slate-500';
+                        }
+
+                        return (
+                          <button
+                            key={`${status.gate.tier}-${status.gate.mode}`}
+                            onClick={() => isUnlocked && handleGateTap(tense, idx, statuses)}
+                            disabled={isLocked}
+                            className={pillClasses}
+                            title={
+                              isLocked
+                                ? `Locked: complete previous gates first`
+                                : isCompleted
+                                  ? `Completed: ${tierInfo?.name ?? ''} ${status.gate.mode}`
+                                  : `${tierInfo?.name ?? ''} ${status.gate.mode}`
+                            }
+                          >
+                            <span className="inline-flex items-center gap-1">
+                              {isCompleted && (
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-3">
+                                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                              {isLocked && (
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-3">
+                                  <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                              {label}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Progress bar for active gate */}
+                    {activeProgress && activeProgress.total > 0 && !activeGateStatus?.completed && (
+                      <div className="mt-3 flex items-center gap-2">
+                        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                          <div
+                            className="h-full rounded-full bg-indigo-400 transition-all"
+                            style={{
+                              width: `${Math.min(
+                                (activeProgress.current / (activeProgress.total * TIER_UNLOCK_THRESHOLD)) * 100,
+                                100
+                              )}%`
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs text-slate-400 dark:text-slate-500">
+                          {activeProgress.current}/{Math.ceil(activeProgress.total * TIER_UNLOCK_THRESHOLD)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="mt-auto pt-8">

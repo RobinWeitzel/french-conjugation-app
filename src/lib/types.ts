@@ -70,6 +70,19 @@ export interface PracticeCard {
   french: string;
   englishConjugation: string;
   statId: string;
+  mode: InputMode;
+}
+
+export interface Gate {
+  tier: number;
+  mode: InputMode;
+}
+
+export interface GateStatus {
+  gate: Gate;
+  unlocked: boolean;
+  completed: boolean;
+  progress: { current: number; total: number };
 }
 
 export interface ListeningCard {

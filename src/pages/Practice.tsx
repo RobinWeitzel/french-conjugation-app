@@ -9,41 +9,19 @@ import { TypingInput } from '../components/TypingInput';
 import { useMastery } from '../hooks/useMastery';
 import { usePracticeSettings } from '../hooks/useSettings';
 import { useVerbs } from '../hooks/useDatabase';
-import { TENSES, PRONOUNS, VERB_TIERS } from '../lib/constants';
-import type { PracticeCard, TenseConjugations } from '../lib/types';
+import { TENSES, PRONOUNS } from '../lib/constants';
+import { computeGateStatuses, getGateChain, getFrontierIndex, getVerbsForTier } from '../lib/gates';
+import type { PracticeCard, TenseConjugations, InputMode } from '../lib/types';
+import { formatPronounVerb } from '../lib/utils';
 import { db } from '../lib/db';
-
-function getVerbsForTiers(tierIds: number[], allVerbs: string[]): Set<string> {
-  const tieredVerbs = new Set<string>();
-  for (const tier of VERB_TIERS) {
-    if (!tierIds.includes(tier.id)) continue;
-    if (tier.verbs.length === 0) {
-      const otherTierVerbs = new Set(VERB_TIERS.filter((t) => t.verbs.length > 0).flatMap((t) => t.verbs));
-      for (const v of allVerbs) {
-        if (!otherTierVerbs.has(v)) tieredVerbs.add(v);
-      }
-    } else {
-      for (const v of tier.verbs) tieredVerbs.add(v);
-    }
-  }
-  return tieredVerbs;
-}
 
 function normalizeAnswer(s: string): string {
   return s.trim().toLowerCase();
 }
 
-function formatPronounVerb(pronoun: string, verb: string): string {
-  if (pronoun === 'je' && /^[aeéèêëiîïoôuûùühyæœ]/i.test(verb)) {
-    return `j'${verb}`;
-  }
-  return `${pronoun} ${verb}`;
-}
-
 export function Practice() {
   const verbs = useVerbs();
-  const { direction, showInfinitive, tenses, inputMode: savedInputMode, tiers } = usePracticeSettings();
-  const inputMode = direction === 'fr-en' ? 'flashcard' as const : savedInputMode;
+  const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
   const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery();
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
@@ -55,19 +33,46 @@ export function Practice() {
   const [nextReviewDate, setNextReviewDate] = useState<string | null>(null);
   const [typingResult, setTypingResult] = useState<'correct' | 'incorrect' | null>(null);
 
+  const currentCard = cards[currentIndex];
+  const cardMode: InputMode = currentCard?.mode ?? 'flashcard';
+
   useEffect(() => {
     if (!verbs) return;
 
     const buildCards = async () => {
       const allCards: PracticeCard[] = [];
       const today = new Date().toISOString().split('T')[0]!;
-      const allowedVerbs = getVerbsForTiers(tiers, verbs.map((v) => v.infinitive));
+      const allInfinitives = verbs.map((v) => v.infinitive);
       let earliestFuture: string | null = null;
 
-      for (const verb of verbs) {
-        if (!allowedVerbs.has(verb.infinitive)) continue;
+      for (const tense of tenses) {
+        // Compute gate statuses for this tense
+        const statuses = await computeGateStatuses(tense, direction, allInfinitives);
+        const chain = getGateChain(direction);
 
-        for (const tense of tenses) {
+        // Determine the active gate: use override if set, otherwise use frontier
+        const override = gateOverrides[tense];
+        let activeGateIndex: number;
+
+        if (override) {
+          // Find the gate in the chain matching the override
+          activeGateIndex = chain.findIndex(
+            (g) => g.tier === override.tier && g.mode === override.mode
+          );
+          if (activeGateIndex < 0) activeGateIndex = getFrontierIndex(statuses);
+        } else {
+          activeGateIndex = getFrontierIndex(statuses);
+        }
+
+        const activeGate = chain[activeGateIndex]!;
+        // For fr-en direction, force flashcard mode
+        const mode: InputMode = direction === 'fr-en' ? 'flashcard' : activeGate.mode;
+        const tierVerbs = getVerbsForTier(activeGate.tier, allInfinitives);
+        const tierVerbSet = new Set(tierVerbs);
+
+        for (const verb of verbs) {
+          if (!tierVerbSet.has(verb.infinitive)) continue;
+
           const tenseData = verb.tenses[tense];
           if (!tenseData) continue;
 
@@ -75,7 +80,7 @@ export function Practice() {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
 
-            const statId = `${verb.infinitive}_${pronoun}_${tense}`;
+            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}`;
             const stat = await db.stats.get(statId);
 
             if (stat && stat.nextReview > today) {
@@ -93,11 +98,13 @@ export function Practice() {
               french: conjugation.french,
               englishConjugation: conjugation.english,
               statId,
+              mode,
             });
           }
         }
       }
 
+      // Shuffle
       for (let i = allCards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = allCards[i]!;
@@ -113,9 +120,8 @@ export function Practice() {
     };
 
     buildCards();
-  }, [verbs, tenses, tiers]);
+  }, [verbs, tenses, direction, gateOverrides]);
 
-  const currentCard = cards[currentIndex];
   const allDone = !loading && cards.length === 0;
 
   const currentTenseData: TenseConjugations | null = useMemo(() => {
@@ -130,7 +136,6 @@ export function Practice() {
     if (currentIndex < cards.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
-      setCards((prev) => prev.filter((_, i) => i > currentIndex));
       setCurrentIndex(0);
     }
   }, [currentIndex, cards.length, resetFlip]);
@@ -139,13 +144,19 @@ export function Practice() {
     if (!currentCard) return;
     const removed = await recordCorrect(currentCard.statId);
     if (removed) {
-      setCards((prev) => prev.filter((c) => c.statId !== currentCard.statId));
+      setCards((prev) => {
+        const next = prev.filter((c) => c.statId !== currentCard.statId);
+        if (currentIndex >= next.length && next.length > 0) {
+          setCurrentIndex(0);
+        }
+        return next;
+      });
       resetFlip();
       setTypingResult(null);
     } else {
       nextCard();
     }
-  }, [currentCard, recordCorrect, nextCard, resetFlip]);
+  }, [currentCard, recordCorrect, nextCard, resetFlip, currentIndex]);
 
   const handleSwipeLeft = useCallback(async () => {
     if (!currentCard) return;
@@ -172,7 +183,7 @@ export function Practice() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (inputMode === 'typing') {
+      if (cardMode === 'typing') {
         if (e.key === 'Enter' && typingResult) {
           e.preventDefault();
           handleTypingAdvance();
@@ -190,7 +201,7 @@ export function Practice() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [flip, flipped, inputMode, typingResult, handleTypingAdvance]);
+  }, [flip, flipped, cardMode, typingResult, handleTypingAdvance]);
 
   const handleReset = async () => {
     await resetStats();
@@ -199,22 +210,7 @@ export function Practice() {
     window.location.reload();
   };
 
-  const totalCards = useMemo(() => {
-    if (!verbs) return 0;
-    const allowedVerbs = getVerbsForTiers(tiers, verbs.map((v) => v.infinitive));
-    let count = 0;
-    for (const verb of verbs) {
-      if (!allowedVerbs.has(verb.infinitive)) continue;
-      for (const tense of tenses) {
-        const tenseData = verb.tenses[tense];
-        if (!tenseData) continue;
-        for (const pronoun of PRONOUNS) {
-          if (tenseData[pronoun]) count++;
-        }
-      }
-    }
-    return count;
-  }, [verbs, tenses, tiers]);
+  const totalCards = cards.length + sessionStats.correct;
 
   const nextReviewLabel = useMemo(() => {
     if (!nextReviewDate) return null;
@@ -277,8 +273,8 @@ export function Practice() {
       <p className="mt-4 text-2xl font-semibold">
         {direction === 'en-fr'
           ? currentCard.englishConjugation
-          : inputMode === 'typing'
-            ? '___'
+          : cardMode === 'typing'
+            ? `${currentCard.pronoun === 'je' && /^[aeéèêëàâùûüïîôœæh]/i.test(currentCard.french) ? "j'" : currentCard.pronoun + ' '}___`
             : formatPronounVerb(currentCard.pronoun, currentCard.french)}
       </p>
       {direction === 'en-fr' && currentCard.pronoun === 'tu' && (
@@ -287,7 +283,7 @@ export function Practice() {
       {direction === 'en-fr' && currentCard.pronoun === 'vous' && (
         <p className="mt-2 text-xs italic text-slate-400 dark:text-slate-500">plural / formal</p>
       )}
-      {inputMode === 'flashcard' && (
+      {cardMode === 'flashcard' && (
         <p className="mt-6 text-xs text-slate-400 dark:text-slate-500">Tap to reveal</p>
       )}
     </div>
@@ -310,7 +306,7 @@ export function Practice() {
         <ConjugationTable tenseData={currentTenseData} highlightPronoun={currentCard.pronoun} />
       )}
       <p className="mt-4 text-xs text-slate-400 dark:text-slate-500">
-        {inputMode === 'flashcard' ? 'Swipe right if correct, left if not' : 'Press Enter to continue'}
+        {cardMode === 'flashcard' ? 'Swipe right if correct, left if not' : 'Press Enter to continue'}
       </p>
     </div>
   );
@@ -329,7 +325,7 @@ export function Practice() {
       <div className="flex flex-1 flex-col justify-center gap-6 py-4">
         {currentCard && (
           <>
-            {inputMode === 'flashcard' ? (
+            {cardMode === 'flashcard' ? (
               <SwipeContainer
                 ref={swipeRef}
                 enabled={flipped}

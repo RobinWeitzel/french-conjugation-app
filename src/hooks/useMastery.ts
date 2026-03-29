@@ -39,16 +39,17 @@ export function useMastery() {
   }, [getStat]);
 
   const recordIncorrect = useCallback(async (id: string) => {
+    const stat = await getStat(id);
     const today = getToday();
     await db.stats.put({
-      id,
+      ...stat,
       correctCount: 0,
       box: 1,
       nextReview: today,
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-  }, []);
+  }, [getStat]);
 
   const isDue = useCallback(async (id: string): Promise<boolean> => {
     const stat = await db.stats.get(id);
