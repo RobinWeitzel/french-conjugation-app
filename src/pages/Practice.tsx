@@ -148,12 +148,7 @@ export function Practice() {
 
   const handleTypingSubmit = useCallback((answer: string) => {
     if (!currentCard) return;
-    const normalized = normalizeAnswer(answer);
-    const expected = normalizeAnswer(currentCard.french);
-    const pronoun = normalizeAnswer(currentCard.pronoun);
-    // Accept answer with or without the pronoun prefix
-    const stripped = normalized.startsWith(pronoun + ' ') ? normalized.slice(pronoun.length + 1).trimStart() : normalized;
-    const correct = stripped === expected || normalized === expected;
+    const correct = normalizeAnswer(answer) === normalizeAnswer(currentCard.french);
     setTypingResult(correct ? 'correct' : 'incorrect');
     if (!flipped) flip();
   }, [currentCard, flipped, flip]);

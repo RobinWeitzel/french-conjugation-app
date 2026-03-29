@@ -57,7 +57,7 @@ export function TypingInput({ onSubmit, disabled }: TypingInputProps) {
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={disabled}
-          placeholder="Type the conjugation..."
+          placeholder="Verb form only (no pronoun)"
           autoComplete="off"
           autoCapitalize="off"
           autoCorrect="off"
