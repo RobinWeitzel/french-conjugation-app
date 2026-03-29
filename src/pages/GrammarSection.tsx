@@ -41,9 +41,9 @@ export function GrammarSection() {
                 <div key={entryIdx} className="space-y-2">
                   <p className="text-slate-700 dark:text-slate-300">{entry.rule}</p>
 
-                  {entry.examples?.length > 0 && (
+                  {(entry.examples ?? []).length > 0 && (
                     <ul className="space-y-1 pl-4">
-                      {entry.examples.map((ex, exIdx) => (
+                      {(entry.examples ?? []).map((ex, exIdx) => (
                         <li key={exIdx} className="flex flex-col">
                           <span className="font-medium text-indigo-600 dark:text-indigo-400">
                             {ex.fr}
