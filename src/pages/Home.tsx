@@ -47,6 +47,24 @@ export function Home() {
             </p>
           </div>
         </button>
+
+        <button
+          onClick={() => navigate('/grammar')}
+          className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+        >
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500 dark:bg-indigo-500/10 dark:text-indigo-400">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+              <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+              <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286a48.4 48.4 0 0 1 7.666 3.282.75.75 0 0 0 .832 0ZM7.5 12.964v-.11a49.07 49.07 0 0 0-3.32-.665.75.75 0 0 0-.874.654 49.07 49.07 0 0 0-.328 4.647.75.75 0 0 0 .434.706A47.37 47.37 0 0 1 7.5 21.075V12.964Z" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="font-semibold text-slate-900 dark:text-slate-100">Grammar Reference</h2>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+              Browse French grammar rules and examples
+            </p>
+          </div>
+        </button>
       </div>
 
       <div className="mt-auto pt-6">
