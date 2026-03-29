@@ -1,6 +1,7 @@
 import type { TenseKey, Pronoun } from './types';
+import packageJson from '../../package.json';
 
-export const APP_VERSION = '3.1.0';
+export const APP_VERSION = packageJson.version;
 
 export const TENSES: Record<TenseKey, string> = {
   present: 'Présent',

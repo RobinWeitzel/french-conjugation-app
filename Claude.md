@@ -50,24 +50,13 @@ A frontend-only application for practicing French verb conjugation, hosted on Gi
 ```
 
 #### IMPORTANT: Version Management
-**When making ANY changes, ALWAYS update ALL THREE:**
-1. `APP_VERSION` in `shared.js` (e.g., '2.4.0' → '2.4.1')
-2. `CACHE_NAME` in `sw.js` (e.g., 'french-conjugation-v44' → 'french-conjugation-v45')
-3. `version` in `version.json` — **must match `APP_VERSION`**
+**Single source of truth: `version` field in `package.json`.**
 
-`version.json` is never cached by the service worker. It's fetched fresh on every page load to detect if an update is available. If `version.json` differs from `APP_VERSION`, the app shows an update banner.
+When making changes, bump the version in `package.json` (e.g., `"version": "3.1.0"` → `"version": "3.2.0"`). Everything else is automatic:
+- `APP_VERSION` in `src/lib/constants.ts` imports from `package.json`
+- `public/version.json` is generated from `package.json` by the `prebuild` script
 
-This ensures users get the latest version and prevents old cached files from causing issues.
-Current version: `french-conjugation-v44` (increment the number)
-
-Don't forget to also add new files to the `urlsToCache` array!
-
-`version.json` is never cached by the service worker. It's fetched fresh on every page load to detect if an update is available. If `version.json` differs from `APP_VERSION`, the app shows an update banner.
-
-This ensures users get the latest version and prevents old cached files from causing issues.
-Current version: `french-conjugation-v41` (increment the number)
-
-Don't forget to also add new files to the `urlsToCache` array!
+The PWA fetches `version.json` (never cached by SW, `NetworkOnly` policy) on each page load. If it differs from `APP_VERSION`, the app shows an update banner.
 
 #### IndexedDB Schema
 - **Database**: `FrenchConjugationDB` (version 4)
