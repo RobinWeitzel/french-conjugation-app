@@ -1,11 +1,12 @@
 import Dexie, { type EntityTable } from 'dexie';
-import type { Verb, Sentence, Stat, Metadata } from './types';
+import type { Verb, Sentence, Stat, Metadata, Activity } from './types';
 
 const db = new Dexie('FrenchConjugationDB') as Dexie & {
   verbs: EntityTable<Verb, 'infinitive'>;
   sentences: EntityTable<Sentence, 'id'>;
   stats: EntityTable<Stat, 'id'>;
   metadata: EntityTable<Metadata, 'key'>;
+  activity: EntityTable<Activity, 'id'>;
 };
 
 db.version(1).stores({
@@ -55,6 +56,14 @@ db.version(3).stores({
     await tx.table('stats').add({ ...stat, id: newId });
     await tx.table('stats').delete(stat.id);
   }
+});
+
+db.version(4).stores({
+  verbs: 'infinitive',
+  sentences: 'id, category',
+  stats: 'id, nextReview',
+  metadata: 'key',
+  activity: '++id, date',
 });
 
 export { db };
