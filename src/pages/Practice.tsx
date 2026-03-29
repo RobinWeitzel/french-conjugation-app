@@ -22,7 +22,7 @@ function normalizeAnswer(s: string): string {
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery();
+  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery('conjugation');
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
 

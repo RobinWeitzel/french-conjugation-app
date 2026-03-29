@@ -15,7 +15,7 @@ export function Listening() {
   const { categories, speed, setSpeed } = useListeningSettings();
   const sentences = useSentences(categories);
   const audioCategories = useAudioCategories();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery();
+  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery('listening');
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
   const { playAudio, stop, playing } = useAudio(speed);

@@ -13,7 +13,7 @@ function addDays(dateStr: string, days: number): string {
   return d.toISOString().split('T')[0]!;
 }
 
-export function useMastery() {
+export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
   const [sessionStats, setSessionStats] = useState<SessionStats>({ correct: 0, incorrect: 0 });
 
   const getStat = useCallback(async (id: string): Promise<Stat> => {
@@ -34,9 +34,10 @@ export function useMastery() {
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, correct: s.correct + 1 }));
+    await db.activity.add({ date: today, mode, correct: true });
     // "removed from session" when moved to box 2+ (has future review date)
     return interval > 0;
-  }, [getStat]);
+  }, [getStat, mode]);
 
   const recordIncorrect = useCallback(async (id: string) => {
     const stat = await getStat(id);
@@ -49,7 +50,8 @@ export function useMastery() {
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-  }, [getStat]);
+    await db.activity.add({ date: getToday(), mode, correct: false });
+  }, [getStat, mode]);
 
   const isDue = useCallback(async (id: string): Promise<boolean> => {
     const stat = await db.stats.get(id);
