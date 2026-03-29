@@ -49,7 +49,7 @@ export interface Metadata {
   value: string;
 }
 
-export type TenseKey = 'present' | 'passe_compose' | 'imparfait' | 'futur' | 'conditionnel';
+export type TenseKey = 'present' | 'passe_compose' | 'imparfait' | 'futur' | 'conditionnel' | 'plus_que_parfait' | 'imperatif' | 'subjonctif' | 'futur_proche' | 'passe_recent' | 'voix_passive';
 export type Pronoun = 'je' | 'tu' | 'il' | 'nous' | 'vous' | 'ils';
 export type Direction = 'en-fr' | 'fr-en';
 
