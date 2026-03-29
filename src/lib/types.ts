@@ -45,6 +45,13 @@ export interface Stat {
   lastPracticed: string;
 }
 
+export interface Activity {
+  id?: number;
+  date: string;       // "YYYY-MM-DD"
+  mode: 'conjugation' | 'listening';
+  correct: boolean;
+}
+
 export interface Metadata {
   key: string;
   value: string;
