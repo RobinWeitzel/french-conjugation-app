@@ -22,9 +22,15 @@ function normalizeAnswer(s: string): string {
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery('conjugation');
+  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('conjugation');
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
+  const lastSwipeRef = useRef<{
+    card: PracticeCard;
+    index: number;
+    wasRemoved: boolean;
+  } | null>(null);
+  const [undoAvailable, setUndoAvailable] = useState(false);
 
   const [cards, setCards] = useState<PracticeCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -142,8 +148,10 @@ export function Practice() {
 
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
+    lastSwipeRef.current = { card: currentCard, index: currentIndex, wasRemoved: false };
     const removed = await recordCorrect(currentCard.statId);
     if (removed) {
+      lastSwipeRef.current.wasRemoved = true;
       setCards((prev) => {
         const next = prev.filter((c) => c.statId !== currentCard.statId);
         if (currentIndex >= next.length && next.length > 0) {
@@ -156,13 +164,43 @@ export function Practice() {
     } else {
       nextCard();
     }
+    setUndoAvailable(true);
   }, [currentCard, recordCorrect, nextCard, resetFlip, currentIndex]);
 
   const handleSwipeLeft = useCallback(async () => {
     if (!currentCard) return;
+    lastSwipeRef.current = { card: currentCard, index: currentIndex, wasRemoved: false };
     await recordIncorrect(currentCard.statId);
     nextCard();
-  }, [currentCard, recordIncorrect, nextCard]);
+    setUndoAvailable(true);
+  }, [currentCard, currentIndex, recordIncorrect, nextCard]);
+
+  const handleUndo = useCallback(async () => {
+    const lastSwipe = lastSwipeRef.current;
+    if (!lastSwipe) return;
+
+    const action = await undo();
+    if (!action) return;
+
+    if (lastSwipe.wasRemoved) {
+      setCards((prev) => {
+        const next = [...prev];
+        const insertAt = Math.min(lastSwipe.index, next.length);
+        next.splice(insertAt, 0, lastSwipe.card);
+        return next;
+      });
+      setCurrentIndex(lastSwipe.index);
+    } else {
+      setCurrentIndex(lastSwipe.index);
+    }
+
+    resetFlip();
+    setTimeout(() => flip(), 50);
+
+    setTypingResult(null);
+    lastSwipeRef.current = null;
+    setUndoAvailable(false);
+  }, [undo, resetFlip, flip]);
 
   const handleTypingSubmit = useCallback((answer: string) => {
     if (!currentCard) return;
@@ -179,6 +217,8 @@ export function Practice() {
     } else {
       await handleSwipeLeft();
     }
+    lastSwipeRef.current = null;
+    setUndoAvailable(false);
   }, [typingResult, currentCard, handleSwipeRight, handleSwipeLeft]);
 
   useEffect(() => {
@@ -359,7 +399,12 @@ export function Practice() {
           </>
         )}
 
-        <StatsBar stats={sessionStats} remaining={cards.length} total={totalCards} />
+        <StatsBar
+          stats={sessionStats}
+          remaining={cards.length}
+          total={totalCards}
+          onUndo={undoAvailable && cardMode === 'flashcard' ? handleUndo : undefined}
+        />
       </div>
     </PageLayout>
   );
