@@ -15,10 +15,17 @@ export function Listening() {
   const { categories, speed, setSpeed } = useListeningSettings();
   const sentences = useSentences(categories);
   const audioCategories = useAudioCategories();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession } = useMastery('listening');
+  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('listening');
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
   const { playAudio, stop, playing } = useAudio(speed);
+
+  const lastSwipeRef = useRef<{
+    card: ListeningCard;
+    index: number;
+    wasRemoved: boolean;
+  } | null>(null);
+  const [undoAvailable, setUndoAvailable] = useState(false);
 
   const [cards, setCards] = useState<ListeningCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -93,8 +100,10 @@ export function Listening() {
 
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
+    lastSwipeRef.current = { card: currentCard, index: currentIndex, wasRemoved: false };
     const removedFromSession = await recordCorrect(currentCard.statId);
     if (removedFromSession) {
+      lastSwipeRef.current.wasRemoved = true;
       setCards((prev) => {
         const next = prev.filter((c) => c.statId !== currentCard.statId);
         if (currentIndex >= next.length && next.length > 0) {
@@ -107,13 +116,43 @@ export function Listening() {
     } else {
       nextCard();
     }
-  }, [currentCard, recordCorrect, nextCard, resetFlip, stop]);
+    setUndoAvailable(true);
+  }, [currentCard, currentIndex, recordCorrect, nextCard, resetFlip, stop]);
 
   const handleSwipeLeft = useCallback(async () => {
     if (!currentCard) return;
+    lastSwipeRef.current = { card: currentCard, index: currentIndex, wasRemoved: false };
     await recordIncorrect(currentCard.statId);
     nextCard();
-  }, [currentCard, recordIncorrect, nextCard]);
+    setUndoAvailable(true);
+  }, [currentCard, currentIndex, recordIncorrect, nextCard]);
+
+  const handleUndo = useCallback(async () => {
+    const lastSwipe = lastSwipeRef.current;
+    if (!lastSwipe) return;
+
+    const action = await undo();
+    if (!action) return;
+
+    if (lastSwipe.wasRemoved) {
+      setCards((prev) => {
+        const next = [...prev];
+        const insertAt = Math.min(lastSwipe.index, next.length);
+        next.splice(insertAt, 0, lastSwipe.card);
+        return next;
+      });
+      setCurrentIndex(lastSwipe.index);
+    } else {
+      setCurrentIndex(lastSwipe.index);
+    }
+
+    stop();
+    resetFlip();
+    setTimeout(() => flip(), 50);
+
+    lastSwipeRef.current = null;
+    setUndoAvailable(false);
+  }, [undo, resetFlip, flip, stop]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -260,7 +299,12 @@ export function Listening() {
           </SwipeContainer>
         )}
 
-        <StatsBar stats={sessionStats} remaining={cards.length} total={totalCards} />
+        <StatsBar
+          stats={sessionStats}
+          remaining={cards.length}
+          total={totalCards}
+          onUndo={undoAvailable ? handleUndo : undefined}
+        />
       </div>
     </PageLayout>
   );
