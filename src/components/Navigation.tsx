@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 interface NavigationProps {
   title: string;
   rightElement?: React.ReactNode;
+  backTo?: string;
 }
 
-export function Navigation({ title, rightElement }: NavigationProps) {
+export function Navigation({ title, rightElement, backTo }: NavigationProps) {
   const navigate = useNavigate();
 
   return (
     <div className="flex items-center justify-between">
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate(backTo ?? '/')}
         className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
         aria-label="Go back"
       >

@@ -184,7 +184,7 @@ export function Listening() {
   if (loading) {
     return (
       <PageLayout>
-        <Navigation title="Listening" />
+        <Navigation title="Listening" backTo="/listening-setup" />
         <div className="flex flex-1 items-center justify-center">
           <p className="text-slate-500 dark:text-slate-400">Loading...</p>
         </div>
@@ -195,7 +195,7 @@ export function Listening() {
   if (allDone) {
     return (
       <PageLayout>
-        <Navigation title="Listening" />
+        <Navigation title="Listening" backTo="/listening-setup" />
         <div className="flex flex-1 flex-col items-center justify-center gap-6">
           <div className="text-center">
             <p className="text-4xl">&#127881;</p>
@@ -220,6 +220,7 @@ export function Listening() {
     <PageLayout>
       <Navigation
         title="Listening"
+        backTo="/listening-setup"
         rightElement={
           <span className="text-sm text-slate-500 dark:text-slate-400">
             {cards.length} left

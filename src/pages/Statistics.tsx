@@ -41,8 +41,21 @@ function ActivityChart({ data }: { data: StatisticsData['dailyActivity'] }) {
           const listenHeight = (day.listening / maxCount) * 90;
           const dayLabel = new Date(day.date + 'T00:00:00').toLocaleDateString('en', { weekday: 'narrow' });
 
+          const total = day.conjugation + day.listening;
+
           return (
             <g key={day.date}>
+              {/* Count label above bar */}
+              {total > 0 && (
+                <text
+                  x={x + 10}
+                  y={100 - totalHeight - 3}
+                  textAnchor="middle"
+                  className="fill-slate-500 text-[7px] dark:fill-slate-400"
+                >
+                  {total}
+                </text>
+              )}
               {/* Listening bar (bottom) */}
               <rect
                 x={x + 2}

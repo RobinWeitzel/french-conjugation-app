@@ -266,7 +266,7 @@ export function Practice() {
   if (loading) {
     return (
       <PageLayout>
-        <Navigation title="Practice" />
+        <Navigation title="Practice" backTo="/practice-setup" />
         <div className="flex flex-1 items-center justify-center">
           <p className="text-slate-500 dark:text-slate-400">Loading...</p>
         </div>
@@ -277,7 +277,7 @@ export function Practice() {
   if (allDone) {
     return (
       <PageLayout>
-        <Navigation title="Practice" />
+        <Navigation title="Practice" backTo="/practice-setup" />
         <div className="flex flex-1 flex-col items-center justify-center gap-6">
           <div className="text-center">
             <p className="text-4xl">{hasScheduledCards ? '✅' : '🎉'}</p>
@@ -355,6 +355,7 @@ export function Practice() {
     <PageLayout>
       <Navigation
         title="Practice"
+        backTo="/practice-setup"
         rightElement={
           <span className="text-sm text-slate-500 dark:text-slate-400">
             {cards.length} left

@@ -68,7 +68,7 @@ export function GrammarSection() {
   if (!section) {
     return (
       <PageLayout>
-        <Navigation title="Not Found" />
+        <Navigation title="Not Found" backTo="/grammar" />
         <div className="mt-12 text-center">
           <p className="text-slate-600 dark:text-slate-400">Section not found.</p>
           <Link
@@ -84,7 +84,7 @@ export function GrammarSection() {
 
   return (
     <PageLayout>
-      <Navigation title={section.title} />
+      <Navigation title={section.title} backTo="/grammar" />
       <div className="mt-6 space-y-2">
         {section.topics.map((topic) => {
           const isOpen = openTopics.has(topic.id);
