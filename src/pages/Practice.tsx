@@ -155,7 +155,8 @@ export function Practice() {
 
   const handleTypingSubmit = useCallback((answer: string) => {
     if (!currentCard) return;
-    const correct = normalizeAnswer(answer) === normalizeAnswer(currentCard.french);
+    const expected = normalizeAnswer(formatPronounVerb(currentCard.pronoun, currentCard.french));
+    const correct = normalizeAnswer(answer) === expected;
     setTypingResult(correct ? 'correct' : 'incorrect');
     if (!flipped) flip();
   }, [currentCard, flipped, flip]);
@@ -277,7 +278,7 @@ export function Practice() {
         {direction === 'en-fr'
           ? currentCard.englishConjugation
           : inputMode === 'typing'
-            ? `${currentCard.pronoun === 'je' && /^[aeéèêëiîïoôuûùühyæœ]/i.test(currentCard.french) ? "j'" : currentCard.pronoun} ___`
+            ? '___'
             : formatPronounVerb(currentCard.pronoun, currentCard.french)}
       </p>
       {direction === 'en-fr' && currentCard.pronoun === 'tu' && (
