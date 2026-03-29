@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { TenseKey, Direction } from '../lib/types';
+import type { TenseKey, Direction, InputMode } from '../lib/types';
 
 function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
   const [state, setState] = useState<T>(() => {
@@ -27,8 +27,16 @@ export function usePracticeSettings() {
   const [direction, setDirection] = useLocalStorage<Direction>('practiceDirection', 'en-fr');
   const [showInfinitive, setShowInfinitive] = useLocalStorage<boolean>('practiceShowInfinitive', true);
   const [tenses, setTenses] = useLocalStorage<TenseKey[]>('practiceTenses', ['present']);
+  const [inputMode, setInputMode] = useLocalStorage<InputMode>('practiceInputMode', 'flashcard');
+  const [tiers, setTiers] = useLocalStorage<number[]>('practiceTiers', [1]);
 
-  return { direction, setDirection, showInfinitive, setShowInfinitive, tenses, setTenses };
+  return {
+    direction, setDirection,
+    showInfinitive, setShowInfinitive,
+    tenses, setTenses,
+    inputMode, setInputMode,
+    tiers, setTiers,
+  };
 }
 
 export function useListeningSettings() {

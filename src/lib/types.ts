@@ -40,7 +40,8 @@ export interface SentencesData {
 export interface Stat {
   id: string;
   correctCount: number;
-  mastered: boolean;
+  box: number;          // 1-5 Leitner box
+  nextReview: string;   // ISO date string "YYYY-MM-DD"
   lastPracticed: string;
 }
 
@@ -52,6 +53,14 @@ export interface Metadata {
 export type TenseKey = 'present' | 'passe_compose' | 'imparfait' | 'futur' | 'conditionnel' | 'plus_que_parfait' | 'imperatif' | 'subjonctif' | 'futur_proche' | 'passe_recent' | 'voix_passive';
 export type Pronoun = 'je' | 'tu' | 'il' | 'nous' | 'vous' | 'ils';
 export type Direction = 'en-fr' | 'fr-en';
+export type InputMode = 'flashcard' | 'typing';
+
+export interface VerbTier {
+  id: number;
+  name: string;
+  description: string;
+  verbs: string[];  // infinitives
+}
 
 export interface PracticeCard {
   infinitive: string;

@@ -33,7 +33,8 @@ export function Listening() {
       for (const sentence of sentences) {
         const statId = `listening_${sentence.id}`;
         const stat = await db.stats.get(statId);
-        if (stat?.mastered) continue;
+        const today = new Date().toISOString().split('T')[0]!;
+        if (stat && stat.nextReview > today) continue;
 
         allCards.push({
           id: sentence.id,
@@ -93,8 +94,8 @@ export function Listening() {
 
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
-    const mastered = await recordCorrect(currentCard.statId);
-    if (mastered) {
+    const removedFromSession = await recordCorrect(currentCard.statId);
+    if (removedFromSession) {
       setCards((prev) => prev.filter((c) => c.statId !== currentCard.statId));
       stop();
       resetFlip();
