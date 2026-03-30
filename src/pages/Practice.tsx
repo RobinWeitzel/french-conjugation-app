@@ -20,6 +20,37 @@ function normalizeAnswer(s: string): string {
   return s.trim().toLowerCase();
 }
 
+/** After shuffling, rearrange so consecutive cards don't share the same infinitive */
+function spreadByInfinitive(cards: PracticeCard[]): void {
+  for (let i = 1; i < cards.length; i++) {
+    if (cards[i]!.infinitive === cards[i - 1]!.infinitive) {
+      for (let j = i + 1; j < cards.length; j++) {
+        if (cards[j]!.infinitive !== cards[i - 1]!.infinitive) {
+          const temp = cards[i]!;
+          cards[i] = cards[j]!;
+          cards[j] = temp;
+          break;
+        }
+      }
+    }
+  }
+}
+
+/** Swap the card at index with a different-infinitive card if it matches the given infinitive */
+function swapToAvoidVerb(cards: PracticeCard[], index: number, infinitive: string): PracticeCard[] {
+  if (cards.length <= 1 || cards[index]?.infinitive !== infinitive) return cards;
+  const next = [...cards];
+  for (let j = 1; j < next.length; j++) {
+    const k = (index + j) % next.length;
+    if (next[k]!.infinitive !== infinitive) {
+      next[index] = cards[k]!;
+      next[k] = cards[index]!;
+      return next;
+    }
+  }
+  return cards;
+}
+
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
@@ -132,6 +163,9 @@ export function Practice() {
         allCards[j] = temp;
       }
 
+      // Spread out cards so the same verb doesn't appear consecutively
+      spreadByInfinitive(allCards);
+
       setCards(allCards);
       setCurrentIndex(0);
       setHasScheduledCards(earliestFuture !== null);
@@ -174,12 +208,12 @@ export function Practice() {
     stop();
     resetFlip();
     setTypingResult(null);
-    if (currentIndex < cards.length - 1) {
-      setCurrentIndex((i) => i + 1);
-    } else {
-      setCurrentIndex(0);
+    const nextIdx = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
+    if (currentCard && cards[nextIdx]?.infinitive === currentCard.infinitive) {
+      setCards(prev => swapToAvoidVerb(prev, nextIdx, currentCard.infinitive));
     }
-  }, [currentIndex, cards.length, resetFlip, stop]);
+    setCurrentIndex(nextIdx);
+  }, [currentIndex, cards, currentCard, resetFlip, stop]);
 
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
@@ -189,11 +223,14 @@ export function Practice() {
       lastSwipeRef.current.wasRemoved = true;
       stop();
       setCards((prev) => {
-        const next = prev.filter((c) => c.statId !== currentCard.statId);
-        if (currentIndex >= next.length && next.length > 0) {
+        const filtered = prev.filter((c) => c.statId !== currentCard.statId);
+        if (filtered.length === 0) return filtered;
+        let newIdx = currentIndex;
+        if (currentIndex >= filtered.length) {
+          newIdx = 0;
           setCurrentIndex(0);
         }
-        return next;
+        return swapToAvoidVerb(filtered, newIdx, currentCard.infinitive);
       });
       resetFlip();
       setTypingResult(null);
