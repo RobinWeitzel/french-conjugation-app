@@ -9,6 +9,7 @@ import { TypingInput } from '../components/TypingInput';
 import { useMastery } from '../hooks/useMastery';
 import { usePracticeSettings } from '../hooks/useSettings';
 import { useVerbs } from '../hooks/useDatabase';
+import { useAudio } from '../hooks/useAudio';
 import { TENSES, PRONOUNS } from '../lib/constants';
 import { computeGateStatuses, getGateChain, getFrontierIndex, getVerbsForTier } from '../lib/gates';
 import type { PracticeCard, TenseConjugations, InputMode } from '../lib/types';
@@ -25,6 +26,19 @@ export function Practice() {
   const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('conjugation');
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
+  const { playAudio, stop, playing } = useAudio(1);
+  const [ttsMuted, setTtsMuted] = useState(() => {
+    const stored = localStorage.getItem('practiceTtsMuted');
+    return stored === 'true';
+  });
+  const toggleMute = useCallback(() => {
+    setTtsMuted((prev) => {
+      const next = !prev;
+      localStorage.setItem('practiceTtsMuted', JSON.stringify(next));
+      if (next) stop();
+      return next;
+    });
+  }, [stop]);
   const lastSwipeRef = useRef<{
     card: PracticeCard;
     index: number;
@@ -136,7 +150,28 @@ export function Practice() {
     return verb?.tenses[currentCard.tense] ?? null;
   }, [currentCard, verbs]);
 
+  const playFrench = useCallback(() => {
+    if (!currentCard) return;
+    playAudio(formatPronounVerb(currentCard.pronoun, currentCard.french));
+  }, [currentCard, playAudio]);
+
+  // Auto-play TTS when French text becomes visible
+  // fr-en: French is on the front, play on card load
+  // en-fr: French is on the back, play on flip
+  useEffect(() => {
+    if (!currentCard || ttsMuted) return;
+    if (direction === 'fr-en' && !flipped) {
+      const timeout = setTimeout(playFrench, 300);
+      return () => clearTimeout(timeout);
+    }
+    if (direction === 'en-fr' && flipped) {
+      const timeout = setTimeout(playFrench, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, currentCard, direction, flipped, ttsMuted, playFrench]);
+
   const nextCard = useCallback(() => {
+    stop();
     resetFlip();
     setTypingResult(null);
     if (currentIndex < cards.length - 1) {
@@ -144,7 +179,7 @@ export function Practice() {
     } else {
       setCurrentIndex(0);
     }
-  }, [currentIndex, cards.length, resetFlip]);
+  }, [currentIndex, cards.length, resetFlip, stop]);
 
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
@@ -152,6 +187,7 @@ export function Practice() {
     const removed = await recordCorrect(currentCard.statId);
     if (removed) {
       lastSwipeRef.current.wasRemoved = true;
+      stop();
       setCards((prev) => {
         const next = prev.filter((c) => c.statId !== currentCard.statId);
         if (currentIndex >= next.length && next.length > 0) {
@@ -302,6 +338,28 @@ export function Practice() {
     );
   }
 
+  const ttsPlayButton = (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        if (playing) stop();
+        else playFrench();
+      }}
+      className="inline-flex size-7 items-center justify-center rounded-full bg-indigo-50 text-indigo-500 transition-colors hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-400 dark:hover:bg-indigo-500/20"
+      aria-label={playing ? 'Stop audio' : 'Play audio'}
+    >
+      {playing ? (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
+          <path fillRule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" clipRule="evenodd" />
+        </svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
+          <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
+        </svg>
+      )}
+    </button>
+  );
+
   const frontContent = currentCard && (
     <div className="text-center">
       {showInfinitive && (
@@ -310,13 +368,22 @@ export function Practice() {
         </p>
       )}
       <p className="text-xs text-slate-400 dark:text-slate-500">{TENSES[currentCard.tense]}</p>
-      <p className="mt-4 text-2xl font-semibold">
-        {direction === 'en-fr'
-          ? currentCard.englishConjugation
-          : cardMode === 'typing'
-            ? `${currentCard.pronoun === 'je' && /^[aeéèêëàâùûüïîôœæh]/i.test(currentCard.french) ? "j'" : currentCard.pronoun + ' '}___`
-            : formatPronounVerb(currentCard.pronoun, currentCard.french)}
-      </p>
+      {direction === 'fr-en' && cardMode !== 'typing' ? (
+        <div className="mt-4 flex items-center justify-center gap-2">
+          <p className="text-2xl font-semibold">
+            {formatPronounVerb(currentCard.pronoun, currentCard.french)}
+          </p>
+          {ttsPlayButton}
+        </div>
+      ) : (
+        <p className="mt-4 text-2xl font-semibold">
+          {direction === 'en-fr'
+            ? currentCard.englishConjugation
+            : cardMode === 'typing'
+              ? `${currentCard.pronoun === 'je' && /^[aeéèêëàâùûüïîôœæh]/i.test(currentCard.french) ? "j'" : currentCard.pronoun + ' '}___`
+              : formatPronounVerb(currentCard.pronoun, currentCard.french)}
+        </p>
+      )}
       {direction === 'en-fr' && currentCard.pronoun === 'tu' && (
         <p className="mt-2 text-xs italic text-slate-400 dark:text-slate-500">singular / informal</p>
       )}
@@ -337,11 +404,18 @@ export function Practice() {
         </p>
       )}
       <p className="text-xs text-slate-400 dark:text-slate-500">{TENSES[currentCard.tense]}</p>
-      <p className="mt-4 text-2xl font-semibold">
-        {direction === 'en-fr'
-          ? formatPronounVerb(currentCard.pronoun, currentCard.french)
-          : currentCard.englishConjugation}
-      </p>
+      {direction === 'en-fr' ? (
+        <div className="mt-4 flex items-center justify-center gap-2">
+          <p className="text-2xl font-semibold">
+            {formatPronounVerb(currentCard.pronoun, currentCard.french)}
+          </p>
+          {ttsPlayButton}
+        </div>
+      ) : (
+        <p className="mt-4 text-2xl font-semibold">
+          {currentCard.englishConjugation}
+        </p>
+      )}
       {currentTenseData && (
         <ConjugationTable tenseData={currentTenseData} highlightPronoun={currentCard.pronoun} />
       )}
@@ -357,9 +431,24 @@ export function Practice() {
         title="Practice"
         backTo="/practice-setup"
         rightElement={
-          <span className="text-sm text-slate-500 dark:text-slate-400">
-            {cards.length} left
-          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleMute}
+              className="rounded-lg p-1 text-slate-500 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700"
+              aria-label={ttsMuted ? 'Unmute' : 'Mute'}
+            >
+              {ttsMuted ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM17.78 9.22a.75.75 0 1 0-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 1 0 1.06-1.06L20.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-1.72 1.72-1.72-1.72Z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z" />
+                  <path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z" />
+                </svg>
+              )}
+            </button>
+          </div>
         }
       />
 
