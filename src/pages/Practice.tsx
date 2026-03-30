@@ -131,7 +131,7 @@ export function Practice() {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
 
-            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}`;
+            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}_${direction}`;
             const stat = await db.stats.get(statId);
 
             if (stat && stat.nextReview > today) {
