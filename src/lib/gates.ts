@@ -58,10 +58,10 @@ export async function computeGateStatuses(
           const verb = verbMap.get(infinitive);
           if (verb && !verb.tenses[tense]?.[pronoun]) continue;
         }
-        const statId = `${infinitive}_${pronoun}_${tense}_${gate.mode}_${direction}`;
+        const statId = `${infinitive}_${pronoun}_${tense}_${gate.mode}`;
         total++;
         const stat = await db.stats.get(statId);
-        if (stat && stat.box >= TIER_UNLOCK_MIN_BOX) {
+        if (stat && stat.box >= TIER_UNLOCK_MIN_BOX && (stat.earnedDirections ?? []).includes(direction)) {
           atLevel++;
         }
       }

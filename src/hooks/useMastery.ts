@@ -23,18 +23,23 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
     wasCorrect: boolean;
   } | null>(null);
 
-  const recordCorrect = useCallback(async (id: string): Promise<boolean> => {
+  const recordCorrect = useCallback(async (id: string, direction?: string): Promise<boolean> => {
     const previousStat = (await db.stats.get(id)) ?? null;
     const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
     const today = getToday();
     const newBox = Math.min(stat.box + 1, MAX_BOX);
     const interval = BOX_INTERVALS[newBox] ?? 30;
+    const earnedDirections = [...(stat.earnedDirections ?? [])];
+    if (direction && !earnedDirections.includes(direction)) {
+      earnedDirections.push(direction);
+    }
     await db.stats.put({
       id,
       correctCount: stat.correctCount + 1,
       box: newBox,
       nextReview: addDays(today, interval),
       lastPracticed: new Date().toISOString(),
+      earnedDirections,
     });
     setSessionStats((s) => ({ ...s, correct: s.correct + 1 }));
     const activityId = await db.activity.add({ date: today, mode, correct: true });
@@ -53,6 +58,7 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
       box: 1,
       nextReview: today,
       lastPracticed: new Date().toISOString(),
+      earnedDirections: [],
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
     const activityId = await db.activity.add({ date: today, mode, correct: false });

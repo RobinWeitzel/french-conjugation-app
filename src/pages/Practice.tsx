@@ -131,7 +131,7 @@ export function Practice() {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
 
-            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}_${direction}`;
+            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}`;
             const stat = await db.stats.get(statId);
 
             if (stat && stat.nextReview > today) {
@@ -218,7 +218,7 @@ export function Practice() {
   const handleSwipeRight = useCallback(async () => {
     if (!currentCard) return;
     lastSwipeRef.current = { card: currentCard, index: currentIndex, wasRemoved: false };
-    const removed = await recordCorrect(currentCard.statId);
+    const removed = await recordCorrect(currentCard.statId, direction);
     if (removed) {
       lastSwipeRef.current.wasRemoved = true;
       stop();
@@ -238,7 +238,7 @@ export function Practice() {
       nextCard();
     }
     setUndoAvailable(true);
-  }, [currentCard, recordCorrect, nextCard, resetFlip, currentIndex]);
+  }, [currentCard, recordCorrect, nextCard, resetFlip, currentIndex, direction]);
 
   const handleSwipeLeft = useCallback(async () => {
     if (!currentCard) return;

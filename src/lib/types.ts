@@ -43,6 +43,7 @@ export interface Stat {
   box: number;          // 1-5 Leitner box
   nextReview: string;   // ISO date string "YYYY-MM-DD"
   lastPracticed: string;
+  earnedDirections?: string[];  // directions that have earned mastery for this stat
 }
 
 export interface Activity {

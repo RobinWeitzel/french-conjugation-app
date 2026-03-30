@@ -66,4 +66,12 @@ db.version(4).stores({
   activity: '++id, date',
 });
 
+db.version(5).stores({
+  verbs: 'infinitive',
+  sentences: 'id, category',
+  stats: 'id, nextReview',
+  metadata: 'key',
+  activity: '++id, date',
+});
+
 export { db };
