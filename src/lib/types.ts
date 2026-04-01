@@ -50,6 +50,7 @@ export interface Activity {
   date: string;       // "YYYY-MM-DD"
   mode: 'conjugation' | 'listening';
   correct: boolean;
+  direction?: Direction;  // track which direction was practiced
 }
 
 export interface Metadata {
@@ -90,6 +91,16 @@ export interface GateStatus {
   unlocked: boolean;
   completed: boolean;
   progress: { current: number; total: number };
+  boxDistribution: { box1: number; box2: number; box3plus: number };
+}
+
+export interface GateCompletion {
+  id: string;          // "present_enfr_1_flashcard"
+  tense: TenseKey;
+  direction: Direction;
+  tier: number;
+  mode: InputMode;
+  completedAt: string; // ISO date
 }
 
 export interface ListeningCard {
