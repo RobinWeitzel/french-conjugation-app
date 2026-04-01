@@ -33,7 +33,7 @@ export const BOX_INTERVALS: Record<number, number> = {
 
 export const MAX_BOX = 5;
 export const TIER_UNLOCK_THRESHOLD = 0.7; // 70%
-export const TIER_UNLOCK_MIN_BOX = 2;
+export const TIER_UNLOCK_MIN_BOX = 3;
 
 export const ACCENT_CHARS = ['é', 'è', 'ê', 'ë', 'à', 'â', 'ù', 'û', 'ü', 'ï', 'î', 'ô', 'ç', 'æ', 'œ'] as const;
 
