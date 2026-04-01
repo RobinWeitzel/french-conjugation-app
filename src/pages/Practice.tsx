@@ -83,7 +83,7 @@ export function Practice() {
   const [hasScheduledCards, setHasScheduledCards] = useState(false);
   const [nextReviewDate, setNextReviewDate] = useState<string | null>(null);
   const [typingResult, setTypingResult] = useState<'correct' | 'incorrect' | null>(null);
-  const [gateTotalCards, setGateTotalCards] = useState(0);
+  const [initialDueCount, setInitialDueCount] = useState(0);
 
   const currentCard = cards[currentIndex];
   const cardMode: InputMode = currentCard?.mode ?? 'flashcard';
@@ -96,7 +96,6 @@ export function Practice() {
       const today = new Date().toISOString().split('T')[0]!;
       const allInfinitives = verbs.map((v) => v.infinitive);
       let earliestFuture: string | null = null;
-      let totalInGate = 0;
 
       for (const tense of tenses) {
         // Compute gate statuses for this tense
@@ -133,7 +132,6 @@ export function Practice() {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
 
-            totalInGate++;
             const statId = makeStatId(verb.infinitive, pronoun, tense, mode, direction);
             const stat = await db.stats.get(statId);
 
@@ -171,7 +169,7 @@ export function Practice() {
 
       setCards(allCards);
       setCurrentIndex(0);
-      setGateTotalCards(totalInGate);
+      setInitialDueCount(allCards.length);
       setHasScheduledCards(earliestFuture !== null);
       setNextReviewDate(earliestFuture);
       setLoading(false);
@@ -327,7 +325,7 @@ export function Practice() {
     window.location.reload();
   };
 
-  const totalCards = gateTotalCards;
+  const totalCards = initialDueCount;
 
   const nextReviewLabel = useMemo(() => {
     if (!nextReviewDate) return null;
