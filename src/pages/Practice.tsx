@@ -11,7 +11,7 @@ import { usePracticeSettings } from '../hooks/useSettings';
 import { useVerbs } from '../hooks/useDatabase';
 import { useAudio } from '../hooks/useAudio';
 import { TENSES, PRONOUNS } from '../lib/constants';
-import { computeGateStatuses, getGateChain, getFrontierIndex, getVerbsForTier } from '../lib/gates';
+import { computeGateStatuses, getGateChain, getFrontierIndex, getVerbsForTier, makeStatId } from '../lib/gates';
 import type { PracticeCard, TenseConjugations, InputMode } from '../lib/types';
 import { formatPronounVerb } from '../lib/utils';
 import { db } from '../lib/db';
@@ -54,7 +54,7 @@ function swapToAvoidVerb(cards: PracticeCard[], index: number, infinitive: strin
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('conjugation');
+  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('conjugation', direction);
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
   const { playAudio, stop, playing } = useAudio(1);
@@ -83,7 +83,7 @@ export function Practice() {
   const [hasScheduledCards, setHasScheduledCards] = useState(false);
   const [nextReviewDate, setNextReviewDate] = useState<string | null>(null);
   const [typingResult, setTypingResult] = useState<'correct' | 'incorrect' | null>(null);
-  const [gateTotalCards, setGateTotalCards] = useState(0);
+  const [initialDueCount, setInitialDueCount] = useState(0);
 
   const currentCard = cards[currentIndex];
   const cardMode: InputMode = currentCard?.mode ?? 'flashcard';
@@ -96,7 +96,6 @@ export function Practice() {
       const today = new Date().toISOString().split('T')[0]!;
       const allInfinitives = verbs.map((v) => v.infinitive);
       let earliestFuture: string | null = null;
-      let totalInGate = 0;
 
       for (const tense of tenses) {
         // Compute gate statuses for this tense
@@ -133,8 +132,7 @@ export function Practice() {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
 
-            totalInGate++;
-            const statId = `${verb.infinitive}_${pronoun}_${tense}_${mode}`;
+            const statId = makeStatId(verb.infinitive, pronoun, tense, mode, direction);
             const stat = await db.stats.get(statId);
 
             if (stat && stat.nextReview > today) {
@@ -171,7 +169,7 @@ export function Practice() {
 
       setCards(allCards);
       setCurrentIndex(0);
-      setGateTotalCards(totalInGate);
+      setInitialDueCount(allCards.length);
       setHasScheduledCards(earliestFuture !== null);
       setNextReviewDate(earliestFuture);
       setLoading(false);
@@ -327,7 +325,7 @@ export function Practice() {
     window.location.reload();
   };
 
-  const totalCards = gateTotalCards;
+  const totalCards = initialDueCount;
 
   const nextReviewLabel = useMemo(() => {
     if (!nextReviewDate) return null;

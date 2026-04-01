@@ -27,7 +27,7 @@ export function StatsBar({ stats, remaining, total, onUndo }: StatsBarProps) {
       </div>
       <div className="flex gap-4">
         {attempted > 0 && <span>{accuracy}%</span>}
-        <span>{remaining}/{total} left</span>
+        <span>{remaining}/{total} due</span>
       </div>
     </div>
   );
