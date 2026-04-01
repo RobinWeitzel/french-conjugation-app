@@ -1,6 +1,6 @@
 import { db } from './db';
 import { PRONOUNS, VERB_TIERS, TIER_UNLOCK_THRESHOLD, TIER_UNLOCK_MIN_BOX } from './constants';
-import type { Gate, GateStatus, TenseKey, Verb } from './types';
+import type { Gate, GateStatus, TenseKey, Verb, Direction } from './types';
 
 // The 8-gate linear chain for en-fr direction
 export const FULL_GATE_CHAIN: Gate[] = [
@@ -35,47 +35,100 @@ export function getVerbsForTier(tierId: number, allVerbs: string[]): string[] {
   return allVerbs.filter((v) => !otherVerbs.has(v));
 }
 
+function directionSuffix(direction: Direction): string {
+  return direction === 'en-fr' ? 'enfr' : 'fren';
+}
+
+export function makeStatId(
+  infinitive: string,
+  pronoun: string,
+  tense: TenseKey,
+  mode: string,
+  direction: Direction,
+): string {
+  return `${infinitive}_${pronoun}_${tense}_${mode}_${directionSuffix(direction)}`;
+}
+
+function makeGateCompletionId(
+  tense: TenseKey,
+  direction: Direction,
+  tier: number,
+  mode: string,
+): string {
+  return `${tense}_${directionSuffix(direction)}_${tier}_${mode}`;
+}
+
 export async function computeGateStatuses(
   tense: TenseKey,
-  direction: 'en-fr' | 'fr-en',
+  direction: Direction,
   allVerbs: string[],
   verbData?: Verb[],
 ): Promise<GateStatus[]> {
   const chain = getGateChain(direction);
   const results: GateStatus[] = [];
-  let previousCompleted = true; // Gate 0 (before T1F) is always "completed"
+  let previousCompleted = true;
   const verbMap = verbData ? new Map(verbData.map((v) => [v.infinitive, v])) : null;
 
   for (const gate of chain) {
     const tierVerbs = getVerbsForTier(gate.tier, allVerbs);
     let total = 0;
     let atLevel = 0;
+    let box1 = 0;
+    let box2 = 0;
+    let box3plus = 0;
+
+    // Check for permanent completion
+    const completionId = makeGateCompletionId(tense, direction, gate.tier, gate.mode);
+    const existingCompletion = await db.gateCompletions.get(completionId);
 
     for (const infinitive of tierVerbs) {
       for (const pronoun of PRONOUNS) {
-        // Skip pronouns with no conjugation (e.g. falloir only has "il")
         if (verbMap) {
           const verb = verbMap.get(infinitive);
           if (verb && !verb.tenses[tense]?.[pronoun]) continue;
         }
-        const statId = `${infinitive}_${pronoun}_${tense}_${gate.mode}`;
+        const statId = makeStatId(infinitive, pronoun, tense, gate.mode, direction);
         total++;
         const stat = await db.stats.get(statId);
         if (stat && stat.box >= TIER_UNLOCK_MIN_BOX) {
           atLevel++;
+          box3plus++;
+        } else if (stat && stat.box === 2) {
+          box2++;
+        } else {
+          box1++;
         }
       }
     }
 
     const ratio = total > 0 ? atLevel / total : 0;
     const unlocked: boolean = previousCompleted;
-    const completed: boolean = unlocked && ratio >= TIER_UNLOCK_THRESHOLD;
+    let completed: boolean;
+
+    if (existingCompletion) {
+      // Permanently completed — never regresses
+      completed = true;
+    } else {
+      completed = unlocked && ratio >= TIER_UNLOCK_THRESHOLD;
+      // Persist new completion
+      if (completed) {
+        await db.gateCompletions.put({
+          id: completionId,
+          tense,
+          direction,
+          tier: gate.tier,
+          mode: gate.mode,
+          completedAt: new Date().toISOString(),
+        });
+      }
+    }
 
     results.push({
       gate,
       unlocked,
       completed,
       progress: { current: atLevel, total },
+      boxDistribution: { box1, box2, box3plus },
     });
 
     previousCompleted = completed;
@@ -87,5 +140,5 @@ export async function computeGateStatuses(
 // Find the frontier gate: first unlocked but not completed gate
 export function getFrontierIndex(statuses: GateStatus[]): number {
   const idx = statuses.findIndex((s) => s.unlocked && !s.completed);
-  return idx >= 0 ? idx : statuses.length - 1; // If all completed, use last gate
+  return idx >= 0 ? idx : statuses.length - 1;
 }
