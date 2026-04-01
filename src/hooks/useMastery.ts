@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import { db } from '../lib/db';
 import { BOX_INTERVALS, MAX_BOX } from '../lib/constants';
-import type { Stat, SessionStats } from '../lib/types';
+import type { Stat, SessionStats, Direction } from '../lib/types';
 
 function getToday(): string {
   return new Date().toISOString().split('T')[0]!;
@@ -13,7 +13,7 @@ function addDays(dateStr: string, days: number): string {
   return d.toISOString().split('T')[0]!;
 }
 
-export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
+export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', direction?: Direction) {
   const [sessionStats, setSessionStats] = useState<SessionStats>({ correct: 0, incorrect: 0 });
 
   const lastActionRef = useRef<{
@@ -37,11 +37,11 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, correct: s.correct + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: true });
+    const activityId = await db.activity.add({ date: today, mode, correct: true, direction });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: true };
     // "removed from session" when moved to box 2+ (has future review date)
     return interval > 0;
-  }, [mode]);
+  }, [mode, direction]);
 
   const recordIncorrect = useCallback(async (id: string) => {
     const previousStat = (await db.stats.get(id)) ?? null;
@@ -55,9 +55,9 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation') {
       lastPracticed: new Date().toISOString(),
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: false });
+    const activityId = await db.activity.add({ date: today, mode, correct: false, direction });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: false };
-  }, [mode]);
+  }, [mode, direction]);
 
   const undo = useCallback(async () => {
     const action = lastActionRef.current;
