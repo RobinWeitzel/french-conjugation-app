@@ -245,25 +245,46 @@ export function PracticeSetup() {
                       })}
                     </div>
 
-                    {/* Progress bar for active gate */}
-                    {activeProgress && activeProgress.total > 0 && !activeGateStatus?.completed && (
-                      <div className="mt-3 flex items-center gap-2">
-                        <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                    {/* Stacked progress bar for active gate */}
+                    {activeProgress && activeProgress.total > 0 && !activeGateStatus?.completed && activeGateStatus && (
+                      <div className="mt-3">
+                        <div className="relative h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                          {/* Green segment (box 3+ = counting toward unlock) */}
                           <div
-                            className="h-full rounded-full bg-indigo-400 transition-all"
+                            className="absolute left-0 top-0 h-full rounded-full bg-emerald-400 dark:bg-emerald-500 transition-all"
                             style={{
-                              width: `${(activeProgress.current / activeProgress.total) * 100}%`
+                              width: `${(activeGateStatus.boxDistribution.box3plus / activeProgress.total) * 100}%`
                             }}
                           />
-                          {/* Unlock threshold marker at 70% */}
+                          {/* Orange segment (box 2 = learning, stacked after green) */}
                           <div
-                            className="absolute top-1/2 h-3 w-0.5 -translate-y-1/2 rounded-full bg-slate-400 dark:bg-slate-500"
+                            className="absolute top-0 h-full bg-amber-400 dark:bg-amber-500 transition-all"
+                            style={{
+                              left: `${(activeGateStatus.boxDistribution.box3plus / activeProgress.total) * 100}%`,
+                              width: `${(activeGateStatus.boxDistribution.box2 / activeProgress.total) * 100}%`
+                            }}
+                          />
+                          {/* 70% threshold marker */}
+                          <div
+                            className="absolute top-1/2 h-3.5 w-0.5 -translate-y-1/2 rounded-full bg-slate-400 dark:bg-slate-500"
                             style={{ left: `${TIER_UNLOCK_THRESHOLD * 100}%` }}
                           />
                         </div>
-                        <span className="text-xs text-slate-400 dark:text-slate-500">
-                          {activeProgress.current}/{activeProgress.total}
-                        </span>
+                        <div className="mt-1 flex items-center justify-between">
+                          <div className="flex items-center gap-3 text-[10px]">
+                            <span className="flex items-center gap-1 text-slate-400 dark:text-slate-500">
+                              <span className="inline-block size-2 rounded-full bg-emerald-400 dark:bg-emerald-500" />
+                              Mastered
+                            </span>
+                            <span className="flex items-center gap-1 text-slate-400 dark:text-slate-500">
+                              <span className="inline-block size-2 rounded-full bg-amber-400 dark:bg-amber-500" />
+                              Learning
+                            </span>
+                          </div>
+                          <span className="text-xs text-slate-400 dark:text-slate-500">
+                            {activeGateStatus.boxDistribution.box3plus}/{activeProgress.total}
+                          </span>
+                        </div>
                       </div>
                     )}
                   </div>
