@@ -629,6 +629,55 @@ export const grammarSections: GrammarSection[] = [
         ],
       },
       {
+        id: "plus_que_parfait",
+        title: "Plus-que-parfait (Pluperfect)",
+        entries: [
+          {
+            rule: "The plus-que-parfait describes an action that happened before another past action. It is formed with the auxiliary (avoir or \u00eatre) in the imparfait + past participle.",
+            examples: [
+              { fr: "J'avais d\u00e9j\u00e0 mang\u00e9 quand il est arriv\u00e9.", en: "I had already eaten when he arrived." },
+              { fr: "Elle \u00e9tait partie avant nous.", en: "She had left before us." },
+            ],
+          },
+          {
+            rule: "Uses the same auxiliary (avoir or \u00eatre) and past participle as the pass\u00e9 compos\u00e9. Only the auxiliary changes to the imparfait.",
+            examples: [
+              { fr: "avoir \u2192 j'avais parl\u00e9 (I had spoken)", en: "" },
+              { fr: "\u00eatre \u2192 j'\u00e9tais all\u00e9(e) (I had gone)", en: "" },
+            ],
+            tip: "Think of it as 'the past of the past' \u2014 it sets the scene for events that happened even earlier than another past event.",
+          },
+        ],
+      },
+      {
+        id: "passe_simple",
+        title: "Pass\u00e9 Simple (Literary Past)",
+        entries: [
+          {
+            rule: "The pass\u00e9 simple is used in formal writing and literature to describe completed past actions. Regular -er verbs: -ai, -as, -a, -\u00e2mes, -\u00e2tes, -\u00e8rent.",
+            examples: [
+              { fr: "parler \u2192 je parlai, tu parlas, il parla, nous parl\u00e2mes, vous parl\u00e2tes, ils parl\u00e8rent", en: "" },
+            ],
+          },
+          {
+            rule: "Regular -ir and -re verbs: -is, -is, -it, -\u00eemes, -\u00eetes, -irent.",
+            examples: [
+              { fr: "finir \u2192 je finis, tu finis, il finit, nous fin\u00eemes, vous fin\u00eetes, ils finirent", en: "" },
+              { fr: "rendre \u2192 je rendis, tu rendis, il rendit, nous rend\u00eemes, vous rend\u00eetes, ils rendirent", en: "" },
+            ],
+          },
+          {
+            rule: "Common irregular pass\u00e9 simple forms.",
+            examples: [
+              { fr: "\u00eatre \u2192 je fus, tu fus, il fut, nous f\u00fbmes, vous f\u00fbtes, ils furent", en: "" },
+              { fr: "avoir \u2192 j'eus, tu eus, il eut, nous e\u00fbmes, vous e\u00fbtes, ils eurent", en: "" },
+              { fr: "faire \u2192 je fis, voir \u2192 je vis, prendre \u2192 je pris, venir \u2192 je vins", en: "" },
+            ],
+            tip: "The pass\u00e9 simple is almost never used in spoken French. You will encounter it mainly in novels, historical texts, and formal writing. For everyday speech, use the pass\u00e9 compos\u00e9 instead.",
+          },
+        ],
+      },
+      {
         id: "recent_past",
         title: "Recent Past (venir de)",
         entries: [
@@ -713,6 +762,34 @@ export const grammarSections: GrammarSection[] = [
               { fr: "Si tu venais, on s'amuserait.", en: "If you came, we would have fun." },
             ],
             tip: "Never use the conditional or future tense after 'si' in a conditional sentence.",
+          },
+        ],
+      },
+      {
+        id: "conditionnel_passe",
+        title: "Conditionnel Pass\u00e9 (Past Conditional)",
+        entries: [
+          {
+            rule: "The conditionnel pass\u00e9 expresses what would have happened. It is formed with the auxiliary (avoir or \u00eatre) in the conditionnel + past participle.",
+            examples: [
+              { fr: "J'aurais aim\u00e9 venir.", en: "I would have liked to come." },
+              { fr: "Elle serait partie plus t\u00f4t.", en: "She would have left earlier." },
+            ],
+          },
+          {
+            rule: "Used for regrets, reproaches, and unrealized hypothetical situations in the past.",
+            examples: [
+              { fr: "J'aurais d\u00fb \u00e9tudier.", en: "I should have studied." },
+              { fr: "Tu aurais pu m'aider.", en: "You could have helped me." },
+            ],
+          },
+          {
+            rule: "In 'if' clauses about the past: si + plus-que-parfait \u2192 conditionnel pass\u00e9.",
+            examples: [
+              { fr: "Si j'avais su, j'aurais agi diff\u00e9remment.", en: "If I had known, I would have acted differently." },
+              { fr: "Si elle \u00e9tait venue, nous aurions \u00e9t\u00e9 contents.", en: "If she had come, we would have been happy." },
+            ],
+            tip: "Like with the present conditional, never use the conditionnel pass\u00e9 after 'si' \u2014 only in the result clause.",
           },
         ],
       },

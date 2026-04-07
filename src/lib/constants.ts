@@ -15,6 +15,8 @@ export const TENSES: Record<TenseKey, string> = {
   imperatif: 'Impératif',
   passe_recent: 'Passé Récent',
   voix_passive: 'Voix Passive',
+  passe_simple: 'Passé Simple',
+  conditionnel_passe: 'Conditionnel Passé',
 };
 
 export const PRONOUNS: Pronoun[] = ['je', 'tu', 'il', 'nous', 'vous', 'ils'];
