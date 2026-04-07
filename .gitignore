@@ -3,3 +3,4 @@ dist
 *.tsbuildinfo
 scripts/.env
 scripts/venv/
+public/version.json
