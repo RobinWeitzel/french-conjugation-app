@@ -63,6 +63,7 @@ export async function computeGateStatuses(
   direction: Direction,
   allVerbs: string[],
   verbData?: Verb[],
+  persistCompletions = false,
 ): Promise<GateStatus[]> {
   const chain = getGateChain(direction);
   const results: GateStatus[] = [];
@@ -110,8 +111,7 @@ export async function computeGateStatuses(
       completed = true;
     } else {
       completed = unlocked && ratio >= TIER_UNLOCK_THRESHOLD;
-      // Persist new completion
-      if (completed) {
+      if (completed && !existingCompletion && persistCompletions) {
         await db.gateCompletions.put({
           id: completionId,
           tense,
