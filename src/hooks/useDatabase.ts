@@ -23,6 +23,17 @@ async function fetchAndUpdateVerbs(): Promise<void> {
   }
 }
 
+let verbsFetchPromise: Promise<void> | null = null;
+
+function fetchAndUpdateVerbsOnce(): Promise<void> {
+  if (!verbsFetchPromise) {
+    verbsFetchPromise = fetchAndUpdateVerbs().finally(() => {
+      verbsFetchPromise = null;
+    });
+  }
+  return verbsFetchPromise;
+}
+
 async function fetchAndUpdateSentences(): Promise<void> {
   try {
     const response = await fetch('./sentences.json', { cache: 'no-cache' });
@@ -44,13 +55,24 @@ async function fetchAndUpdateSentences(): Promise<void> {
   }
 }
 
+let sentencesFetchPromise: Promise<void> | null = null;
+
+function fetchAndUpdateSentencesOnce(): Promise<void> {
+  if (!sentencesFetchPromise) {
+    sentencesFetchPromise = fetchAndUpdateSentences().finally(() => {
+      sentencesFetchPromise = null;
+    });
+  }
+  return sentencesFetchPromise;
+}
+
 export function useVerbs(): Verb[] | undefined {
-  useEffect(() => { fetchAndUpdateVerbs(); }, []);
+  useEffect(() => { fetchAndUpdateVerbsOnce(); }, []);
   return useLiveQuery(() => db.verbs.toArray());
 }
 
 export function useSentences(categories?: string[]): Sentence[] | undefined {
-  useEffect(() => { fetchAndUpdateSentences(); }, []);
+  useEffect(() => { fetchAndUpdateSentencesOnce(); }, []);
   return useLiveQuery(() => {
     if (categories && categories.length > 0) {
       return db.sentences.where('category').anyOf(categories).toArray();
@@ -60,7 +82,7 @@ export function useSentences(categories?: string[]): Sentence[] | undefined {
 }
 
 export function useSentenceCategories(): Record<string, string> | undefined {
-  useEffect(() => { fetchAndUpdateSentences(); }, []);
+  useEffect(() => { fetchAndUpdateSentencesOnce(); }, []);
   return useLiveQuery(async () => {
     const stored = await db.metadata.get('sentenceCategories');
     if (stored?.value) return JSON.parse(stored.value) as Record<string, string>;
@@ -69,7 +91,7 @@ export function useSentenceCategories(): Record<string, string> | undefined {
 }
 
 export function useAudioCategories(): string[] | undefined {
-  useEffect(() => { fetchAndUpdateSentences(); }, []);
+  useEffect(() => { fetchAndUpdateSentencesOnce(); }, []);
   return useLiveQuery(async () => {
     const stored = await db.metadata.get('audioCategories');
     if (stored?.value) return JSON.parse(stored.value) as string[];
