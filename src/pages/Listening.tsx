@@ -30,6 +30,7 @@ export function Listening() {
   const [cards, setCards] = useState<ListeningCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [initialDueCount, setInitialDueCount] = useState(0);
 
   useEffect(() => {
     if (!sentences) return;
@@ -59,6 +60,7 @@ export function Listening() {
       }
 
       setCards(allCards);
+      setInitialDueCount(allCards.length);
       setCurrentIndex(0);
       setLoading(false);
     };
@@ -179,7 +181,7 @@ export function Listening() {
 
   const toggleSpeed = () => setSpeed(speed === 1 ? 0.75 : 1);
 
-  const totalCards = sentences?.length ?? 0;
+  const totalCards = initialDueCount;
 
   if (loading) {
     return (
