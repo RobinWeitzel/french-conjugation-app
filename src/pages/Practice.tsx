@@ -54,7 +54,7 @@ function swapToAvoidVerb(cards: PracticeCard[], index: number, infinitive: strin
 export function Practice() {
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
-  const { sessionStats, recordCorrect, recordIncorrect, resetStats, resetSession, undo } = useMastery('conjugation', direction);
+  const { sessionStats, recordCorrect, recordIncorrect, undo } = useMastery('conjugation', direction);
   const { flipped, flip, reset: resetFlip } = useFlipState();
   const swipeRef = useRef<SwipeContainerHandle>(null);
   const { playAudio, stop, playing } = useAudio(1);
@@ -318,11 +318,8 @@ export function Practice() {
     return () => window.removeEventListener('keydown', handler);
   }, [flip, flipped, cardMode, typingResult, handleTypingAdvance]);
 
-  const handleReset = async () => {
-    await resetStats();
-    resetSession();
-    setLoading(true);
-    window.location.reload();
+  const handleBackToSetup = () => {
+    window.location.href = '/practice-setup';
   };
 
   const totalCards = initialDueCount;
@@ -350,29 +347,56 @@ export function Practice() {
   }
 
   if (allDone) {
+    const attempted = sessionStats.correct + sessionStats.incorrect;
+    const noPracticeDone = initialDueCount === 0;
+
     return (
       <PageLayout>
         <Navigation title="Practice" backTo="/practice-setup" />
         <div className="flex flex-1 flex-col items-center justify-center gap-6">
           <div className="text-center">
-            <p className="text-4xl">{hasScheduledCards ? '✅' : '🎉'}</p>
-            <h2 className="mt-4 text-xl font-semibold">
-              {hasScheduledCards ? 'All caught up!' : 'All mastered!'}
-            </h2>
-            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-              {hasScheduledCards
-                ? `Next review ${nextReviewLabel}. Come back then to keep your streak!`
-                : "You've mastered all cards in the selected tenses."}
-            </p>
+            {noPracticeDone ? (
+              <>
+                <p className="text-4xl">📅</p>
+                <h2 className="mt-4 text-xl font-semibold">Nothing to practice right now</h2>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  {nextReviewLabel
+                    ? `Next review ${nextReviewLabel}. Come back then!`
+                    : 'All cards are scheduled for later.'}
+                </p>
+              </>
+            ) : hasScheduledCards ? (
+              <>
+                <p className="text-4xl">✅</p>
+                <h2 className="mt-4 text-xl font-semibold">All caught up!</h2>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  You practiced {attempted} {attempted === 1 ? 'card' : 'cards'}
+                  {attempted > 0 && ` (${Math.round((sessionStats.correct / attempted) * 100)}% accuracy)`}.
+                </p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  Next review {nextReviewLabel}. Come back then to keep your streak!
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-4xl">🎉</p>
+                <h2 className="mt-4 text-xl font-semibold">All mastered!</h2>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  You've mastered all cards in the selected tenses.
+                </p>
+              </>
+            )}
           </div>
           <button
-            onClick={handleReset}
+            onClick={handleBackToSetup}
             className="rounded-xl bg-indigo-500 px-8 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-indigo-600"
           >
-            Reset &amp; Practice Again
+            Back to Setup
           </button>
         </div>
-        <StatsBar stats={sessionStats} remaining={0} total={totalCards} />
+        {!noPracticeDone && (
+          <StatsBar stats={sessionStats} remaining={0} total={totalCards} />
+        )}
       </PageLayout>
     );
   }
