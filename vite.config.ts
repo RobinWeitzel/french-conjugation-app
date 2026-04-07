@@ -44,7 +44,7 @@ export default defineConfig({
           {
             urlPattern: /\/audio\/.*\.mp3$/,
             handler: 'CacheFirst',
-            options: { cacheName: 'audio-cache', expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 365 } },
+            options: { cacheName: 'audio-cache', expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 365 } },
           },
           {
             urlPattern: /\/version\.json$/,
