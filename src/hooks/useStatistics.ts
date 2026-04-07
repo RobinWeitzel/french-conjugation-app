@@ -36,18 +36,23 @@ function emptyGroupStats(): GroupStats {
 }
 
 export function useStatistics(): StatisticsData | undefined {
+  // Sentence categories change rarely — separate query
+  const sentenceCategoryMap = useLiveQuery(async () => {
+    const allSentences = await db.sentences.toArray();
+    const map = new Map<string, string>();
+    for (const s of allSentences) {
+      map.set(s.id, s.category);
+    }
+    return map;
+  });
+
   return useLiveQuery(async () => {
-    const [allStats, allActivity, allSentences] = await Promise.all([
+    if (!sentenceCategoryMap) return undefined;
+
+    const [allStats, allActivity] = await Promise.all([
       db.stats.toArray(),
       db.activity.toArray(),
-      db.sentences.toArray(),
     ]);
-
-    // Build sentence category lookup
-    const sentenceCategoryMap = new Map<string, string>();
-    for (const s of allSentences) {
-      sentenceCategoryMap.set(s.id, s.category);
-    }
 
     // Separate conjugation vs listening stats
     const conjugationStats = allStats.filter((s) => !s.id.startsWith('listening_'));
@@ -139,5 +144,5 @@ export function useStatistics(): StatisticsData | undefined {
       listeningCategories,
       dailyActivity: days,
     };
-  });
+  }, [sentenceCategoryMap]);
 }
