@@ -64,16 +64,20 @@ export function useStatistics(): StatisticsData | undefined {
     const accuracy = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
 
     // Per-tense breakdown
-    // Stat ID format: {infinitive}_{pronoun}_{tense}_{mode}
-    // Parse from right: strip known mode suffix, then known pronoun, remainder is tense
+    // Stat ID format: {infinitive}_{pronoun}_{tense}_{mode}_{direction}
+    // Parse from right: strip direction, then mode, then pronoun, remainder is tense
     const tenseKeys = new Set(Object.keys(TENSES) as TenseKey[]);
     const pronounSet = new Set(PRONOUNS as readonly string[]);
     const modes: Set<string> = new Set<InputMode>(['flashcard', 'typing']);
+    const directions = new Set(['enfr', 'fren']);
     const tenses: Record<string, GroupStats> = {};
 
     for (const stat of conjugationStats) {
       const parts = stat.id.split('_');
-      // Strip mode (last segment)
+      // Strip direction suffix (last segment: 'enfr' or 'fren')
+      const dirSuffix = parts.pop();
+      if (!dirSuffix || !directions.has(dirSuffix)) continue;
+      // Strip mode (now last segment)
       const mode = parts.pop();
       if (!mode || !modes.has(mode)) continue;
       // Strip pronoun (now last segment)
