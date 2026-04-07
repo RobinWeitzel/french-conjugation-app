@@ -94,22 +94,19 @@ export function Practice() {
     if (!verbs) return;
 
     const buildCards = async () => {
-      const allCards: PracticeCard[] = [];
       const today = new Date().toISOString().split('T')[0]!;
       const allInfinitives = verbs.map((v) => v.infinitive);
       let earliestFuture: string | null = null;
 
+      // Pass 1: determine active gates and collect all potential cards with stat IDs
+      const pendingCards: PracticeCard[] = [];
+
       for (const tense of tenses) {
-        // Compute gate statuses for this tense
         const statuses = await computeGateStatuses(tense, direction, allInfinitives, verbs, true);
         const chain = getGateChain(direction);
-
-        // Determine the active gate: use override if set, otherwise use frontier
         const override = gateOverrides[tense];
         let activeGateIndex: number;
-
         if (override) {
-          // Find the gate in the chain matching the override
           activeGateIndex = chain.findIndex(
             (g) => g.tier === override.tier && g.mode === override.mode
           );
@@ -117,45 +114,46 @@ export function Practice() {
         } else {
           activeGateIndex = getFrontierIndex(statuses);
         }
-
         const activeGate = chain[activeGateIndex]!;
-        // For fr-en direction, force flashcard mode
         const mode: InputMode = direction === 'fr-en' ? 'flashcard' : activeGate.mode;
         const tierVerbs = getVerbsForTier(activeGate.tier, allInfinitives);
         const tierVerbSet = new Set(tierVerbs);
 
         for (const verb of verbs) {
           if (!tierVerbSet.has(verb.infinitive)) continue;
-
           const tenseData = verb.tenses[tense];
           if (!tenseData) continue;
-
           for (const pronoun of PRONOUNS) {
             const conjugation = tenseData[pronoun];
             if (!conjugation) continue;
-
-            const statId = makeStatId(verb.infinitive, pronoun, tense, mode, direction);
-            const stat = await db.stats.get(statId);
-
-            if (stat && stat.nextReview > today) {
-              if (!earliestFuture || stat.nextReview < earliestFuture) {
-                earliestFuture = stat.nextReview;
-              }
-              continue;
-            }
-
-            allCards.push({
+            pendingCards.push({
               infinitive: verb.infinitive,
               english: verb.english,
               tense,
               pronoun,
               french: conjugation.french,
               englishConjugation: conjugation.english,
-              statId,
+              statId: makeStatId(verb.infinitive, pronoun, tense, mode, direction),
               mode,
             });
           }
         }
+      }
+
+      // Bulk fetch all stats in one query
+      const statResults = await db.stats.bulkGet(pendingCards.map((c) => c.statId));
+
+      // Pass 2: filter to due cards
+      const allCards: PracticeCard[] = [];
+      for (let i = 0; i < pendingCards.length; i++) {
+        const stat = statResults[i];
+        if (stat && stat.nextReview > today) {
+          if (!earliestFuture || stat.nextReview < earliestFuture) {
+            earliestFuture = stat.nextReview;
+          }
+          continue;
+        }
+        allCards.push(pendingCards[i]!);
       }
 
       // Shuffle
@@ -166,7 +164,6 @@ export function Practice() {
         allCards[j] = temp;
       }
 
-      // Spread out cards so the same verb doesn't appear consecutively
       spreadByInfinitive(allCards);
 
       setCards(allCards);
