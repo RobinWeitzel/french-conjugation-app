@@ -66,39 +66,61 @@ export async function computeGateStatuses(
   persistCompletions = false,
 ): Promise<GateStatus[]> {
   const chain = getGateChain(direction);
-  const results: GateStatus[] = [];
-  let previousCompleted = true;
   const verbMap = verbData ? new Map(verbData.map((v) => [v.infinitive, v])) : null;
+
+  // Pass 1: collect all stat IDs and completion IDs
+  const allStatIds: string[] = [];
+  const allCompletionIds: string[] = [];
+  const gateStatIdRanges: { start: number; count: number }[] = [];
 
   for (const gate of chain) {
     const tierVerbs = getVerbsForTier(gate.tier, allVerbs);
-    let total = 0;
-    let atLevel = 0;
-    let box1 = 0;
-    let box2 = 0;
-    let box3plus = 0;
+    allCompletionIds.push(makeGateCompletionId(tense, direction, gate.tier, gate.mode));
 
-    // Check for permanent completion
-    const completionId = makeGateCompletionId(tense, direction, gate.tier, gate.mode);
-    const existingCompletion = await db.gateCompletions.get(completionId);
-
+    const start = allStatIds.length;
     for (const infinitive of tierVerbs) {
       for (const pronoun of PRONOUNS) {
         if (verbMap) {
           const verb = verbMap.get(infinitive);
           if (verb && !verb.tenses[tense]?.[pronoun]) continue;
         }
-        const statId = makeStatId(infinitive, pronoun, tense, gate.mode, direction);
-        total++;
-        const stat = await db.stats.get(statId);
-        if (stat && stat.box >= TIER_UNLOCK_MIN_BOX) {
-          atLevel++;
-          box3plus++;
-        } else if (stat && stat.box === 2) {
-          box2++;
-        } else {
-          box1++;
-        }
+        allStatIds.push(makeStatId(infinitive, pronoun, tense, gate.mode, direction));
+      }
+    }
+    gateStatIdRanges.push({ start, count: allStatIds.length - start });
+  }
+
+  // Bulk fetch everything in 2 queries instead of N*M individual reads
+  const [allStatsResults, allCompletionResults] = await Promise.all([
+    db.stats.bulkGet(allStatIds),
+    db.gateCompletions.bulkGet(allCompletionIds),
+  ]);
+
+  // Pass 2: compute statuses from prefetched data
+  const results: GateStatus[] = [];
+  let previousCompleted = true;
+
+  for (let gi = 0; gi < chain.length; gi++) {
+    const gate = chain[gi]!;
+    const { start, count } = gateStatIdRanges[gi]!;
+    const existingCompletion = allCompletionResults[gi];
+
+    let total = 0;
+    let atLevel = 0;
+    let box1 = 0;
+    let box2 = 0;
+    let box3plus = 0;
+
+    for (let i = start; i < start + count; i++) {
+      total++;
+      const stat = allStatsResults[i];
+      if (stat && stat.box >= TIER_UNLOCK_MIN_BOX) {
+        atLevel++;
+        box3plus++;
+      } else if (stat && stat.box === 2) {
+        box2++;
+      } else {
+        box1++;
       }
     }
 
@@ -107,13 +129,12 @@ export async function computeGateStatuses(
     let completed: boolean;
 
     if (existingCompletion) {
-      // Permanently completed — never regresses
       completed = true;
     } else {
       completed = unlocked && ratio >= TIER_UNLOCK_THRESHOLD;
-      if (completed && !existingCompletion && persistCompletions) {
+      if (completed && persistCompletions) {
         await db.gateCompletions.put({
-          id: completionId,
+          id: makeGateCompletionId(tense, direction, gate.tier, gate.mode),
           tense,
           direction,
           tier: gate.tier,
