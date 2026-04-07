@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
 import { Navigation } from '../components/Navigation';
 import { Flashcard, useFlipState } from '../components/Flashcard';
@@ -52,6 +53,7 @@ function swapToAvoidVerb(cards: PracticeCard[], index: number, infinitive: strin
 }
 
 export function Practice() {
+  const navigate = useNavigate();
   const verbs = useVerbs();
   const { direction, showInfinitive, tenses, gateOverrides } = usePracticeSettings();
   const { sessionStats, recordCorrect, recordIncorrect, undo } = useMastery('conjugation', direction);
@@ -319,7 +321,7 @@ export function Practice() {
   }, [flip, flipped, cardMode, typingResult, handleTypingAdvance]);
 
   const handleBackToSetup = () => {
-    window.location.href = '/practice-setup';
+    navigate('/practice-setup');
   };
 
   const totalCards = initialDueCount;
