@@ -98,7 +98,10 @@ export async function computeGateStatuses(
 
   // Pass 2: compute statuses from prefetched data
   const results: GateStatus[] = [];
-  let previousCompleted = true;
+  // Tier progression flows through flashcard gates only. Typing gates unlock
+  // from the same tier's flashcard completion but do not gate later tiers.
+  let previousFlashcardCompleted = true;
+  let currentTierFlashcardCompleted = false;
 
   for (let gi = 0; gi < chain.length; gi++) {
     const gate = chain[gi]!;
@@ -125,7 +128,8 @@ export async function computeGateStatuses(
     }
 
     const ratio = total > 0 ? atLevel / total : 0;
-    const unlocked: boolean = previousCompleted;
+    const unlocked: boolean =
+      gate.mode === 'flashcard' ? previousFlashcardCompleted : currentTierFlashcardCompleted;
     let completed: boolean;
 
     if (existingCompletion) {
@@ -152,7 +156,10 @@ export async function computeGateStatuses(
       boxDistribution: { box1, box2, box3plus },
     });
 
-    previousCompleted = completed;
+    if (gate.mode === 'flashcard') {
+      currentTierFlashcardCompleted = completed;
+      previousFlashcardCompleted = completed;
+    }
   }
 
   return results;
