@@ -6,6 +6,7 @@ import { useUpdateCheck } from '../hooks/useDatabase';
 import { APP_VERSION } from '../lib/constants';
 import { db } from '../lib/db';
 import { CACHE_PREFIX, clearAppCaches, clearAppLocalStorage, unregisterAppServiceWorker } from '../lib/storage';
+import { SyncSection } from '../components/SyncSection';
 import type { SentencesData } from '../lib/types';
 
 const AUDIO_CACHE_NAME = 'frconj-audio-cache';
@@ -181,6 +182,9 @@ export function Settings() {
             </button>
           </div>
         </section>
+
+        {/* Sync */}
+        <SyncSection />
 
         {/* Data Management */}
         <section>
