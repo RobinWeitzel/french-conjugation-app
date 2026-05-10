@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { lsKey } from '../lib/storage';
 
 type Theme = 'light' | 'dark' | 'system';
+
+const THEME_KEY = lsKey('theme');
 
 interface ThemeContextType {
   theme: Theme;
@@ -12,7 +15,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    return (localStorage.getItem('theme') as Theme) || 'system';
+    return (localStorage.getItem(THEME_KEY) as Theme) || 'system';
   });
 
   const [systemDark, setSystemDark] = useState(() =>
@@ -34,7 +37,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    localStorage.setItem('theme', t);
+    localStorage.setItem(THEME_KEY, t);
   };
 
   return (

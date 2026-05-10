@@ -5,7 +5,10 @@ import { ThemeToggle } from '../components/ThemeToggle';
 import { useUpdateCheck } from '../hooks/useDatabase';
 import { APP_VERSION } from '../lib/constants';
 import { db } from '../lib/db';
+import { CACHE_PREFIX, clearAppCaches, clearAppLocalStorage, unregisterAppServiceWorker } from '../lib/storage';
 import type { SentencesData } from '../lib/types';
+
+const AUDIO_CACHE_NAME = 'frconj-audio-cache';
 
 function useAudioDownload() {
   const [totalAudio, setTotalAudio] = useState(0);
@@ -22,7 +25,7 @@ function useAudioDownload() {
       setTotalAudio(audioSentences.length);
 
       let cached = 0;
-      const keys = await caches.keys();
+      const keys = (await caches.keys()).filter((k) => k.startsWith(CACHE_PREFIX));
       for (const s of audioSentences) {
         for (const key of keys) {
           const cache = await caches.open(key);
@@ -47,7 +50,7 @@ function useAudioDownload() {
       const audioCategories = data.audioCategories ?? [];
       const audioSentences = data.sentences.filter((s) => audioCategories.includes(s.category));
 
-      const cache = await caches.open('audio-cache');
+      const cache = await caches.open(AUDIO_CACHE_NAME);
       let done = 0;
 
       for (const s of audioSentences) {
@@ -85,13 +88,9 @@ export function Settings() {
     setClearing(true);
     try {
       await db.delete();
-      localStorage.clear();
-      if ('serviceWorker' in navigator) {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        for (const reg of registrations) await reg.unregister();
-      }
-      const cacheNames = await caches.keys();
-      for (const name of cacheNames) await caches.delete(name);
+      clearAppLocalStorage();
+      await unregisterAppServiceWorker();
+      await clearAppCaches();
       window.location.reload();
     } catch {
       setClearing(false);
