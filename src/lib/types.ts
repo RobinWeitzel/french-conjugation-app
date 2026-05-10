@@ -43,6 +43,7 @@ export interface Stat {
   box: number;          // 1-5 Leitner box
   nextReview: string;   // ISO date string "YYYY-MM-DD"
   lastPracticed: string;
+  updatedAt: number;    // epoch ms; used for sync conflict resolution
 }
 
 export interface Activity {
@@ -51,6 +52,7 @@ export interface Activity {
   mode: 'conjugation' | 'listening';
   correct: boolean;
   direction?: Direction;  // track which direction was practiced
+  updatedAt: number;   // epoch ms; used for sync delta queries
 }
 
 export interface Metadata {
@@ -101,6 +103,7 @@ export interface GateCompletion {
   tier: number;
   mode: InputMode;
   completedAt: string; // ISO date
+  updatedAt: number;   // epoch ms; used for sync conflict resolution
 }
 
 export interface ListeningCard {

@@ -25,19 +25,21 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', di
 
   const recordCorrect = useCallback(async (id: string): Promise<boolean> => {
     const previousStat = (await db.stats.get(id)) ?? null;
-    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
+    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '', updatedAt: 0 };
     const today = getToday();
     const newBox = Math.min(stat.box + 1, MAX_BOX);
     const interval = BOX_INTERVALS[newBox] ?? 30;
+    const now = Date.now();
     await db.stats.put({
       id,
       correctCount: stat.correctCount + 1,
       box: newBox,
       nextReview: addDays(today, interval),
-      lastPracticed: new Date().toISOString(),
+      lastPracticed: new Date(now).toISOString(),
+      updatedAt: now,
     });
     setSessionStats((s) => ({ ...s, correct: s.correct + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: true, direction });
+    const activityId = await db.activity.add({ date: today, mode, correct: true, direction, updatedAt: now });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: true };
     // "removed from session" when moved to box 2+ (has future review date)
     return interval > 0;
@@ -45,17 +47,19 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', di
 
   const recordIncorrect = useCallback(async (id: string) => {
     const previousStat = (await db.stats.get(id)) ?? null;
-    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '' };
+    const stat = previousStat ?? { id, correctCount: 0, box: 1, nextReview: getToday(), lastPracticed: '', updatedAt: 0 };
     const today = getToday();
+    const now = Date.now();
     await db.stats.put({
       ...stat,
       correctCount: 0,
       box: 1,
       nextReview: today,
-      lastPracticed: new Date().toISOString(),
+      lastPracticed: new Date(now).toISOString(),
+      updatedAt: now,
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: false, direction });
+    const activityId = await db.activity.add({ date: today, mode, correct: false, direction, updatedAt: now });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: false };
   }, [mode, direction]);
 
@@ -64,7 +68,9 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', di
     if (!action) return null;
 
     if (action.previousStat) {
-      await db.stats.put(action.previousStat);
+      // Bump updatedAt so this device's restore wins against any remote that
+      // already replicated the just-undone state.
+      await db.stats.put({ ...action.previousStat, updatedAt: Date.now() });
     } else {
       await db.stats.delete(action.statId);
     }
