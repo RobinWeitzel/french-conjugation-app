@@ -7,6 +7,7 @@ import { APP_VERSION } from '../lib/constants';
 import { db } from '../lib/db';
 import { CACHE_PREFIX, clearAppCaches, clearAppLocalStorage, unregisterAppServiceWorker } from '../lib/storage';
 import { SyncSection } from '../components/SyncSection';
+import { getRemoteStorage } from '../lib/remoteStorage';
 import type { SentencesData } from '../lib/types';
 
 const AUDIO_CACHE_NAME = 'frconj-audio-cache';
@@ -86,6 +87,11 @@ export function Settings() {
   const { totalAudio, cachedCount, downloading, progress, downloadAll, allCached } = useAudioDownload();
 
   const clearAllData = async () => {
+    const synced = getRemoteStorage().connected;
+    const message = synced
+      ? 'Clear all local data and cache on this device?\n\nYour cloud sync data will not be touched — reconnect to restore your progress.'
+      : 'Clear all local data and cache on this device?\n\nThis cannot be undone.';
+    if (!window.confirm(message)) return;
     setClearing(true);
     try {
       await db.delete();
@@ -99,6 +105,11 @@ export function Settings() {
   };
 
   const clearStats = async () => {
+    const synced = getRemoteStorage().connected;
+    const message = synced
+      ? 'Reset all progress on this device AND every synced device?\n\nThis will wipe stats and activity from your cloud sync as well. This cannot be undone.'
+      : 'Reset all progress on this device?\n\nThis cannot be undone.';
+    if (!window.confirm(message)) return;
     await db.stats.clear();
     await db.activity.clear();
     alert('Stats cleared successfully.');
