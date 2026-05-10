@@ -61,13 +61,13 @@ export function Practice() {
   const swipeRef = useRef<SwipeContainerHandle>(null);
   const { playAudio, stop, playing } = useAudio(1);
   const [ttsMuted, setTtsMuted] = useState(() => {
-    const stored = localStorage.getItem('practiceTtsMuted');
+    const stored = localStorage.getItem('frconj:practiceTtsMuted');
     return stored === 'true';
   });
   const toggleMute = useCallback(() => {
     setTtsMuted((prev) => {
       const next = !prev;
-      localStorage.setItem('practiceTtsMuted', JSON.stringify(next));
+      localStorage.setItem('frconj:practiceTtsMuted', JSON.stringify(next));
       if (next) stop();
       return next;
     });

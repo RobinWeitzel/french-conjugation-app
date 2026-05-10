@@ -1,9 +1,11 @@
 import { useState, useCallback } from 'react';
 import type { TenseKey, Direction, InputMode } from '../lib/types';
+import { lsKey } from '../lib/storage';
 
 function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
+  const namespacedKey = lsKey(key);
   const [state, setState] = useState<T>(() => {
-    const stored = localStorage.getItem(key);
+    const stored = localStorage.getItem(namespacedKey);
     if (stored === null) return defaultValue;
     try {
       return JSON.parse(stored) as T;
@@ -15,9 +17,9 @@ function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => voi
   const setValue = useCallback(
     (value: T) => {
       setState(value);
-      localStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(namespacedKey, JSON.stringify(value));
     },
-    [key]
+    [namespacedKey]
   );
 
   return [state, setValue];

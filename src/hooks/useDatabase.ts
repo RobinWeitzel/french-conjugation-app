@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../lib/db';
 import { APP_VERSION } from '../lib/constants';
+import { clearAppCaches, unregisterAppServiceWorker } from '../lib/storage';
 import type { Verb, Sentence, VerbsData, SentencesData } from '../lib/types';
 
 async function fetchAndUpdateVerbs(): Promise<void> {
@@ -120,12 +121,8 @@ export function useUpdateCheck() {
   };
 
   const applyUpdate = async () => {
-    if ('serviceWorker' in navigator) {
-      const registrations = await navigator.serviceWorker.getRegistrations();
-      for (const reg of registrations) await reg.unregister();
-    }
-    const cacheNames = await caches.keys();
-    for (const name of cacheNames) await caches.delete(name);
+    await unregisterAppServiceWorker();
+    await clearAppCaches();
     window.location.reload();
   };
 

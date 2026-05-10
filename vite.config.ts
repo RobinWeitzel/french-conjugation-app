@@ -29,22 +29,23 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cacheId: 'frconj',
         globPatterns: ['**/*.{js,css,html,png,woff2}'],
         runtimeCaching: [
           {
             urlPattern: /\/words\.json$/,
             handler: 'NetworkFirst',
-            options: { cacheName: 'data-cache', expiration: { maxEntries: 5 } },
+            options: { cacheName: 'frconj-data-cache', expiration: { maxEntries: 5 } },
           },
           {
             urlPattern: /\/sentences\.json$/,
             handler: 'NetworkFirst',
-            options: { cacheName: 'data-cache', expiration: { maxEntries: 5 } },
+            options: { cacheName: 'frconj-data-cache', expiration: { maxEntries: 5 } },
           },
           {
             urlPattern: /\/audio\/.*\.mp3$/,
             handler: 'CacheFirst',
-            options: { cacheName: 'audio-cache', expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 365 } },
+            options: { cacheName: 'frconj-audio-cache', expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 365 } },
           },
           {
             urlPattern: /\/version\.json$/,
