@@ -1,6 +1,6 @@
 import { db } from './db';
 import { getRemoteStorage, getModuleClient } from './remoteStorage';
-import type { Stat, GateCompletion } from './types';
+import type { Stat, GateCompletion, Activity } from './types';
 
 let isApplyingRemote = false;
 let installed = false;
@@ -56,6 +56,12 @@ async function flush(): Promise<void> {
         const row = await db.gateCompletions.get(id);
         if (row) await client.storeObject('gateCompletion', `gateCompletions/${id}`, row);
         else await client.remove(`gateCompletions/${id}`);
+      } else if (key.startsWith('activity/')) {
+        // key = activity/{date}/{syncId}
+        const syncId = key.split('/').pop()!;
+        const row = await db.activity.where('syncId').equals(syncId).first();
+        if (row) await client.storeObject('activity', key, row);
+        else await client.remove(key);
       }
     } catch {
       pushQueue.add(key);
@@ -80,6 +86,28 @@ async function applyRemoteStat(id: string, value: unknown): Promise<void> {
     const existing = await db.stats.get(id);
     if (!existing || incoming.updatedAt > existing.updatedAt) {
       await db.stats.put(incoming);
+    }
+  } finally {
+    isApplyingRemote = false;
+  }
+}
+
+async function applyRemoteActivity(syncId: string, value: unknown): Promise<void> {
+  isApplyingRemote = true;
+  try {
+    if (value === undefined || value === null) {
+      const existing = await db.activity.where('syncId').equals(syncId).first();
+      if (existing?.id != null) await db.activity.delete(existing.id);
+      return;
+    }
+    const incoming = value as Activity;
+    if (typeof incoming.updatedAt !== 'number' || typeof incoming.syncId !== 'string') return;
+    const existing = await db.activity.where('syncId').equals(syncId).first();
+    if (!existing) {
+      const { id: _omit, ...rest } = incoming;
+      await db.activity.add(rest as Activity);
+    } else if (incoming.updatedAt > (existing.updatedAt ?? 0)) {
+      await db.activity.update(existing.id!, { ...incoming, id: existing.id });
     }
   } finally {
     isApplyingRemote = false;
@@ -116,6 +144,13 @@ function installDexieHooks(): void {
     enqueue(`stats/${primKey}`);
   });
 
+  db.activity.hook('creating', (_primKey, obj: Activity) => {
+    if (obj.syncId && obj.date) enqueue(`activity/${obj.date}/${obj.syncId}`);
+  });
+  db.activity.hook('deleting', (_primKey, obj: Activity) => {
+    if (obj?.syncId && obj?.date) enqueue(`activity/${obj.date}/${obj.syncId}`);
+  });
+
   db.gateCompletions.hook('creating', (primKey: string) => {
     enqueue(`gateCompletions/${primKey}`);
   });
@@ -139,6 +174,14 @@ function installRemoteListener(): void {
         lastSyncAt = Date.now();
         notify();
       });
+    } else if (path.startsWith('activity/')) {
+      const syncId = path.split('/').pop();
+      if (syncId) {
+        void applyRemoteActivity(syncId, evt.newValue).then(() => {
+          lastSyncAt = Date.now();
+          notify();
+        });
+      }
     } else if (path.startsWith('gateCompletions/')) {
       void applyRemoteGateCompletion(path.slice('gateCompletions/'.length), evt.newValue).then(() => {
         lastSyncAt = Date.now();

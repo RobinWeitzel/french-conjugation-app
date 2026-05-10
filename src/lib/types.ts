@@ -48,6 +48,7 @@ export interface Stat {
 
 export interface Activity {
   id?: number;
+  syncId: string;     // device-independent uuid; primary key for sync paths
   date: string;       // "YYYY-MM-DD"
   mode: 'conjugation' | 'listening';
   correct: boolean;
