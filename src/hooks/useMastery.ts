@@ -39,7 +39,7 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', di
       updatedAt: now,
     });
     setSessionStats((s) => ({ ...s, correct: s.correct + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: true, direction, updatedAt: now });
+    const activityId = await db.activity.add({ syncId: crypto.randomUUID(), date: today, mode, correct: true, direction, updatedAt: now });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: true };
     // "removed from session" when moved to box 2+ (has future review date)
     return interval > 0;
@@ -59,7 +59,7 @@ export function useMastery(mode: 'conjugation' | 'listening' = 'conjugation', di
       updatedAt: now,
     });
     setSessionStats((s) => ({ ...s, incorrect: s.incorrect + 1 }));
-    const activityId = await db.activity.add({ date: today, mode, correct: false, direction, updatedAt: now });
+    const activityId = await db.activity.add({ syncId: crypto.randomUUID(), date: today, mode, correct: false, direction, updatedAt: now });
     lastActionRef.current = { statId: id, previousStat, activityId: activityId as number, wasCorrect: false };
   }, [mode, direction]);
 

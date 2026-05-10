@@ -18,6 +18,18 @@ const module: RSModule = {
       },
       required: ['id', 'correctCount', 'box', 'nextReview', 'lastPracticed', 'updatedAt'],
     });
+    privateClient.declareType('activity', {
+      type: 'object',
+      properties: {
+        syncId: { type: 'string' },
+        date: { type: 'string' },
+        mode: { type: 'string' },
+        correct: { type: 'boolean' },
+        direction: { type: 'string' },
+        updatedAt: { type: 'integer' },
+      },
+      required: ['syncId', 'date', 'mode', 'correct', 'updatedAt'],
+    });
     privateClient.declareType('gateCompletion', {
       type: 'object',
       properties: {

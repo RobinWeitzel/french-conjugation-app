@@ -116,4 +116,17 @@ db.version(6).stores({
   });
 });
 
+db.version(7).stores({
+  verbs: 'infinitive',
+  sentences: 'id, category',
+  stats: 'id, nextReview, updatedAt',
+  metadata: 'key',
+  activity: '++id, date, updatedAt, &syncId',
+  gateCompletions: 'id, updatedAt',
+}).upgrade(async (tx) => {
+  await tx.table('activity').toCollection().modify((row: Record<string, unknown>) => {
+    if (typeof row.syncId !== 'string') row.syncId = crypto.randomUUID();
+  });
+});
+
 export { db };
