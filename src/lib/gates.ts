@@ -137,13 +137,15 @@ export async function computeGateStatuses(
     } else {
       completed = unlocked && ratio >= TIER_UNLOCK_THRESHOLD;
       if (completed && persistCompletions) {
+        const now = Date.now();
         await db.gateCompletions.put({
           id: makeGateCompletionId(tense, direction, gate.tier, gate.mode),
           tense,
           direction,
           tier: gate.tier,
           mode: gate.mode,
-          completedAt: new Date().toISOString(),
+          completedAt: new Date(now).toISOString(),
+          updatedAt: now,
         });
       }
     }

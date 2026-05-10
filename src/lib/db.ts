@@ -96,4 +96,24 @@ db.version(5).stores({
   // the full gate logic into the migration code.
 });
 
+db.version(6).stores({
+  verbs: 'infinitive',
+  sentences: 'id, category',
+  stats: 'id, nextReview, updatedAt',
+  metadata: 'key',
+  activity: '++id, date, updatedAt',
+  gateCompletions: 'id, updatedAt',
+}).upgrade(async (tx) => {
+  const now = Date.now();
+  await tx.table('stats').toCollection().modify((row: Record<string, unknown>) => {
+    if (typeof row.updatedAt !== 'number') row.updatedAt = now;
+  });
+  await tx.table('activity').toCollection().modify((row: Record<string, unknown>) => {
+    if (typeof row.updatedAt !== 'number') row.updatedAt = now;
+  });
+  await tx.table('gateCompletions').toCollection().modify((row: Record<string, unknown>) => {
+    if (typeof row.updatedAt !== 'number') row.updatedAt = now;
+  });
+});
+
 export { db };
