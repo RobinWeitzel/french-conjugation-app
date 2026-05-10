@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useRemoteStorage } from '../hooks/useRemoteStorage';
-import { isSyncEnabled } from '../lib/remoteStorage';
 
 function formatTime(ms: number | null): string {
   if (ms == null) return 'never';
@@ -12,11 +11,6 @@ function formatTime(ms: number | null): string {
 }
 
 export function SyncSection() {
-  if (!isSyncEnabled()) return null;
-  return <SyncControls />;
-}
-
-function SyncControls() {
   const { connected, connecting, userAddress, lastSyncAt, error, connect, disconnect } = useRemoteStorage();
   const [address, setAddress] = useState('');
 
@@ -76,3 +70,4 @@ function SyncControls() {
     </section>
   );
 }
+
